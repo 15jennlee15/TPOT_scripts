@@ -6,7 +6,7 @@ from pprint import pprint
 bidsdir = os.path.join(os.sep, 'projects', 'adapt_lab', 'shared', 'TPOT', 'bids_data')
 include_echo_time = False
 echo_time1 = '0.0478'
-# echo_time2 = '0.00683'
+echo_time2 = '0.0478'
 
 
 def main():
@@ -78,7 +78,7 @@ def write_to_json(func_niftis_partialpath:list, fmap_jsons:list, fmap_dir_path:s
             json_file['IntendedFor'] = func_niftis_partialpath
             if include_echo_time:
                 json_file['EchoTime1'] = echo_time1
-                # json_file['EchoTime2'] = echo_time2
+                json_file['EchoTime2'] = echo_time2
         with open(json_path, 'w') as target_json:
             json.dump(json_file, target_json, indent=4)
 
