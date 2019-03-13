@@ -344,7 +344,8 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
         for found_file in found_files:
             try:
                 run_index = found_file.index("_run-")
-                run_number = found_file[run_index + 2:run_index + 7]
+                run_number = found_file[run_index + 5:run_index + 7]
+                print(run_number)
                 run_int = int(run_number) 
                 targetfile_fullpath = os.path.join(sequence_fullpath, found_file)
                 if run_int <= difference: 
