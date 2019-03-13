@@ -355,6 +355,9 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
                         new_int = run_int - difference
                         int_str = str(new_int)
                         new_runnum = int_str.zfill(2)
+                        print(targetfile_fullpath)
+                        print(sequence_fullpath)
+                        print(found_file)
                         os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index + 5:run_index + 7], new_runnum))
                         write_to_outputlog("RENAMED: %s with run-%s" % (targetfile_fullpath, new_runnum))
             except ValueError:
