@@ -23,7 +23,7 @@ bidsdir = os.path.join(os.sep, 'projects', group, 'shared', study, 'bids_data') 
 sequence1 = Sequence('func', {'affect1': 1, 'affect2':1, 'rest1': 1, 'rest2':1, 'video': 1})
 sequence2 = Sequence('anat', {'T1w':1})
 sequence3 = Sequence('fmap', {'dir-ap':1, 'dir-pa':1})
-sequence4 = Sequence('dwi', {'dir-lr':1, 'dir-rl':1})
+sequence4 = Sequence('dwi', {'acq-lr':1, 'acq-rl':1})
 timepoint1 = TimePoint('ses-1', [sequence1, sequence2, sequence3, sequence4])
 expected_timepoints = [timepoint1]
 
