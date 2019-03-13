@@ -342,7 +342,7 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
         for found_file in found_files:
             try:
                 run_index = found_file.index("_run-")
-                run_number = found_file[run_index + 5:run_index + 7]
+                run_number = found_file[run_index + 2:run_index + 7]
                 run_int = int(run_number) 
                 targetfile_fullpath = os.path.join(sequence_fullpath, found_file)
                 if run_int <= difference: 
@@ -355,10 +355,11 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
                         new_int = run_int - difference
                         int_str = str(new_int)
                         new_runnum = int_str.zfill(2)
+                        new_runstr = 'run-' + new_runnum
                         print(targetfile_fullpath)
                         print(sequence_fullpath)
                         print(found_file)
-                        os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index + 5:run_index + 7], new_runnum))
+                        os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index + 2:run_index + 7], new_runstr))
                         write_to_outputlog("RENAMED: %s with run-%s" % (targetfile_fullpath, new_runnum))
             except ValueError:
                 write_to_errorlog('VALUE ERROR in fix_files:\n    Subject: %s\n     File: %s' %(subject, found_file))
