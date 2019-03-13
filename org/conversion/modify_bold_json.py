@@ -58,6 +58,7 @@ def write_to_json(func_jsons:list, func_dir_path:str):
             json_path = os.path.join(func_dir_path, func_json)
             with open(json_path) as target_json:
                 json_file = json.load(target_json)
+                import re
                 json_file['TaskName'] = re.search('task-(.+?)_bold.json', func_json).group(1)
             with open(json_path, 'w') as target_json:
                 json.dump(json_file, target_json, indent=4)
