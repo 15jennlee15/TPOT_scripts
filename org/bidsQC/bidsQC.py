@@ -35,17 +35,17 @@ def main():
             else:
                 write_to_errorlog("TIMEPOINT WARNING! %s missing or user entered duplicate or non-existant timepoint." % (timepoint))
             for sequence_folder_name in sequence_folder_names:
+                print(sequence_folder_name)
                 expected_sequence = [es for es in expected_timepoint[0].sequences if es.name == sequence_folder_name]
                 if len(expected_sequence) == 1:
                     sequence_fullpath = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0])
                 else:
                     write_to_errorlog("SEQUENCE DIRECTORY WARNING! %s missing or user entered duplicate or non-existant sequence folder name." % (sequence_folder_name))
-            print(sequence_folder_name)
-            if cfg.order_sequences and sequence_folder_name=="func":
-                write_to_outputlog('\n' + '-'*20 + ' assign ordered run numbers ' + '-'*20)
-                files_all_target_tasks = append_series_number(sequence_fullpath, cfg.bidsdir, cfg.tasks_to_order)
-                files_torename = drop_runnum(files_all_target_tasks, cfg.tasks_to_order, sequence_fullpath)
-                rename_tasks_ordered(files_torename, sequence_fullpath, cfg.tasks_to_order, subject)
+                if cfg.order_sequences and sequence_folder_name=="func":
+                    write_to_outputlog('\n' + '-'*20 + ' assign ordered run numbers ' + '-'*20)
+                    files_all_target_tasks = append_series_number(sequence_fullpath, cfg.bidsdir, cfg.tasks_to_order)
+                    files_torename = drop_runnum(files_all_target_tasks, cfg.tasks_to_order, sequence_fullpath)
+                    rename_tasks_ordered(files_torename, sequence_fullpath, cfg.tasks_to_order, subject)
 
 
 def drop_runnum(files_all_target_tasks, tasks_to_order, sequence_fullpath):
