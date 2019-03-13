@@ -35,7 +35,6 @@ def main():
             else:
                 write_to_errorlog("TIMEPOINT WARNING! %s missing or user entered duplicate or non-existant timepoint." % (timepoint))
             for sequence_folder_name in sequence_folder_names:
-                print(sequence_folder_name)
                 expected_sequence = [es for es in expected_timepoint[0].sequences if es.name == sequence_folder_name]
                 if len(expected_sequence) == 1:
                     sequence_fullpath = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0])
@@ -103,7 +102,9 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
     files_all_target_tasks = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
     extensions = '.nii.gz', '.json'
     json_files = [f for f in files_all_target_tasks if f.endswith('.json')]
+    print(json_files)
     for json_file in json_files:
+        print(json_file)
         file_basename = get_file_basename(json_file)
         json_fullpath = os.path.join(sequence_fullpath, json_file)
         with open(json_fullpath) as f:
