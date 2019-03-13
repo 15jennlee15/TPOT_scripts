@@ -100,11 +100,10 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
     write_to_outputlog('Appending sequence numbers')
     sequence_files = os.listdir(sequence_fullpath)
     # files_all_target_tasks = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
-    files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order)]
+    files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order.split(','))]
     print(files_all_target_tasks)
     extensions = '.nii.gz', '.json'
     json_files = [f for f in files_all_target_tasks if f.endswith('.json')]
-    print(json_files)
     for json_file in json_files:
         print(json_file)
         file_basename = get_file_basename(json_file)
@@ -117,7 +116,7 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
             new_file_name = str(series_number) + '_' + file_basename + extension
             os.rename(os.path.join(sequence_fullpath, file_basename + extension), os.path.join(sequence_fullpath, new_file_name))
     sequence_files = os.listdir(sequence_fullpath)
-    files_all_target_tasks = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
+    files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order.split(','))]
     return files_all_target_tasks
 
 
