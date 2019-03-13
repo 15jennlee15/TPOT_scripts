@@ -40,7 +40,8 @@ def main():
                     sequence_fullpath = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0])
                 else:
                     write_to_errorlog("SEQUENCE DIRECTORY WARNING! %s missing or user entered duplicate or non-existant sequence folder name." % (sequence_folder_name))
-            if cfg.order_sequences:
+            print(sequence_folder_name)
+            if cfg.order_sequences and sequence_folder_name=="func":
                 write_to_outputlog('\n' + '-'*20 + ' assign ordered run numbers ' + '-'*20)
                 files_all_target_tasks = append_series_number(sequence_fullpath, cfg.bidsdir, cfg.tasks_to_order)
                 files_torename = drop_runnum(files_all_target_tasks, cfg.tasks_to_order, sequence_fullpath)
