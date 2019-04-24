@@ -54,7 +54,7 @@ def drop_runnum(files_all_target_tasks, tasks_to_order, sequence_fullpath):
             run_index = target_file.index("_run-")
             targetfile_fullpath = os.path.join(sequence_fullpath, target_file)
             os.rename(targetfile_fullpath, targetfile_fullpath.replace(target_file[run_index:run_index + 7], ''))
-            write_to_outputlog('Dropped runnum from' + target_file)
+            write_to_outputlog('Dropped runnum from ' + target_file)
     sequence_files = os.listdir(sequence_fullpath)
     files_torename = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
     return files_torename
@@ -100,7 +100,7 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
     write_to_outputlog('Appending sequence numbers')
     sequence_files = os.listdir(sequence_fullpath)
     # files_all_target_tasks = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
-    files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order.split(','))]
+    files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order)]
     print(files_all_target_tasks)
     extensions = '.nii.gz', '.json'
     json_files = [f for f in files_all_target_tasks if f.endswith('.json')]
@@ -116,7 +116,7 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
             new_file_name = str(series_number) + '_' + file_basename + extension
             os.rename(os.path.join(sequence_fullpath, file_basename + extension), os.path.join(sequence_fullpath, new_file_name))
     sequence_files = os.listdir(sequence_fullpath)
-    files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order.split(','))]
+    files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order)]
     return files_all_target_tasks
 
 
