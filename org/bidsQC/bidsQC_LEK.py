@@ -381,7 +381,9 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
         write_to_outputlog("\n FIXING FILES: %s \n" % (extension))
         for found_file in found_files:
             try:
+                print(found_file)
                 run_index = found_file.index("_run-")
+                print(run_index)
                 run_number = found_file[run_index + 5:run_index + 7]
                 run_int = int(run_number) 
                 targetfile_fullpath = os.path.join(sequence_fullpath, found_file)

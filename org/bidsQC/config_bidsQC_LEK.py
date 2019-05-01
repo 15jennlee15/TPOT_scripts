@@ -26,7 +26,8 @@ bidsdir = os.path.join(os.sep, '/Users/laurenkahn/Desktop', study, 'bids_data') 
 sequence1 = Sequence('anat', {'T1w':1})
 sequence2 = Sequence('dwi', {'acq-lr':1, 'acq-rl':1})
 sequence3 = Sequence('fmap', {'dir-ap':1, 'dir-pa':1})
-sequence4 = Sequence('func', {'affect': 2, 'rest': 2, 'video': 1})
+sequence4 = Sequence('func', {'affect_acq-1': 1, 'affect_acq-2': 1, 'rest': 2, 'video': 1})
+# each func sequence should correspond to the search terms used in study_config for dcm2bids
 
 timepoint1 = TimePoint('ses-1', [sequence1, sequence2, sequence3, sequence4])
 expected_timepoints = [timepoint1]
