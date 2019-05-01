@@ -33,18 +33,14 @@ config_file = "study_config.json"
 # These variables are used in the main script and need to be defined here.
 # They need to exist prior to running the script (with the exception of `image` 
 # which can be set equal to "NA" if you are running the script locally)
-# dicomdir = os.path.join(os.sep, "projects", "lcni", "dcm", group, PI, study)
-# codedir = os.path.join(os.sep, "projects", group, "shared", study, scriptsFolder, "org", "conversion") # Contains subject_list.txt, config file, and dcm2bids_batch.py
-dicomdir = os.path.join(os.sep, "Volumes", "Seagate_Encrypt", "TPOT_dicoms")
-codedir = os.path.join(os.sep, "Users", "laurenkahn", "Desktop", scriptsFolder, "org", "conversion") # Contains subject_list.txt, config file, and dcm2bids_batch.py
+dicomdir = os.path.join(os.sep, "projects", "lcni", "dcm", group, PI, study)
+codedir = os.path.join(os.sep, "projects", group, "shared", study, scriptsFolder, "org", "conversion") # Contains subject_list.txt, config file, and dcm2bids_batch.py
 configfile = os.path.join(codedir, config_file)  # path to and name of config file
-#image = os.path.join(os.sep, "projects", group, "shared", "containers", "Dcm2Bids-master.simg")
-image = os.path.join(os.sep, "Users", "laurenkahn", "Desktop", "containers", "Dcm2Bids-master.simg")
+image = os.path.join(os.sep, "projects", group, "shared", "containers", "Dcm2Bids-master.simg")
 
 # These variables are also used in the main script and need to be defined here.
 # If they don't exist, they will be created by the script
-# niidir = os.path.join(os.sep, "projects", group, "shared", study, "bids_data") # Where the niftis will be put
-niidir = os.path.join(os.sep, "Users", "laurenkahn", "Desktop", study, "bids_data") # Where the niftis will be put
+niidir = os.path.join(os.sep, "projects", group, "shared", study, "bids_data") # Where the niftis will be put
 logdir = os.path.join(codedir, "logs_dcm2bids")
 outputlog = os.path.join(logdir, "outputlog_dcmn2bids" + datetime.now().strftime("%Y%m%d-%H%M") + ".txt")
 errorlog = os.path.join(logdir, "errorlog_dcm2bids" + datetime.now().strftime("%Y%m%d-%H%M") + ".txt")
