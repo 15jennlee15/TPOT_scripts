@@ -48,8 +48,8 @@ def main():
                     qcMat_nii[i_sub,startIdx:endIdx] = nFound_nii_array
                 else:
                     write_to_errorlog("SEQUENCE DIRECTORY WARNING! %s missing or user entered duplicate or non-existant sequence folder name." % (sequence_folder_name))
-                print(qcMat_json)
-                print(qcMat_nii)
+                # print(qcMat_json)
+                # print(qcMat_nii)
                 np.savetxt(cfg.outputmat_nii,qcMat_nii,delimiter='\t')
                 np.savetxt(cfg.outputmat_json,qcMat_json,delimiter='\t')
                 if cfg.order_sequences and sequence_folder_name=="func":
@@ -109,7 +109,6 @@ def natural_keys(text):
 def rename_tasks_ordered(files_torename:list, sequence_fullpath:str, tasks_to_order:list, subject:str):    
     write_to_outputlog('Appending run number based on sequence acquisition order.')
     for task in tasks_to_order:
-        print(files_torename)
         files_one_task = [f for f in files_torename if str(task) in f]
         extensions = '.nii.gz', '.json'
         write_to_outputlog('    Task: %s' % (task))
@@ -136,11 +135,9 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
     sequence_files = os.listdir(sequence_fullpath)
     #files_all_target_tasks = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
     files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order)]
-    print(files_all_target_tasks)
     extensions = '.nii.gz', '.json'
     json_files = [f for f in files_all_target_tasks if f.endswith('.json')]
     for json_file in json_files:
-        print(json_file)
         file_basename = get_file_basename(json_file)
         json_fullpath = os.path.join(sequence_fullpath, json_file)
         with open(json_fullpath) as f:
@@ -381,9 +378,7 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
         write_to_outputlog("\n FIXING FILES: %s \n" % (extension))
         for found_file in found_files:
             try:
-                print(found_file)
                 run_index = found_file.index("_run-")
-                print(run_index)
                 run_number = found_file[run_index + 5:run_index + 7]
                 run_int = int(run_number) 
                 targetfile_fullpath = os.path.join(sequence_fullpath, found_file)
