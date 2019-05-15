@@ -37,9 +37,6 @@ INFO:dcm2bids:session: 1
 INFO:dcm2bids:config: /projects/adapt_lab/shared/TPOT/TPOT_scripts/org/conversion/study_config.json
 INFO:dcm2bids:BIDS directory: /projects/adapt_lab/shared/TPOT/bids_data
 INFO:dcm2bids:
-INFO:dcm2bids:Old dcm2niix output found
-INFO:dcm2bids:Cleaning the old dcm2niix output and rerun it because --forceDcm2niix
-INFO:dcm2bids:
 Traceback (most recent call last):
   File "/usr/local/bin/dcm2bids", line 87, in <module>
     sys.exit(main())
@@ -47,12 +44,12 @@ Traceback (most recent call last):
     return app.run()
   File "/usr/local/lib/python2.7/dist-packages/dcm2bids/dcm2bids.py", line 76, in run
     dcm2niix.run(self.forceDcm2niix)
-  File "/usr/local/lib/python2.7/dist-packages/dcm2bids/dcm2niix.py", line 44, in run
+  File "/usr/local/lib/python2.7/dist-packages/dcm2bids/dcm2niix.py", line 53, in run
     clean(self.outputDir)
-  File "/usr/local/lib/python2.7/dist-packages/dcm2bids/utils.py", line 50, in clean
-    shutil.rmtree(directory)
-  File "/usr/lib/python2.7/shutil.py", line 252, in rmtree
-    onerror(os.remove, fullname, sys.exc_info())
-  File "/usr/lib/python2.7/shutil.py", line 250, in rmtree
-    os.remove(fullname)
-OSError: [Errno 2] No such file or directory: '/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-051_ses-1/004_TPOT051_20170411_AAHScout_20170411110344.json'
+  File "/usr/local/lib/python2.7/dist-packages/dcm2bids/utils.py", line 48, in clean
+    make_directory_tree(directory)
+  File "/usr/local/lib/python2.7/dist-packages/dcm2bids/utils.py", line 44, in make_directory_tree
+    os.makedirs(directory)
+  File "/usr/lib/python2.7/os.py", line 157, in makedirs
+    mkdir(name, mode)
+OSError: [Errno 17] File exists: '/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-051_ses-1'
