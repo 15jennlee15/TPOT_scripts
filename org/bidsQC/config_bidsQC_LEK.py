@@ -15,8 +15,8 @@ study = 'TPOT'
 # These variables are used in the main script and need to be defined here. 
 # They need to exist prior to running the script.
 logdir = os.path.join(os.getcwd(), 'logs_bidsQC')  # Where log files will go
-# bidsdir = os.path.join(os.sep, 'projects', group, 'shared', study, 'bids_data')  # Where your subjects' nifti directories are
-bidsdir = os.path.join(os.sep, '/Users/laurenkahn/Desktop', study, 'bids_data')  # Where your subjects' nifti directories are
+bidsdir = os.path.join(os.sep, 'projects', group, 'shared', study, 'bids_data')  # Where your subjects' nifti directories are
+# bidsdir = os.path.join(os.sep, '/Users/laurenkahn/Desktop', study, 'bids_data')  # Where your subjects' nifti directories are
 
 
 # Create a dictionary (the thing below) for each timepoint in your study where the pairs are 'sequence_directory_name' : 'expected_number_runs'
@@ -43,6 +43,7 @@ gzipped = True
 # with the 'acq-' label and order administered with the 'task-' label.
 order_sequences = True
 tasks_to_order = 'affect', #comma makes it a tuple instead of a string
+# note: tasks_to_order can be a different classification than the different func sequence groupings
 
 
 # Paths that are required and that should not be changed
