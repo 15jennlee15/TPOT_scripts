@@ -37,9 +37,6 @@ INFO:dcm2bids:session: 1
 INFO:dcm2bids:config: /projects/adapt_lab/shared/TPOT/TPOT_scripts/org/conversion/study_config.json
 INFO:dcm2bids:BIDS directory: /projects/adapt_lab/shared/TPOT/bids_data
 INFO:dcm2bids:
-INFO:dcm2bids:Old dcm2niix output found
-INFO:dcm2bids:Cleaning the old dcm2niix output and rerun it because --forceDcm2niix
-INFO:dcm2bids:
 INFO:dcm2bids:--- running dcm2niix ---
 INFO:dcm2bids:subprocess: dcm2niix -b y -ba y -z y -f '%3s_%f_%p_%t' -o /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-083_ses-1 /projects/lcni/dcm/adapt_lab/Allen/TPOT/TPOT083_20170706
 INFO:dcm2bids:
@@ -234,7 +231,7 @@ Warning: Check that 2D images are not mirrored.
 compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-083_ses-1/004_TPOT083_20170706_AAHScout_20170706144318b.nii"
 Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-083_ses-1/018_TPOT083_20170706_se_epi_fieldmap_ap_20170706144318 (104x104x72x1)
 compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-083_ses-1/018_TPOT083_20170706_se_epi_fieldmap_ap_20170706144318.nii"
-Conversion required 399.194351 seconds (12.876455 for core code).
+Conversion required 414.958705 seconds (10.740754 for core code).
 
 INFO:dcm2bids:
 INFO:dcm2bids:Sidecars matching:
@@ -250,9 +247,9 @@ INFO:dcm2bids:NO MATCH        004_TPOT083_20170706_A..ut_20170706144318.json
 INFO:dcm2bids:NO MATCH        004_TPOT083_20170706_A..t_20170706144318a.json
 INFO:dcm2bids:NO MATCH        004_TPOT083_20170706_A..t_20170706144318b.json
 INFO:dcm2bids:NO MATCH        005_TPOT083_20170706_m..p2_20170706144318.json
-INFO:dcm2bids:NO MATCH        006_TPOT083_20170706_m..p2_20170706144318.json
-INFO:dcm2bids:NO MATCH        007_TPOT083_20170706_R.._1_20170706144318.json
-INFO:dcm2bids:NO MATCH        008_TPOT083_20170706_R.._2_20170706144318.json
+INFO:dcm2bids:MATCH           006_TPOT083_20170706_m..p2_20170706144318.json
+INFO:dcm2bids:MATCH           007_TPOT083_20170706_R.._1_20170706144318.json
+INFO:dcm2bids:MATCH           008_TPOT083_20170706_R.._2_20170706144318.json
 INFO:dcm2bids:NO MATCH        009_TPOT083_20170706_m..p2_20170706144318.json
 INFO:dcm2bids:NO MATCH        009_TPOT083_20170706_m..2_20170706144318a.json
 INFO:dcm2bids:NO MATCH        009_TPOT083_20170706_m..2_20170706144318b.json
@@ -273,16 +270,18 @@ INFO:dcm2bids:NO MATCH        009_TPOT083_20170706_m..2_20170706144318p.json
 INFO:dcm2bids:NO MATCH        009_TPOT083_20170706_m..2_20170706144318q.json
 INFO:dcm2bids:NO MATCH        009_TPOT083_20170706_m..2_20170706144318r.json
 INFO:dcm2bids:NO MATCH        009_TPOT083_20170706_m..2_20170706144318s.json
-INFO:dcm2bids:NO MATCH        011_TPOT083_20170706_A.._1_20170706144318.json
-INFO:dcm2bids:NO MATCH        012_TPOT083_20170706_A.._2_20170706144318.json
-INFO:dcm2bids:NO MATCH        013_TPOT083_20170706_Video_1_20170706144318.json
-INFO:dcm2bids:NO MATCH        014_TPOT083_20170706_Video_1_20170706144318.json
-INFO:dcm2bids:NO MATCH        015_TPOT083_20170706_Video_1_20170706144318.json
+INFO:dcm2bids:MATCH           011_TPOT083_20170706_A.._1_20170706144318.json
+INFO:dcm2bids:MATCH           012_TPOT083_20170706_A.._2_20170706144318.json
+INFO:dcm2bids:MATCH           013_TPOT083_20170706_Video_1_20170706144318.json
+INFO:dcm2bids:MATCH           014_TPOT083_20170706_Video_1_20170706144318.json
+INFO:dcm2bids:MATCH           015_TPOT083_20170706_Video_1_20170706144318.json
 INFO:dcm2bids:MATCH           016_TPOT083_20170706_d..rl_20170706144318.json
 INFO:dcm2bids:MATCH           017_TPOT083_20170706_d..lr_20170706144318.json
-INFO:dcm2bids:NO MATCH        018_TPOT083_20170706_s..ap_20170706144318.json
-INFO:dcm2bids:NO MATCH        019_TPOT083_20170706_s..pa_20170706144318.json
+INFO:dcm2bids:MATCH           018_TPOT083_20170706_s..ap_20170706144318.json
+INFO:dcm2bids:MATCH           019_TPOT083_20170706_s..pa_20170706144318.json
 INFO:dcm2bids:
 INFO:dcm2bids:Checking if a description matches several sidecars ...
+INFO:dcm2bids:'task-rest_bold' has several runs
+INFO:dcm2bids:'task-video_bold' has several runs
 INFO:dcm2bids:
 INFO:dcm2bids:moving acquisitions into BIDS output directory

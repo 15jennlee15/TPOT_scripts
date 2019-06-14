@@ -15,15 +15,17 @@ study = 'TPOT'
 # These variables are used in the main script and need to be defined here. 
 # They need to exist prior to running the script.
 logdir = os.path.join(os.getcwd(), 'logs_bidsQC')  # Where log files will go
-bidsdir = os.path.join(os.sep, 'projects', group, 'shared', study, 'bids_data')  # Where your subjects' nifti directories are
-
+# HPC:
+# bidsdir = os.path.join(os.sep, 'projects', group, 'shared', study, 'bids_data')  # Where your subjects' nifti directories are
+# Local:
+bidsdir = os.path.join(os.sep, '/Users/laurenkahn/Desktop', study, 'bids_data')  # Where your subjects' nifti directories are
 
 # Create a dictionary (the thing below) for each timepoint in your study where the pairs are 'sequence_directory_name' : 'expected_number_runs'
 # Each unique version of a sequence gets its own entry, e.g. 'gng_acq-1' and 'gng_acq-2'
-sequence1 = Sequence('func', {'affect1': 1, 'affect2':1, 'rest1': 1, 'rest2':1, 'video': 1})
+sequence1 = Sequence('func', {'affect': 2, 'rest': 2, 'video': 1})
 sequence2 = Sequence('anat', {'T1w':1})
 sequence3 = Sequence('fmap', {'dir-ap':1, 'dir-pa':1})
-sequence4 = Sequence('dwi', {'dir-i':1, 'dir-i-':1})
+sequence4 = Sequence('dwi', {'acq-lr':1, 'acq-rl':1})
 timepoint1 = TimePoint('ses-1', [sequence1, sequence2, sequence3, sequence4])
 expected_timepoints = [timepoint1]
 
@@ -35,10 +37,10 @@ gzipped = True
 
 
 # Do we want runs based on sequence order? Yes = True
-# This is for tasks that use counterbalancing (of e.g. stimulus blocks) anf for which we want to identify the content
+# This is for tasks that use counterbalancing (of e.g. stimulus blocks) and for which we want to identify the content
 # with the 'acq-' label and order administered with the 'task-' label.
-order_sequences = False
-tasks_to_order = 'task1', 'task2'
+order_sequences = True
+tasks_to_order = 'affect', #comma after single item makes it a tuple instead of a string
 
 
 # Paths that are required and that should not be changed

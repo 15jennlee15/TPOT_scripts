@@ -3,10 +3,11 @@ import json
 from pprint import pprint
 
 # Change these to your own paths/times/etc.
-bidsdir = os.path.join(os.sep, 'projects', 'sanlab', 'shared', 'PROP', 'bids_data')
+bidsdir = os.path.join(os.sep, 'projects', 'adapt_lab', 'shared', 'TPOT', 'bids_data')
+# bidsdir = os.path.join(os.sep,'Users','laurenkahn','Desktop','bids_data')
 include_echo_time = False
-echo_time1 = '0.00437'
-echo_time2 = '0.00683'
+echo_time1 = '0.0478'
+echo_time2 = '0.0478'
 
 
 def main():
@@ -58,7 +59,7 @@ def get_funcdir_niftis(func_dir_path:str, timepoint:str) -> list:
     """
     Returns a list of json files in the func directory.
     """
-    func_niftis_partialpath = [os.path.join('func/', f) for f in os.listdir(func_dir_path) if f.endswith('.nii.gz')]
+    func_niftis_partialpath = [os.path.join(timepoint, 'func/', f) for f in os.listdir(func_dir_path) if f.endswith('.nii.gz')]
     return func_niftis_partialpath
 
 

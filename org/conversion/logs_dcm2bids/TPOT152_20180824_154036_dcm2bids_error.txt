@@ -37,9 +37,6 @@ INFO:dcm2bids:session: 1
 INFO:dcm2bids:config: /projects/adapt_lab/shared/TPOT/TPOT_scripts/org/conversion/study_config.json
 INFO:dcm2bids:BIDS directory: /projects/adapt_lab/shared/TPOT/bids_data
 INFO:dcm2bids:
-INFO:dcm2bids:Old dcm2niix output found
-INFO:dcm2bids:Cleaning the old dcm2niix output and rerun it because --forceDcm2niix
-INFO:dcm2bids:
 INFO:dcm2bids:--- running dcm2niix ---
 INFO:dcm2bids:subprocess: dcm2niix -b y -ba y -z y -f '%3s_%f_%p_%t' -o /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-152_ses-1 /projects/lcni/dcm/adapt_lab/Allen/TPOT/TPOT152_20180824_154036
 INFO:dcm2bids:
@@ -109,7 +106,7 @@ compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tm
 Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-152_ses-1/004_TPOT152_20180824_154036_AAHScout_20180824154037b (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
 compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-152_ses-1/004_TPOT152_20180824_154036_AAHScout_20180824154037b.nii"
-Conversion required 264.642820 seconds (7.396891 for core code).
+Conversion required 317.531778 seconds (8.282433 for core code).
 
 INFO:dcm2bids:
 INFO:dcm2bids:Sidecars matching:
@@ -125,15 +122,17 @@ INFO:dcm2bids:NO MATCH        004_TPOT152_20180824_1..ut_20180824154037.json
 INFO:dcm2bids:NO MATCH        004_TPOT152_20180824_1..t_20180824154037a.json
 INFO:dcm2bids:NO MATCH        004_TPOT152_20180824_1..t_20180824154037b.json
 INFO:dcm2bids:NO MATCH        005_TPOT152_20180824_1..p2_20180824154037.json
-INFO:dcm2bids:NO MATCH        006_TPOT152_20180824_1..p2_20180824154037.json
-INFO:dcm2bids:NO MATCH        007_TPOT152_20180824_1.._1_20180824154037.json
-INFO:dcm2bids:NO MATCH        008_TPOT152_20180824_1.._1_20180824154037.json
-INFO:dcm2bids:NO MATCH        009_TPOT152_20180824_1.._2_20180824154037.json
-INFO:dcm2bids:NO MATCH        010_TPOT152_20180824_1.._1_20180824154037.json
-INFO:dcm2bids:NO MATCH        011_TPOT152_20180824_1.._1_20180824154037.json
-INFO:dcm2bids:NO MATCH        012_TPOT152_20180824_1.._1_20180824154037.json
+INFO:dcm2bids:MATCH           006_TPOT152_20180824_1..p2_20180824154037.json
+INFO:dcm2bids:MATCH           007_TPOT152_20180824_1.._1_20180824154037.json
+INFO:dcm2bids:MATCH           008_TPOT152_20180824_1.._1_20180824154037.json
+INFO:dcm2bids:MATCH           009_TPOT152_20180824_1.._2_20180824154037.json
+INFO:dcm2bids:MATCH           010_TPOT152_20180824_1.._1_20180824154037.json
+INFO:dcm2bids:MATCH           011_TPOT152_20180824_1.._1_20180824154037.json
+INFO:dcm2bids:MATCH           012_TPOT152_20180824_1.._1_20180824154037.json
 INFO:dcm2bids:MATCH           013_TPOT152_20180824_1..rl_20180824154037.json
 INFO:dcm2bids:
 INFO:dcm2bids:Checking if a description matches several sidecars ...
+INFO:dcm2bids:'task-affect_acq-1_bold' has several runs
+INFO:dcm2bids:'task-rest_bold' has several runs
 INFO:dcm2bids:
 INFO:dcm2bids:moving acquisitions into BIDS output directory

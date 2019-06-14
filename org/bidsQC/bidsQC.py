@@ -40,11 +40,11 @@ def main():
                     sequence_fullpath = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0])
                 else:
                     write_to_errorlog("SEQUENCE DIRECTORY WARNING! %s missing or user entered duplicate or non-existant sequence folder name." % (sequence_folder_name))
-            if cfg.order_sequences:
-                write_to_outputlog('\n' + '-'*20 + ' assign ordered run numbers ' + '-'*20)
-                files_all_target_tasks = append_series_number(sequence_fullpath, cfg.bidsdir, cfg.tasks_to_order)
-                files_torename = drop_runnum(files_all_target_tasks, cfg.tasks_to_order, sequence_fullpath)
-                rename_tasks_ordered(files_torename, sequence_fullpath, cfg.tasks_to_order, subject)
+                if cfg.order_sequences and sequence_folder_name=="func":
+                    write_to_outputlog('\n' + '-'*20 + ' assign ordered run numbers ' + '-'*20)
+                    files_all_target_tasks = append_series_number(sequence_fullpath, cfg.bidsdir, cfg.tasks_to_order)
+                    files_torename = drop_runnum(files_all_target_tasks, cfg.tasks_to_order, sequence_fullpath)
+                    rename_tasks_ordered(files_torename, sequence_fullpath, cfg.tasks_to_order, subject)
 
 
 def drop_runnum(files_all_target_tasks, tasks_to_order, sequence_fullpath):
@@ -54,7 +54,7 @@ def drop_runnum(files_all_target_tasks, tasks_to_order, sequence_fullpath):
             run_index = target_file.index("_run-")
             targetfile_fullpath = os.path.join(sequence_fullpath, target_file)
             os.rename(targetfile_fullpath, targetfile_fullpath.replace(target_file[run_index:run_index + 7], ''))
-            write_to_outputlog('Dropped runnum from' + target_file)
+            write_to_outputlog('Dropped runnum from ' + target_file)
     sequence_files = os.listdir(sequence_fullpath)
     files_torename = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
     return files_torename
@@ -99,10 +99,13 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
     """
     write_to_outputlog('Appending sequence numbers')
     sequence_files = os.listdir(sequence_fullpath)
-    files_all_target_tasks = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
+    # files_all_target_tasks = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
+    files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order)]
+    print(files_all_target_tasks)
     extensions = '.nii.gz', '.json'
     json_files = [f for f in files_all_target_tasks if f.endswith('.json')]
     for json_file in json_files:
+        print(json_file)
         file_basename = get_file_basename(json_file)
         json_fullpath = os.path.join(sequence_fullpath, json_file)
         with open(json_fullpath) as f:
@@ -113,7 +116,7 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
             new_file_name = str(series_number) + '_' + file_basename + extension
             os.rename(os.path.join(sequence_fullpath, file_basename + extension), os.path.join(sequence_fullpath, new_file_name))
     sequence_files = os.listdir(sequence_fullpath)
-    files_all_target_tasks = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
+    files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order)]
     return files_all_target_tasks
 
 
@@ -355,7 +358,8 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
                         new_int = run_int - difference
                         int_str = str(new_int)
                         new_runnum = int_str.zfill(2)
-                        os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index + 5:run_index + 7], new_runnum))
+                        new_runstr = 'run-' + new_runnum
+                        os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index + 1:run_index + 7], new_runstr))
                         write_to_outputlog("RENAMED: %s with run-%s" % (targetfile_fullpath, new_runnum))
             except ValueError:
                 write_to_errorlog('VALUE ERROR in fix_files:\n    Subject: %s\n     File: %s' %(subject, found_file))
