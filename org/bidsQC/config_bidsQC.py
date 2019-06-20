@@ -15,8 +15,10 @@ study = 'TPOT'
 # These variables are used in the main script and need to be defined here. 
 # They need to exist prior to running the script.
 logdir = os.path.join(os.getcwd(), 'logs_bidsQC')  # Where log files will go
-bidsdir = os.path.join(os.sep, 'projects', group, 'shared', study, 'bids_data')  # Where your subjects' nifti directories are
-
+# HPC:
+# bidsdir = os.path.join(os.sep, 'projects', group, 'shared', study, 'bids_data')  # Where your subjects' nifti directories are
+# Local:
+bidsdir = os.path.join(os.sep, '/Users/laurenkahn/Desktop', study, 'bids_data')  # Where your subjects' nifti directories are
 
 # Create a dictionary (the thing below) for each timepoint in your study where the pairs are 'sequence_directory_name' : 'expected_number_runs'
 # Each unique version of a sequence gets its own entry, e.g. 'gng_acq-1' and 'gng_acq-2'
@@ -38,7 +40,7 @@ gzipped = True
 # This is for tasks that use counterbalancing (of e.g. stimulus blocks) and for which we want to identify the content
 # with the 'acq-' label and order administered with the 'task-' label.
 order_sequences = True
-tasks_to_order = 'affect'
+tasks_to_order = 'affect', #comma after single item makes it a tuple instead of a string
 
 
 # Paths that are required and that should not be changed

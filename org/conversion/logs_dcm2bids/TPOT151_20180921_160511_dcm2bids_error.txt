@@ -37,9 +37,6 @@ INFO:dcm2bids:session: 1
 INFO:dcm2bids:config: /projects/adapt_lab/shared/TPOT/TPOT_scripts/org/conversion/study_config.json
 INFO:dcm2bids:BIDS directory: /projects/adapt_lab/shared/TPOT/bids_data
 INFO:dcm2bids:
-INFO:dcm2bids:Old dcm2niix output found
-INFO:dcm2bids:Cleaning the old dcm2niix output and rerun it because --forceDcm2niix
-INFO:dcm2bids:
 INFO:dcm2bids:--- running dcm2niix ---
 INFO:dcm2bids:subprocess: dcm2niix -b y -ba y -z y -f '%3s_%f_%p_%t' -o /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-151_ses-1 /projects/lcni/dcm/adapt_lab/Allen/TPOT/TPOT151_20180921_160511
 INFO:dcm2bids:
@@ -122,7 +119,7 @@ slices stacked despite varying acquisition numbers (if this is not desired pleas
 Warning: Saving 65 DTI gradients. Validate vectors (images are not axial slices).
 Convert 65 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-151_ses-1/015_TPOT151_20180921_160511_diff_mb2_g2_64dirs_2mm_rl_20180921160512 (90x104x72x65)
 compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-151_ses-1/015_TPOT151_20180921_160511_diff_mb2_g2_64dirs_2mm_rl_20180921160512.nii"
-Conversion required 579.781099 seconds (9.811227 for core code).
+Conversion required 369.448642 seconds (9.579156 for core code).
 
 INFO:dcm2bids:
 INFO:dcm2bids:Sidecars matching:
@@ -138,20 +135,22 @@ INFO:dcm2bids:NO MATCH        004_TPOT151_20180921_1..ut_20180921160512.json
 INFO:dcm2bids:NO MATCH        004_TPOT151_20180921_1..t_20180921160512a.json
 INFO:dcm2bids:NO MATCH        004_TPOT151_20180921_1..t_20180921160512b.json
 INFO:dcm2bids:NO MATCH        005_TPOT151_20180921_1..p2_20180921160512.json
-INFO:dcm2bids:NO MATCH        006_TPOT151_20180921_1..p2_20180921160512.json
-INFO:dcm2bids:NO MATCH        007_TPOT151_20180921_1.._1_20180921160512.json
-INFO:dcm2bids:NO MATCH        008_TPOT151_20180921_1.._2_20180921160512.json
-INFO:dcm2bids:NO MATCH        009_TPOT151_20180921_1.._1_20180921160512.json
-INFO:dcm2bids:NO MATCH        010_TPOT151_20180921_1.._1_20180921160512.json
-INFO:dcm2bids:NO MATCH        011_TPOT151_20180921_1.._1_20180921160512.json
-INFO:dcm2bids:NO MATCH        012_TPOT151_20180921_1.._1_20180921160512.json
-INFO:dcm2bids:NO MATCH        013_TPOT151_20180921_1.._2_20180921160512.json
+INFO:dcm2bids:MATCH           006_TPOT151_20180921_1..p2_20180921160512.json
+INFO:dcm2bids:MATCH           007_TPOT151_20180921_1.._1_20180921160512.json
+INFO:dcm2bids:MATCH           008_TPOT151_20180921_1.._2_20180921160512.json
+INFO:dcm2bids:MATCH           009_TPOT151_20180921_1.._1_20180921160512.json
+INFO:dcm2bids:MATCH           010_TPOT151_20180921_1.._1_20180921160512.json
+INFO:dcm2bids:MATCH           011_TPOT151_20180921_1.._1_20180921160512.json
+INFO:dcm2bids:MATCH           012_TPOT151_20180921_1.._1_20180921160512.json
+INFO:dcm2bids:MATCH           013_TPOT151_20180921_1.._2_20180921160512.json
 INFO:dcm2bids:NO MATCH        014_TPOT151_20180921_1...+_20180921160512.json
 INFO:dcm2bids:MATCH           015_TPOT151_20180921_1..rl_20180921160512.json
 INFO:dcm2bids:MATCH           016_TPOT151_20180921_1..lr_20180921160512.json
-INFO:dcm2bids:NO MATCH        017_TPOT151_20180921_1..ap_20180921160512.json
-INFO:dcm2bids:NO MATCH        018_TPOT151_20180921_1..pa_20180921160512.json
+INFO:dcm2bids:MATCH           017_TPOT151_20180921_1..ap_20180921160512.json
+INFO:dcm2bids:MATCH           018_TPOT151_20180921_1..pa_20180921160512.json
 INFO:dcm2bids:
 INFO:dcm2bids:Checking if a description matches several sidecars ...
+INFO:dcm2bids:'task-rest_bold' has several runs
+INFO:dcm2bids:'task-video_bold' has several runs
 INFO:dcm2bids:
 INFO:dcm2bids:moving acquisitions into BIDS output directory
