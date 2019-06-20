@@ -23,15 +23,11 @@ subjectdir_contents.sort()
 # filter subject directory for anything less than 16 characters (this is study specific)
 subjectdir_contents = list(filter(lambda k: [len(k) < 16 or len(k) == 24], subjectdir_contents))
 
+exclusion = ['physio','hantom','Blogs','lcni','ppp','pumpkin','trigger']
+
 test = [directory for directory in subjectdir_contents if any(sub in directory for sub in exclusion)]
 
-testes = list(set(subjectdir_contents)-set(test))
-
-subjectdir_contents = list(filter(lambda k: ['physio' or 'hantom' or 'Blogs' or 'lcni' or 'ppp' or 'pumpkin' or 'trigger' not in k], subjectdir_contents))
-
-
-# filters subject directory for anything with 'SH' in the name (this is study specific)
-subjectdir_contents = list(filter(lambda k: 'SH' in k, subjectdir_contents))
+subjectdir_contents = list(set(subjectdir_contents)-set(test))
 
 # duplicates each line separated by "," (e.g., "SH149" becomes "SH149,SH149")
 subjectdir_contents = [subject + "," + subject for subject in subjectdir_contents]
