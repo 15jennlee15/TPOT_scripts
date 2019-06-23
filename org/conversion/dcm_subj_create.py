@@ -1,13 +1,14 @@
 # This script wil take a list made from the lcni directory
 # and will strip the excess leaving all the names
 import os
+import re
 
 # Set study info (may need to change for your study)
 # These variables are used only in this file for paths. Can omit if wanted.
 group = "adapt_lab"
 study = "TPOT"
 PI = "Allen"
-scriptsFolder = "TPOT_Scripts"
+scriptsFolder = "TPOT_scripts"
 
 # The following variables are used in the main script and need to be defined here. 
 # They need to exist prior to running the script
@@ -23,23 +24,30 @@ subjectdir_contents.sort()
 # filter subject directory for anything less than 16 characters (this is study specific)
 subjectdir_contents = list(filter(lambda k: [len(k) < 16 or len(k) == 24], subjectdir_contents))
 
-exclusion = ['physio','hantom','Blogs','lcni','ppp','pumpkin','trigger']
+exclusion = ['physio','hantom','Blogs','lcni','ppp','pumpkin','trigger',"TEST","test"]
 
 test = [directory for directory in subjectdir_contents if any(sub in directory for sub in exclusion)]
 
 subjectdir_contents = list(set(subjectdir_contents)-set(test))
 
-# duplicates each line separated by "," (e.g., "SH149" becomes "SH149,SH149")
-subjectdir_contents = [subject + "," + subject for subject in subjectdir_contents]
+subjectdir_contents.sort()
 
-# Removes the last 9 characters of each line 
-for subject in range(len(subjectdir_contents)):
-	subjectdir_contents[subject] = subjectdir_contents[subject][:-9]
+subject_num = [[int(''.join(i)) for is_digit, i in groupby(subject, str.isdigit) if is_digit][0] for subject in subjectdir_contents]
 
-# adds a ",1" to the end of each line (to indicate session)
-subjectdir_contents = [subject + ",1" for subject in subjectdir_contents]
+[x for x in subject_num if subject_num.count(x) >= 2]
 
-with open(os.path.join(codedir,"subject_list.txt"), mode="w") as outfile:  # also, tried mode="rb"
+new_test = ["{:03d}".format(num) for num in subject_num ]
+
+print("{:03d}".format(subject_num[4]))
+
+concat_func = lambda x,y: x + "," + str("{:03d}".format(y) + ",1")
+
+subjectdir_contents = list(map(concat_func,subjectdir_contents,subject_num))
+
+lin = [subject.strip().split(', ') for subject in subjectdir_contents]
+lin = sorted(lin)
+
+with open(os.path.join(codedir,"subject_list.txt"), mode="w+") as outfile:  # also, tried mode="rb"
     for subject in subjectdir_contents:
         outfile.write("%s\n" % subject)
 
