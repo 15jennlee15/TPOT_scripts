@@ -14,7 +14,7 @@ import os
 group = "adapt_lab"
 study = "TPOT"
 PI = "Allen"
-scriptsFolder = "TPOT_scripts"
+scriptsFolder = "TPOT_Scripts"
 
 # The following variables are used in the main script and need to be defined here. 
 # They need to exist prior to running the script

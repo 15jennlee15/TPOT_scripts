@@ -25,7 +25,7 @@ from datetime import datetime
 group = "adapt_lab"
 study = "TPOT"
 PI = "Allen"
-scriptsFolder = "TPOT_scripts"
+scriptsFolder = "TPOT_Scripts"
 config_file = "study_config.json"
 
 
