@@ -9,7 +9,7 @@ usage: dcm2niix [options] <in_folder>
    -ba : anonymize BIDS (y/n, default y)
   -c : comment stored as NIfTI aux_file (up to 24 characters)
   -d : diffusion volumes sorted by b-value (y/n, default n)
-  -f : filename (%a=antenna  (coil) number, %c=comments, %d=description, %e echo number, %f=folder name, %i ID of patient, %j seriesInstanceUID, %k studyInstanceUID, %m=manufacturer, %n=name of patient, %p=protocol, %s=series number, %t=time, %u=acquisition number, %v=vendor, %x=study ID; %z sequence name; default '%3s_%f_%p_%t')
+  -f : filename (%a=antenna  (coil) number, %c=comments, %d=description, %e echo number, %f=folder name, %i ID of patient, %j seriesInstanceUID, %k studyInstanceUID, %m=manufacturer, %n=name of patient, %p=protocol, %s=series number, %t=time, %u=acquisition number, %v=vendor, %x=study ID; %z sequence name; default '%f_%p_%t_%s')
   -h : show help
   -i : ignore derived, localizer and 2D images (y/n, default n)
   -m : merge 2D slices from same series regardless of study time, echo, coil, orientation, etc. (y/n, default n)
@@ -21,8 +21,8 @@ usage: dcm2niix [options] <in_folder>
   -u : up-to-date check
   -v : verbose (n/y or 0/1/2 [no, yes, logorrheic], default 0)
   -x : crop (y/n, default n)
-  -z : gz compress images (y/i/n/3, default y) [y=pigz, i=internal, n=no, 3=no,3D]
- Defaults file : /home/lek/.dcm2nii.ini
+  -z : gz compress images (y/i/n/3, default n) [y=pigz, i=internal, n=no, 3=no,3D]
+ Defaults file : /home/nallen3/.dcm2nii.ini
  Examples :
   dcm2niix /Users/chris/dir
   dcm2niix -c "my comment" /Users/chris/dir
@@ -34,7 +34,7 @@ usage: dcm2niix [options] <in_folder>
 INFO:dcm2bids:dcm2niix:version: v1.0.20171215
 INFO:dcm2bids:participant: 002
 INFO:dcm2bids:session: 1
-INFO:dcm2bids:config: /projects/adapt_lab/shared/TPOT/TPOT_scripts/org/conversion/study_config.json
+INFO:dcm2bids:config: /projects/adapt_lab/shared/TPOT/TPOT_Scripts/org/conversion/study_config.json
 INFO:dcm2bids:BIDS directory: /projects/adapt_lab/shared/TPOT/bids_data
 INFO:dcm2bids:
 INFO:dcm2bids:--- running dcm2niix ---
@@ -112,7 +112,7 @@ slices not stacked: orientation varies (localizer?) [-0.0080762 0.995649 0.09283
 Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-002_ses-1/002_TPOT002_20160923_AAHScout_20160923152342c (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
 compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-002_ses-1/002_TPOT002_20160923_AAHScout_20160923152342c.nii"
-Conversion required 290.543056 seconds (13.187687 for core code).
+Conversion required 240.133361 seconds (8.684958 for core code).
 
 INFO:dcm2bids:
 INFO:dcm2bids:Sidecars matching:
@@ -140,6 +140,7 @@ INFO:dcm2bids:MATCH           014_TPOT002_20160923_s..ap_20160923152342.json
 INFO:dcm2bids:MATCH           015_TPOT002_20160923_s..pa_20160923152342.json
 INFO:dcm2bids:
 INFO:dcm2bids:Checking if a description matches several sidecars ...
+INFO:dcm2bids:'task-affect_bold' has several runs
 INFO:dcm2bids:'task-rest_bold' has several runs
 INFO:dcm2bids:
 INFO:dcm2bids:moving acquisitions into BIDS output directory
