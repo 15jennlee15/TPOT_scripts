@@ -2,13 +2,14 @@
 # and will strip the excess leaving all the names
 import os
 import re
+from itertools import groupby
 
 # Set study info (may need to change for your study)
 # These variables are used only in this file for paths. Can omit if wanted.
 group = "adapt_lab"
 study = "TPOT"
 PI = "Allen"
-scriptsFolder = "TPOT_scripts"
+scriptsFolder = "TPOT_Scripts"
 
 # The following variables are used in the main script and need to be defined here. 
 # They need to exist prior to running the script
@@ -34,18 +35,12 @@ subjectdir_contents.sort()
 
 subject_num = [[int(''.join(i)) for is_digit, i in groupby(subject, str.isdigit) if is_digit][0] for subject in subjectdir_contents]
 
-[x for x in subject_num if subject_num.count(x) >= 2]
+# [x for x in subject_num if subject_num.count(x) >= 2]
 
-new_test = ["{:03d}".format(num) for num in subject_num ]
-
-print("{:03d}".format(subject_num[4]))
-
-concat_func = lambda x,y: x + "," + str("{:03d}".format(y) + ",1")
+concat_func = lambda x,y: x + ",TPOT" + str("{:03d}".format(y) + ",1")
 
 subjectdir_contents = list(map(concat_func,subjectdir_contents,subject_num))
 
-lin = [subject.strip().split(', ') for subject in subjectdir_contents]
-lin = sorted(lin)
 
 with open(os.path.join(codedir,"subject_list.txt"), mode="w+") as outfile:  # also, tried mode="rb"
     for subject in subjectdir_contents:
