@@ -22,7 +22,7 @@ usage: dcm2niix [options] <in_folder>
   -v : verbose (n/y or 0/1/2 [no, yes, logorrheic], default 0)
   -x : crop (y/n, default n)
   -z : gz compress images (y/i/n/3, default y) [y=pigz, i=internal, n=no, 3=no,3D]
- Defaults file : /home/lek/.dcm2nii.ini
+ Defaults file : /home/nallen3/.dcm2nii.ini
  Examples :
   dcm2niix /Users/chris/dir
   dcm2niix -c "my comment" /Users/chris/dir
@@ -32,84 +32,87 @@ usage: dcm2niix [options] <in_folder>
   dcm2niix -o "~/dir with spaces/dir" ~/dicomdir
 
 INFO:dcm2bids:dcm2niix:version: v1.0.20171215
-INFO:dcm2bids:participant: 138
+INFO:dcm2bids:participant: TPOT138
 INFO:dcm2bids:session: 1
-INFO:dcm2bids:config: /projects/adapt_lab/shared/TPOT/TPOT_scripts/org/conversion/study_config.json
+INFO:dcm2bids:config: /projects/adapt_lab/shared/TPOT/TPOT_Scripts/org/conversion/study_config.json
 INFO:dcm2bids:BIDS directory: /projects/adapt_lab/shared/TPOT/bids_data
 INFO:dcm2bids:
+INFO:dcm2bids:Old dcm2niix output found
+INFO:dcm2bids:Cleaning the old dcm2niix output and rerun it because --forceDcm2niix
+INFO:dcm2bids:
 INFO:dcm2bids:--- running dcm2niix ---
-INFO:dcm2bids:subprocess: dcm2niix -b y -ba y -z y -f '%3s_%f_%p_%t' -o /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1 /projects/lcni/dcm/adapt_lab/Allen/TPOT/TPOT138_20180522_123447
+INFO:dcm2bids:subprocess: dcm2niix -b y -ba y -z y -f '%3s_%f_%p_%t' -o /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1 /projects/lcni/dcm/adapt_lab/Allen/TPOT/TPOT138_20180522_123447
 INFO:dcm2bids:
 Chris Rorden's dcm2niiX version v1.0.20171215 GCC5.3.1 (64-bit Linux)
 Found 1743 DICOM image(s)
-Convert 128 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/001_TPOT138_20180522_123447_AAHScout_20180522123448 (160x160x128x1)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/001_TPOT138_20180522_123447_AAHScout_20180522123448.nii"
+Convert 128 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/001_TPOT138_20180522_123447_AAHScout_20180522123448 (160x160x128x1)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/001_TPOT138_20180522_123447_AAHScout_20180522123448.nii"
 slices stacked despite varying acquisition numbers (if this is not desired please recompile)
-Convert 375 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/007_TPOT138_20180522_123447_Resting_1_20180522123448 (84x84x60x375)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/007_TPOT138_20180522_123447_Resting_1_20180522123448.nii"
+Convert 375 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/007_TPOT138_20180522_123447_Resting_1_20180522123448 (84x84x60x375)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/007_TPOT138_20180522_123447_Resting_1_20180522123448.nii"
 slices stacked despite varying acquisition numbers (if this is not desired please recompile)
 Warning: Saving 65 DTI gradients. Validate vectors (images are not axial slices).
-Convert 65 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/012_TPOT138_20180522_123447_diff_mb2_g2_64dirs_2mm_lr_20180522123448 (90x104x72x65)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/012_TPOT138_20180522_123447_diff_mb2_g2_64dirs_2mm_lr_20180522123448.nii"
-Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/013_TPOT138_20180522_123447_se_epi_fieldmap_ap_20180522123448 (104x104x72x1)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/013_TPOT138_20180522_123447_se_epi_fieldmap_ap_20180522123448.nii"
-Convert 176 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/005_TPOT138_20180522_123447_mprage_p2_20180522123448 (256x256x176x1)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/005_TPOT138_20180522_123447_mprage_p2_20180522123448.nii"
+Convert 65 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/012_TPOT138_20180522_123447_diff_mb2_g2_64dirs_2mm_lr_20180522123448 (90x104x72x65)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/012_TPOT138_20180522_123447_diff_mb2_g2_64dirs_2mm_lr_20180522123448.nii"
+Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/013_TPOT138_20180522_123447_se_epi_fieldmap_ap_20180522123448 (104x104x72x1)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/013_TPOT138_20180522_123447_se_epi_fieldmap_ap_20180522123448.nii"
+Convert 176 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/005_TPOT138_20180522_123447_mprage_p2_20180522123448 (256x256x176x1)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/005_TPOT138_20180522_123447_mprage_p2_20180522123448.nii"
 slices not stacked: orientation varies (localizer?) [0.00288725 0.997583 0.0694269 0.0516436 0.0691858 -0.996266] != [-0.00499594 0.975476 0.220049 0.0514824 0.220011 -0.974138]
-Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448 (162x162x1x1)
+Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448 (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448.nii"
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448.nii"
 slices not stacked: orientation varies (localizer?) [-0.00499594 0.975476 0.220049 0.0514824 0.220011 -0.974138] != [-0.560563 0.806905 0.186206 0.0618555 0.265027 -0.962255]
-Convert 2 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448a (162x162x2x1)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448a.nii"
+Convert 2 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448a (162x162x2x1)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448a.nii"
 slices not stacked: orientation varies (localizer?) [-0.560563 0.806905 0.186206 0.0618555 0.265027 -0.962255] != [-0.00499594 0.975476 0.220049 0.0514824 0.220011 -0.974138]
-Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448b (162x162x1x1)
+Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448b (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448b.nii"
-Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448c (162x162x1x1)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448b.nii"
+Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448c (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448c.nii"
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/002_TPOT138_20180522_123447_AAHScout_20180522123448c.nii"
 slices not stacked: orientation varies (localizer?) [0.998063 -0.0243423 0.0572434 0.0592515 0.091874 -0.994006] != [0.998661 -0.00646193 0.051319 0.0516436 0.0691858 -0.996266]
-Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448 (162x162x1x1)
+Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448 (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448.nii"
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448.nii"
 slices not stacked: orientation varies (localizer?) [0.998661 -0.00646193 0.051319 0.0516436 0.0691858 -0.996266] != [0.998869 -0.0151291 0.0450787 0.0460226 0.0692721 -0.996536]
-Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448a (162x162x1x1)
+Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448a (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448a.nii"
-Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448b (162x162x1x1)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448a.nii"
+Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448b (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448b.nii"
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/003_TPOT138_20180522_123447_AAHScout_20180522123448b.nii"
 slices stacked despite varying acquisition numbers (if this is not desired please recompile)
-Convert 185 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/010_TPOT138_20180522_123447_Affect_2_20180522123448 (104x104x72x185)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/010_TPOT138_20180522_123447_Affect_2_20180522123448.nii"
+Convert 185 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/010_TPOT138_20180522_123447_Affect_2_20180522123448 (104x104x72x185)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/010_TPOT138_20180522_123447_Affect_2_20180522123448.nii"
 slices stacked despite varying acquisition numbers (if this is not desired please recompile)
-Convert 375 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/008_TPOT138_20180522_123447_Resting_2_20180522123448 (84x84x60x375)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/008_TPOT138_20180522_123447_Resting_2_20180522123448.nii"
+Convert 375 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/008_TPOT138_20180522_123447_Resting_2_20180522123448 (84x84x60x375)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/008_TPOT138_20180522_123447_Resting_2_20180522123448.nii"
 slices stacked despite varying acquisition numbers (if this is not desired please recompile)
 Warning: Saving 65 DTI gradients. Validate vectors (images are not axial slices).
-Convert 65 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/011_TPOT138_20180522_123447_diff_mb2_g2_64dirs_2mm_rl_20180522123448 (90x104x72x65)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/011_TPOT138_20180522_123447_diff_mb2_g2_64dirs_2mm_rl_20180522123448.nii"
-Convert 176 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/006_TPOT138_20180522_123447_mprage_p2_20180522123448 (256x256x176x1)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/006_TPOT138_20180522_123447_mprage_p2_20180522123448.nii"
+Convert 65 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/011_TPOT138_20180522_123447_diff_mb2_g2_64dirs_2mm_rl_20180522123448 (90x104x72x65)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/011_TPOT138_20180522_123447_diff_mb2_g2_64dirs_2mm_rl_20180522123448.nii"
+Convert 176 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/006_TPOT138_20180522_123447_mprage_p2_20180522123448 (256x256x176x1)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/006_TPOT138_20180522_123447_mprage_p2_20180522123448.nii"
 slices stacked despite varying acquisition numbers (if this is not desired please recompile)
-Convert 185 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/009_TPOT138_20180522_123447_Affect_1_20180522123448 (104x104x72x185)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/009_TPOT138_20180522_123447_Affect_1_20180522123448.nii"
+Convert 185 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/009_TPOT138_20180522_123447_Affect_1_20180522123448 (104x104x72x185)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/009_TPOT138_20180522_123447_Affect_1_20180522123448.nii"
 slices not stacked: orientation varies (localizer?) [0.998869 -0.0151291 0.0450787 0.011954 0.997483 0.06989] != [0.998058 -0.00929243 0.0615976 -0.00738331 0.964196 0.265087]
-Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448 (162x162x1x1)
+Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448 (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448.nii"
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448.nii"
 slices not stacked: orientation varies (localizer?) [0.998058 -0.00929243 0.0615976 -0.00738331 0.964196 0.265087] != [0.998661 -0.00646193 0.051319 0.00934332 0.998381 -0.0561068]
-Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448a (162x162x1x1)
+Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448a (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448a.nii"
-Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448b (162x162x1x1)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448a.nii"
+Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448b (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448b.nii"
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/004_TPOT138_20180522_123447_AAHScout_20180522123448b.nii"
 Note: rare 16-bit UNSIGNED integer image. Older tools may require 32-bit conversion
-Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/014_TPOT138_20180522_123447_se_epi_fieldmap_pa_20180522123448 (104x104x72x1)
-compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-138_ses-1/014_TPOT138_20180522_123447_se_epi_fieldmap_pa_20180522123448.nii"
-Conversion required 295.367153 seconds (7.144479 for core code).
+Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/014_TPOT138_20180522_123447_se_epi_fieldmap_pa_20180522123448 (104x104x72x1)
+compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT138_ses-1/014_TPOT138_20180522_123447_se_epi_fieldmap_pa_20180522123448.nii"
+Conversion required 228.268069 seconds (3.874922 for core code).
 
 INFO:dcm2bids:
 INFO:dcm2bids:Sidecars matching:
@@ -136,6 +139,7 @@ INFO:dcm2bids:MATCH           013_TPOT138_20180522_1..ap_20180522123448.json
 INFO:dcm2bids:MATCH           014_TPOT138_20180522_1..pa_20180522123448.json
 INFO:dcm2bids:
 INFO:dcm2bids:Checking if a description matches several sidecars ...
+INFO:dcm2bids:'task-affect_bold' has several runs
 INFO:dcm2bids:'task-rest_bold' has several runs
 INFO:dcm2bids:
 INFO:dcm2bids:moving acquisitions into BIDS output directory
