@@ -12,7 +12,7 @@
 export FREESURFER_HOME=/packages/freesurfer/6.0.0/freesurfer
 
 # Set this to your subjects/ dir, usually freesurfer/subjects/
-export SUBJECTS_DIR=/projects/adapt_lab/shared/ADS/data/BIDS_data/derivatives/freesurfer
+export SUBJECTS_DIR=/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer
 
 # Set this to your functional sessions dir, usually freesurfer/sessions/
 if [ -z $FUNCTIONALS_DIR ]; then
