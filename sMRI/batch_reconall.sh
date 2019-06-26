@@ -11,7 +11,7 @@
 STUDY=/projects/adapt_lab/shared/TPOT
 GROUP=adapt_lab
 # Set subject list
-SUBJLIST=`cat subject_list.txt`
+SUBJLIST=`cat subject_list_2.txt`
 #SUBJLIST=`cat test.txt`
 
 # 
