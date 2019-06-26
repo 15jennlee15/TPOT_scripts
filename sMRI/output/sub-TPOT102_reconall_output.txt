@@ -2471,3 +2471,248 @@ talairach voxel to voxel transform
  0.00000   0.00000   0.00000   1.00000;
 segmentation indicates cc at (126,  113,  88) --> (2.0, -40.0, 15.0)
 done.
+writing output to filled.mgz...
+filling took 0.6 minutes
+talairach cc position changed to (2.00, -40.00, 15.00)
+Erasing brainstem...done.
+seed_search_size = 9, min_neighbors = 5
+search rh wm seed point around talairach space:(20.00, -40.00, 15.00) SRC: (110.75, 90.48, 81.05)
+search lh wm seed point around talairach space (-16.00, -40.00, 15.00), SRC: (144.80, 90.36, 83.40)
+compute mri_fill using aseg
+Erasing Brain Stem and Cerebellum ...
+Define left and right masks using aseg:
+Building Voronoi diagram ...
+Using the Voronoi diagram to separate WM into two hemispheres ...
+Find the largest connected component for each hemisphere ...
+#--------------------------------------------
+#@# Tessellate lh Wed Jun 26 16:27:21 PDT 2019
+/gpfs/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT102/scripts
+
+ mri_pretess ../mri/filled.mgz 255 ../mri/norm.mgz ../mri/filled-pretess255.mgz 
+
+
+Iteration Number : 1
+pass   1 (xy+):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (xy+):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (xy-):   1 found -   1 modified     |    TOTAL:   2
+pass   2 (xy-):   0 found -   1 modified     |    TOTAL:   2
+pass   1 (yz+):   1 found -   1 modified     |    TOTAL:   3
+pass   2 (yz+):   0 found -   1 modified     |    TOTAL:   3
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   3
+pass   1 (xz+):   1 found -   1 modified     |    TOTAL:   4
+pass   2 (xz+):   0 found -   1 modified     |    TOTAL:   4
+pass   1 (xz-):   3 found -   3 modified     |    TOTAL:   7
+pass   2 (xz-):   0 found -   3 modified     |    TOTAL:   7
+Iteration Number : 1
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 1
+pass   1 (++):   1 found -   1 modified     |    TOTAL:   1
+pass   2 (++):   0 found -   1 modified     |    TOTAL:   1
+pass   1 (+-):   1 found -   1 modified     |    TOTAL:   2
+pass   2 (+-):   0 found -   1 modified     |    TOTAL:   2
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   2
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   2
+Iteration Number : 2
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 9 (out of 288915: 0.003115)
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+
+ mri_tessellate ../mri/filled-pretess255.mgz 255 ../surf/lh.orig.nofix 
+
+$Id: mri_tessellate.c,v 1.38.2.1 2016/07/26 18:46:38 zkaufman Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+slice 30: 33 vertices, 43 faces
+slice 40: 3651 vertices, 3860 faces
+slice 50: 12561 vertices, 12930 faces
+slice 60: 23892 vertices, 24224 faces
+slice 70: 35168 vertices, 35568 faces
+slice 80: 46335 vertices, 46704 faces
+slice 90: 57657 vertices, 58056 faces
+slice 100: 69146 vertices, 69529 faces
+slice 110: 80468 vertices, 80869 faces
+slice 120: 91342 vertices, 91728 faces
+slice 130: 101938 vertices, 102307 faces
+slice 140: 111846 vertices, 112212 faces
+slice 150: 120102 vertices, 120407 faces
+slice 160: 126982 vertices, 127236 faces
+slice 170: 132518 vertices, 132747 faces
+slice 180: 136930 vertices, 137101 faces
+slice 190: 138948 vertices, 138982 faces
+slice 200: 138948 vertices, 138982 faces
+slice 210: 138948 vertices, 138982 faces
+slice 220: 138948 vertices, 138982 faces
+slice 230: 138948 vertices, 138982 faces
+slice 240: 138948 vertices, 138982 faces
+slice 250: 138948 vertices, 138982 faces
+using the conformed surface RAS to save vertex points...
+writing ../surf/lh.orig.nofix
+using vox2ras matrix:
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+
+ rm -f ../mri/filled-pretess255.mgz 
+
+
+ mris_extract_main_component ../surf/lh.orig.nofix ../surf/lh.orig.nofix 
+
+
+counting number of connected components...
+   138948 voxel in cpt #1: X=-34 [v=138948,e=416946,f=277964] located at (-26.286049, -26.831001, 43.476833)
+For the whole surface: X=-34 [v=138948,e=416946,f=277964]
+One single component has been found
+nothing to do
+done
+
+#--------------------------------------------
+#@# Tessellate rh Wed Jun 26 16:27:27 PDT 2019
+/gpfs/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT102/scripts
+
+ mri_pretess ../mri/filled.mgz 127 ../mri/norm.mgz ../mri/filled-pretess127.mgz 
+
+
+Iteration Number : 1
+pass   1 (xy+):   2 found -   2 modified     |    TOTAL:   2
+pass   2 (xy+):   0 found -   2 modified     |    TOTAL:   2
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   2
+pass   1 (yz+):   2 found -   2 modified     |    TOTAL:   4
+pass   2 (yz+):   0 found -   2 modified     |    TOTAL:   4
+pass   1 (yz-):   1 found -   1 modified     |    TOTAL:   5
+pass   2 (yz-):   0 found -   1 modified     |    TOTAL:   5
+pass   1 (xz+):   1 found -   1 modified     |    TOTAL:   6
+pass   2 (xz+):   0 found -   1 modified     |    TOTAL:   6
+pass   1 (xz-):   2 found -   2 modified     |    TOTAL:   8
+pass   2 (xz-):   0 found -   2 modified     |    TOTAL:   8
+Iteration Number : 1
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 1
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   2 found -   2 modified     |    TOTAL:   2
+pass   2 (-+):   0 found -   2 modified     |    TOTAL:   2
+Iteration Number : 2
+pass   1 (xy+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xy-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (yz-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz+):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (xz-):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+++):   0 found -   0 modified     |    TOTAL:   0
+Iteration Number : 2
+pass   1 (++):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (+-):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (--):   0 found -   0 modified     |    TOTAL:   0
+pass   1 (-+):   0 found -   0 modified     |    TOTAL:   0
+
+Total Number of Modified Voxels = 10 (out of 288605: 0.003465)
+Ambiguous edge configurations... 
+
+mri_pretess done
+
+
+ mri_tessellate ../mri/filled-pretess127.mgz 127 ../surf/rh.orig.nofix 
+
+$Id: mri_tessellate.c,v 1.38.2.1 2016/07/26 18:46:38 zkaufman Exp $
+  $Id: mrisurf.c,v 1.781.2.6 2016/12/27 16:47:14 zkaufman Exp $
+slice 30: 423 vertices, 493 faces
+slice 40: 5967 vertices, 6253 faces
+slice 50: 16043 vertices, 16466 faces
+slice 60: 27428 vertices, 27828 faces
+slice 70: 39192 vertices, 39543 faces
+slice 80: 50700 vertices, 51082 faces
+slice 90: 61967 vertices, 62372 faces
+slice 100: 73553 vertices, 73932 faces
+slice 110: 84616 vertices, 85005 faces
+slice 120: 94791 vertices, 95169 faces
+slice 130: 104704 vertices, 105046 faces
+slice 140: 113527 vertices, 113840 faces
+slice 150: 121891 vertices, 122155 faces
+slice 160: 128027 vertices, 128270 faces
+slice 170: 133412 vertices, 133613 faces
+slice 180: 137063 vertices, 137174 faces
+slice 190: 138104 vertices, 138128 faces
+slice 200: 138104 vertices, 138128 faces
+slice 210: 138104 vertices, 138128 faces
+slice 220: 138104 vertices, 138128 faces
+slice 230: 138104 vertices, 138128 faces
+slice 240: 138104 vertices, 138128 faces
+slice 250: 138104 vertices, 138128 faces
+using the conformed surface RAS to save vertex points...
+writing ../surf/rh.orig.nofix
+using vox2ras matrix:
+-1.00000   0.00000   0.00000   128.00000;
+ 0.00000   0.00000   1.00000  -128.00000;
+ 0.00000  -1.00000   0.00000   128.00000;
+ 0.00000   0.00000   0.00000   1.00000;
+
+ rm -f ../mri/filled-pretess127.mgz 
+
+
+ mris_extract_main_component ../surf/rh.orig.nofix ../surf/rh.orig.nofix 
+
+
+counting number of connected components...
+   138104 voxel in cpt #1: X=-24 [v=138104,e=414384,f=276256] located at (28.116289, -30.430023, 43.433765)
+For the whole surface: X=-24 [v=138104,e=414384,f=276256]
+One single component has been found
+nothing to do
+done
+
+#--------------------------------------------
+#@# Smooth1 lh Wed Jun 26 16:27:34 PDT 2019
+/gpfs/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT102/scripts
+
+ mris_smooth -nw -seed 1234 ../surf/lh.orig.nofix ../surf/lh.smoothwm.nofix 
+
+setting seed for random number generator to 1234
+smoothing surface tessellation for 10 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+#--------------------------------------------
+#@# Smooth1 rh Wed Jun 26 16:27:38 PDT 2019
+/gpfs/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT102/scripts
+
+ mris_smooth -nw -seed 1234 ../surf/rh.orig.nofix ../surf/rh.smoothwm.nofix 
+
+setting seed for random number generator to 1234
+smoothing surface tessellation for 10 iterations...
+smoothing complete - recomputing first and second fundamental forms...
+#--------------------------------------------
+#@# Inflation1 lh Wed Jun 26 16:27:42 PDT 2019
+/gpfs/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT102/scripts
+
+ mris_inflate -no-save-sulc ../surf/lh.smoothwm.nofix ../surf/lh.inflated.nofix 
+
+Not saving sulc
+Reading ../surf/lh.smoothwm.nofix
+avg radius = 47.7 mm, total surface area = 74305 mm^2

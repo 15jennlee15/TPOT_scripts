@@ -2394,3 +2394,23 @@ writing output to brain.mgz
  mri_mask -T 5 brain.mgz brainmask.mgz brain.finalsurfs.mgz 
 
 threshold mask volume at 5
+DoAbs = 0
+Found 1417623 voxels in mask (pct=  8.45)
+Writing masked volume to brain.finalsurfs.mgz...done.
+#--------------------------------------------
+#@# WM Segmentation Wed Jun 26 16:27:13 PDT 2019
+
+ mri_segment -mprage brain.mgz wm.seg.mgz 
+
+doing initial intensity segmentation...
+using local statistics to label ambiguous voxels...
+computing class statistics for intensity windows...
+WM (103.0): 102.7 +- 6.5 [79.0 --> 125.0]
+GM (73.0) : 71.4 +- 9.9 [30.0 --> 95.0]
+setting bottom of white matter range to 81.4
+setting top of gray matter range to 91.3
+doing initial intensity segmentation...
+using local statistics to label ambiguous voxels...
+using local geometry to label remaining ambiguous voxels...
+
+reclassifying voxels using Gaussian border classifier...
