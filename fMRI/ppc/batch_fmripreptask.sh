@@ -16,7 +16,7 @@ container=containers/fmriprep-1.4.0.simg
 study="TPOT"
 
 # Set subject list
-SUBJLIST=`cat subject_list_2.txt`
+SUBJLIST=`cat subject_list.txt`
 
 # 
 for SUBJ in $SUBJLIST; do
