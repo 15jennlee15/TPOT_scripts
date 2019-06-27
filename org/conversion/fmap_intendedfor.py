@@ -6,8 +6,8 @@ from pprint import pprint
 bidsdir = os.path.join(os.sep, 'projects', 'adapt_lab', 'shared', 'TPOT', 'bids_data')
 # bidsdir = os.path.join(os.sep,'Users','laurenkahn','Desktop','bids_data')
 include_echo_time = False
-echo_time1 = '0.0478'
-echo_time2 = '0.0478'
+#echo_time1 = '0.0478'
+#echo_time2 = '0.0478'
 
 
 def main():
