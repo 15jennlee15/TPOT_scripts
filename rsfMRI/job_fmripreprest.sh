@@ -5,10 +5,10 @@
 # in the derivatives folder.
 
 # Set bids directories
-bids_dir="${group_dir}""${study}"/bids_data
+bids_dir="${group_dir}"/"${study}"/bids_data
 derivatives="${bids_dir}"/derivatives
 working_dir="${derivatives}"/working_bids_fmripreprest/
-image="${group_dir}""${container}"
+image="${group_dir}"/"${container}"
 
 echo -e "\nFmriprep on $subid"
 echo -e "\nContainer: $image"
@@ -31,15 +31,15 @@ task="rest"
 echo -e "\nStarting on: $task"
 echo -e "\n"
 
-export FS_LICENSE=/projects/adapt_lab/shared/SHARP/SHARP_Scripts/rsfMRI/license.txt
+export FS_LICENSE=/projects/adapt_lab/shared/SHARP/TPOT_Scripts/rsfMRI/license.txt
 
 singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${derivatives} participant \
 --participant_label ${subid} \
  -w ${working_dir} \
  -t ${task} --use-aroma --write-graph \
---output-space {'T1w','template','fsaverage5','fsnative'} \
+--output-space {'T1w','template','fsaverage','fsnative'} \
 --mem-mb 100000 \
---skip_bids_validation \
+--write-graph \
 --fs-license-file $FS_LICENSE
 
 echo -e "\n"
