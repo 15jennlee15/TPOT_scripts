@@ -1,0 +1,43 @@
+The ``--output_space`` option has been deprecated in version 1.4.0. Your selection of spaces "T1w, template, fsaverage5, fsnative" will be inserted at the front of the ``--output-spaces`` argument list. Please update your scripts to use ``--output-spaces``.
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/cli/run.py", line 483, in build_workflow
+    layout, participant_label=opts.participant_label)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/niworkflows/utils/bids.py", line 107, in collect_participants
+    ', '.join(participant_label)), bids_dir)
+niworkflows.utils.bids.BIDSError: 
+---------- BIDS root folder: "BIDS Layout: ...dapt_lab/shared/TPOT/bids_data | Subjects: 156 | Sessions: 156 | Runs: 332" ----------
+           Could not find participants [TPOT030_2]
+------------------------------------------------------------------------------------------------------------------------------------
+(node:86980) UnhandledPromiseRejectionWarning: Error: ENOENT: no such file or directory, lstat '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT112_wf/anat_preproc_wf/anat_derivatives_wf/ds_surfs/mapflow/_ds_surfs5/result__ds_surfs5.pklz'
+    at Object.lstatSync (fs.js:841:3)
+    at isDirectory (/usr/lib/node_modules/bids-validator/utils/files/readDir.js:130:23)
+    at files.map.file (/usr/lib/node_modules/bids-validator/utils/files/readDir.js:116:9)
+    at Array.map (<anonymous>)
+    at getFiles (/usr/lib/node_modules/bids-validator/utils/files/readDir.js:99:9)
+    at files.map.file (/usr/lib/node_modules/bids-validator/utils/files/readDir.js:117:7)
+    at Array.map (<anonymous>)
+    at getFiles (/usr/lib/node_modules/bids-validator/utils/files/readDir.js:99:9)
+    at files.map.file (/usr/lib/node_modules/bids-validator/utils/files/readDir.js:117:7)
+    at Array.map (<anonymous>)
+(node:86980) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
+(node:86980) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+The ``--output_space`` option has been deprecated in version 1.4.0. Your selection of spaces "T1w, template, fsaverage5, fsnative" will be inserted at the front of the ``--output-spaces`` argument list. Please update your scripts to use ``--output-spaces``.
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/cli/run.py", line 483, in build_workflow
+    layout, participant_label=opts.participant_label)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/niworkflows/utils/bids.py", line 107, in collect_participants
+    ', '.join(participant_label)), bids_dir)
+niworkflows.utils.bids.BIDSError: 
+---------- BIDS root folder: "BIDS Layout: ...dapt_lab/shared/TPOT/bids_data | Subjects: 156 | Sessions: 156 | Runs: 332" ----------
+           Could not find participants [TPOT030_2]
+------------------------------------------------------------------------------------------------------------------------------------

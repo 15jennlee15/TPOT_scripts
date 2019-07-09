@@ -1,0 +1,40 @@
+The ``--output_space`` option has been deprecated in version 1.4.0. Your selection of spaces "T1w, template, fsaverage5, fsnative" will be inserted at the front of the ``--output-spaces`` argument list. Please update your scripts to use ``--output-spaces``.
+/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
+  % (attr, attr))
+/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
+  % (attr, attr))
+/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
+  % (attr, attr))
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/cli/run.py", line 608, in build_workflow
+    work_dir=str(work_dir),
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/workflows/base.py", line 258, in init_fmriprep_wf
+    use_syn=use_syn,
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/workflows/base.py", line 607, in init_single_subject_wf
+    use_syn=use_syn,
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/workflows/bold/base.py", line 541, in init_func_preproc_wf
+    debug=debug, fmap_demean=fmap_demean, fmap_bspline=fmap_bspline)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/workflows/fieldmap/base.py", line 192, in init_sdc_wf
+    name='pepolar_unwarp_wf')
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/workflows/fieldmap/pepolar.py", line 98, in init_pepolar_unwarp_wf
+    raise Exception("None of the discovered fieldmaps has the right "
+Exception: None of the discovered fieldmaps has the right phase encoding direction. Possibly a problem with metadata. If not, rerun with '--ignore fieldmaps' to skip distortion correction step.
+The ``--output_space`` option has been deprecated in version 1.4.0. Your selection of spaces "T1w, template, fsaverage5, fsnative" will be inserted at the front of the ``--output-spaces`` argument list. Please update your scripts to use ``--output-spaces``.
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/cli/run.py", line 608, in build_workflow
+    work_dir=str(work_dir),
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/workflows/base.py", line 258, in init_fmriprep_wf
+    use_syn=use_syn,
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/workflows/base.py", line 472, in init_single_subject_wf
+    subject_id, task_id if task_id else '<all>'))
+Exception: No BOLD images found for participant TPOT048 and task video. All workflows require BOLD images.

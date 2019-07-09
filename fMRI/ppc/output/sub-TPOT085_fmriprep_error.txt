@@ -1,6 +1,4 @@
-pandoc: /projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/logs/CITATION.md: openBinaryFile: does not exist (No such file or directory)
 The ``--output_space`` option has been deprecated in version 1.4.0. Your selection of spaces "T1w, template, fsaverage5, fsnative" will be inserted at the front of the ``--output-spaces`` argument list. Please update your scripts to use ``--output-spaces``.
-Option "--use-aroma" requires functional images to be resampled to MNI152NLin6Asym space. The argument "MNI152NLin6Asym:res-2" has been automatically added to the list of output spaces (option ``--output-spaces``).
 /usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
   % (attr, attr))
 /usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
@@ -36,6 +34,17 @@ Traceback (most recent call last):
   File "/usr/local/miniconda/lib/python3.7/multiprocessing/connection.py", line 136, in _check_closed
     raise OSError("handle is closed")
 OSError: handle is closed
-Sentry is attempting to send 0 pending error messages
-Waiting up to 2.0 seconds
-Press Ctrl-C to quit
+The ``--output_space`` option has been deprecated in version 1.4.0. Your selection of spaces "T1w, template, fsaverage5, fsnative" will be inserted at the front of the ``--output-spaces`` argument list. Please update your scripts to use ``--output-spaces``.
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/usr/local/miniconda/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/cli/run.py", line 608, in build_workflow
+    work_dir=str(work_dir),
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/workflows/base.py", line 258, in init_fmriprep_wf
+    use_syn=use_syn,
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/workflows/base.py", line 472, in init_single_subject_wf
+    subject_id, task_id if task_id else '<all>'))
+Exception: No BOLD images found for participant TPOT085 and task video. All workflows require BOLD images.

@@ -1,0 +1,726 @@
+
+Fmriprep on sub-TPOT202
+
+Container: /projects/adapt_lab/shared/containers/fmriprep-1.4.0.simg
+
+Subject directory: /projects/adapt_lab/shared/TPOT/bids_data
+
+Starting on: affect
+
+
+Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
+190705-02:59:57,188 nipype.workflow IMPORTANT:
+	 
+    Running fMRIPREP version 1.4.0:
+      * BIDS dataset path: /projects/adapt_lab/shared/TPOT/bids_data.
+      * Participant list: ['TPOT202'].
+      * Run identifier: 20190705-025942_8610cde6-fc67-42ca-8e64-9f476cf95aa7.
+    
+190705-02:59:59,817 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT202/ses-1/func/sub-TPOT202_ses-1_task-affect_acq-1_bold.nii.gz" (0.20 GB / 185 TRs). Memory resampled/largemem=0.82/1.20 GB.
+190705-02:59:59,847 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-TPOT202_ses-1_task-affect_acq-1_bold.nii.gz
+190705-03:00:01,871 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190705-03:00:02,218 nipype.workflow IMPORTANT:
+	 SDC: fieldmap estimation of type "epi" intended for /projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT202/ses-1/func/sub-TPOT202_ses-1_task-affect_acq-1_bold.nii.gz found.
+190705-03:00:03,229 nipype.workflow IMPORTANT:
+	 Creating BOLD surface-sampling workflow.
+190705-03:00:05,748 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT202/ses-1/func/sub-TPOT202_ses-1_task-affect_acq-2_bold.nii.gz" (0.21 GB / 185 TRs). Memory resampled/largemem=0.82/1.20 GB.
+190705-03:00:05,773 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-TPOT202_ses-1_task-affect_acq-2_bold.nii.gz
+190705-03:00:07,121 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190705-03:00:07,419 nipype.workflow IMPORTANT:
+	 SDC: fieldmap estimation of type "epi" intended for /projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT202/ses-1/func/sub-TPOT202_ses-1_task-affect_acq-2_bold.nii.gz found.
+190705-03:00:08,455 nipype.workflow IMPORTANT:
+	 Creating BOLD surface-sampling workflow.
+190705-03:00:12,737 nipype.workflow IMPORTANT:
+	 Works derived from this fMRIPrep execution should include the following boilerplate:
+
+
+Results included in this manuscript come from preprocessing
+performed using *fMRIPrep* 1.4.0
+(@fmriprep1; @fmriprep2; RRID:SCR_016216),
+which is based on *Nipype* 1.2.0
+(@nipype1; @nipype2; RRID:SCR_002502).
+
+Anatomical data preprocessing
+
+: The T1-weighted (T1w) image was corrected for intensity non-uniformity (INU)
+with `N4BiasFieldCorrection` [@n4], distributed with ANTs 2.2.0 [@ants, RRID:SCR_004757], and used as T1w-reference throughout the workflow.
+The T1w-reference was then skull-stripped with a *Nipype* implementation of
+the `antsBrainExtraction.sh` workflow (from ANTs), using OASIS30ANTs
+as target template.
+Brain tissue segmentation of cerebrospinal fluid (CSF),
+white-matter (WM) and gray-matter (GM) was performed on
+the brain-extracted T1w using `fast` [FSL 5.0.9, RRID:SCR_002823,
+@fsl_fast].
+Brain surfaces were reconstructed using `recon-all` [FreeSurfer 6.0.1,
+RRID:SCR_001847, @fs_reconall], and the brain mask estimated
+previously was refined with a custom variation of the method to reconcile
+ANTs-derived and FreeSurfer-derived segmentations of the cortical
+gray-matter of Mindboggle [RRID:SCR_002438, @mindboggle].
+Volume-based spatial normalization to one standard space (MNI152NLin2009cAsym) was performed through
+nonlinear registration with `antsRegistration` (ANTs 2.2.0),
+using brain-extracted versions of both T1w reference and the T1w template.
+The following template was selected for spatial normalization:
+*ICBM 152 Nonlinear Asymmetrical template version 2009c* [@mni152nlin2009casym, RRID:SCR_008796; TemplateFlow ID: MNI152NLin2009cAsym].
+
+Functional data preprocessing
+
+: For each of the 2 BOLD runs found per subject (across all
+tasks and sessions), the following preprocessing was performed.
+First, a reference volume and its skull-stripped version were generated
+using a custom methodology of *fMRIPrep*.
+A deformation field to correct for susceptibility distortions was estimated
+based on two echo-planar imaging (EPI) references with opposing phase-encoding
+directions, using `3dQwarp` @afni (AFNI 20160207).
+Based on the estimated susceptibility distortion, an
+unwarped BOLD reference was calculated for a more accurate
+co-registration with the anatomical reference.
+The BOLD reference was then co-registered to the T1w reference using
+`bbregister` (FreeSurfer) which implements boundary-based registration [@bbr].
+Co-registration was configured with nine degrees of freedom to account
+for distortions remaining in the BOLD reference.
+Head-motion parameters with respect to the BOLD reference
+(transformation matrices, and six corresponding rotation and translation
+parameters) are estimated before any spatiotemporal filtering using
+`mcflirt` [FSL 5.0.9, @mcflirt].
+BOLD runs were slice-time corrected using `3dTshift` from
+AFNI 20160207 [@afni, RRID:SCR_005927].
+The BOLD time-series, were resampled to surfaces on the following
+spaces: *fsnative*, *fsaverage5*.
+The BOLD time-series (including slice-timing correction when applied)
+were resampled onto their original, native space by applying
+a single, composite transform to correct for head-motion and
+susceptibility distortions.
+These resampled BOLD time-series will be referred to as *preprocessed
+BOLD in original space*, or just *preprocessed BOLD*.
+The BOLD time-series were resampled into standard space,
+generating a *preprocessed BOLD run in ['MNI152NLin2009cAsym'] space*.
+First, a reference volume and its skull-stripped version were generated
+using a custom methodology of *fMRIPrep*.
+Several confounding time-series were calculated based on the
+*preprocessed BOLD*: framewise displacement (FD), DVARS and
+three region-wise global signals.
+FD and DVARS are calculated for each functional run, both using their
+implementations in *Nipype* [following the definitions by @power_fd_dvars].
+The three global signals are extracted within the CSF, the WM, and
+the whole-brain masks.
+Additionally, a set of physiological regressors were extracted to
+allow for component-based noise correction [*CompCor*, @compcor].
+Principal components are estimated after high-pass filtering the
+*preprocessed BOLD* time-series (using a discrete cosine filter with
+128s cut-off) for the two *CompCor* variants: temporal (tCompCor)
+and anatomical (aCompCor).
+tCompCor components are then calculated from the top 5% variable
+voxels within a mask covering the subcortical regions.
+This subcortical mask is obtained by heavily eroding the brain mask,
+which ensures it does not include cortical GM regions.
+For aCompCor, components are calculated within the intersection of
+the aforementioned mask and the union of CSF and WM masks calculated
+in T1w space, after their projection to the native space of each
+functional run (using the inverse BOLD-to-T1w transformation). Components
+are also calculated separately within the WM and CSF masks.
+For each CompCor decomposition, the *k* components with the largest singular
+values are retained, such that the retained components' time series are
+sufficient to explain 50 percent of variance across the nuisance mask (CSF,
+WM, combined, or temporal). The remaining components are dropped from
+consideration.
+The head-motion estimates calculated in the correction step were also
+placed within the corresponding confounds file.
+The confound time series derived from head motion estimates and global
+signals were expanded with the inclusion of temporal derivatives and
+quadratic terms for each [@confounds_satterthwaite_2013].
+Frames that exceeded a threshold of 0.5 mm FD or 1.5 standardised DVARS
+were annotated as motion outliers.
+All resamplings can be performed with *a single interpolation
+step* by composing all the pertinent transformations (i.e. head-motion
+transform matrices, susceptibility distortion correction when available,
+and co-registrations to anatomical and output spaces).
+Gridded (volumetric) resamplings were performed using `antsApplyTransforms` (ANTs),
+configured with Lanczos interpolation to minimize the smoothing
+effects of other kernels [@lanczos].
+Non-gridded (surface) resamplings were performed using `mri_vol2surf`
+(FreeSurfer).
+
+
+Many internal operations of *fMRIPrep* use
+*Nilearn* 0.5.2 [@nilearn, RRID:SCR_001362],
+mostly within the functional processing workflow.
+For more details of the pipeline, see [the section corresponding
+to workflows in *fMRIPrep*'s documentation](https://fmriprep.readthedocs.io/en/latest/workflows.html "FMRIPrep's documentation").
+
+
+### References
+
+
+190705-03:00:31,681 nipype.interface WARNING:
+	 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage exists; if multiple jobs are running in parallel, this can be safely ignored
+190705-03:00:51,495 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.autorecon1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon1".
+190705-03:00:51,715 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:00:51,716 nipype.workflow INFO:
+	 [Node] Running "autorecon1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190705-03:00:51,718 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:00:51,869 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.autorecon1".
+190705-03:02:06,751 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.skull_strip_extern" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/skull_strip_extern".
+190705-03:02:06,807 nipype.workflow INFO:
+	 [Node] Running "skull_strip_extern" ("niworkflows.interfaces.freesurfer.FSInjectBrainExtracted")
+190705-03:02:06,815 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.skull_strip_extern".
+190705-03:02:08,366 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon2_vol" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon2_vol".
+190705-03:02:08,432 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:08,434 nipype.workflow INFO:
+	 [Node] Running "autorecon2_vol" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190705-03:02:08,437 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:08,502 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon2_vol".
+190705-03:02:12,897 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs0".
+190705-03:02:12,900 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs1".
+190705-03:02:12,956 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:12,957 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190705-03:02:12,960 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:13,0 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs1".
+190705-03:02:13,9 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:13,12 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs0" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190705-03:02:13,15 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:13,53 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs0".
+190705-03:02:14,279 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon_surfs" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs".
+190705-03:02:14,303 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs0".
+190705-03:02:14,314 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:14,314 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs0" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190705-03:02:14,318 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:14,361 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs0".
+190705-03:02:14,365 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs1".
+190705-03:02:14,376 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:14,376 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190705-03:02:14,379 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:14,418 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs1".
+190705-03:02:14,431 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon_surfs".
+190705-03:02:18,891 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon30" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon30".
+190705-03:02:18,903 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon31" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon31".
+190705-03:02:18,988 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:18,988 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:18,989 nipype.workflow INFO:
+	 [Node] Running "_autorecon30" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190705-03:02:18,992 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:19,17 nipype.workflow INFO:
+	 [Node] Running "_autorecon31" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190705-03:02:19,20 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:19,69 nipype.workflow INFO:
+	 [Node] Finished "_autorecon30".
+190705-03:02:19,70 nipype.workflow INFO:
+	 [Node] Finished "_autorecon31".
+190705-03:02:20,288 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon3" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3".
+190705-03:02:20,335 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon30" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon30".
+190705-03:02:20,346 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:20,346 nipype.workflow INFO:
+	 [Node] Running "_autorecon30" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190705-03:02:20,351 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:20,395 nipype.workflow INFO:
+	 [Node] Finished "_autorecon30".
+190705-03:02:20,399 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon31" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon31".
+190705-03:02:20,409 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:20,409 nipype.workflow INFO:
+	 [Node] Running "_autorecon31" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190705-03:02:20,413 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:20,452 nipype.workflow INFO:
+	 [Node] Finished "_autorecon31".
+190705-03:02:20,464 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon3".
+190705-03:02:23,517 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.segs_to_native_aparc_aseg.fs_datasource" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/segs_to_native_aparc_aseg/fs_datasource".
+190705-03:02:23,569 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.get_surfaces" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/get_surfaces".
+190705-03:02:23,571 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.segs_to_native_aseg.fs_datasource" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/segs_to_native_aseg/fs_datasource".
+190705-03:02:23,796 nipype.workflow INFO:
+	 [Node] Running "get_surfaces" ("nipype.interfaces.io.FreeSurferSource")
+190705-03:02:23,799 nipype.workflow INFO:
+	 [Node] Running "fs_datasource" ("nipype.interfaces.io.FreeSurferSource")
+190705-03:02:23,803 nipype.workflow INFO:
+	 [Node] Running "fs_datasource" ("nipype.interfaces.io.FreeSurferSource")
+190705-03:02:24,25 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.segs_to_native_aseg.fs_datasource".
+190705-03:02:24,27 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.segs_to_native_aparc_aseg.fs_datasource".
+190705-03:02:24,28 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.get_surfaces".
+190705-03:02:25,500 nipype.workflow INFO:
+	 [Node] Setting-up "_targets0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/targets/mapflow/_targets0".
+190705-03:02:25,510 nipype.workflow INFO:
+	 [Node] Setting-up "_targets1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/targets/mapflow/_targets1".
+190705-03:02:25,519 nipype.workflow INFO:
+	 [Node] Setting-up "_targets0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/targets/mapflow/_targets0".
+190705-03:02:25,519 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_targets1".
+190705-03:02:25,522 nipype.workflow INFO:
+	 [Node] Setting-up "_targets1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/targets/mapflow/_targets1".
+190705-03:02:25,544 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_targets0".
+190705-03:02:25,544 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_targets1".
+190705-03:02:25,545 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_targets0".
+190705-03:02:25,905 nipype.workflow INFO:
+	 [Node] Running "_targets1" ("nipype.interfaces.utility.wrappers.Function")
+190705-03:02:25,909 nipype.workflow INFO:
+	 [Node] Running "_targets0" ("nipype.interfaces.utility.wrappers.Function")
+190705-03:02:25,913 nipype.workflow INFO:
+	 [Node] Running "_targets0" ("nipype.interfaces.utility.wrappers.Function")
+190705-03:02:25,919 nipype.workflow INFO:
+	 [Node] Running "_targets1" ("nipype.interfaces.utility.wrappers.Function")
+190705-03:02:25,945 nipype.workflow INFO:
+	 [Node] Finished "_targets0".
+190705-03:02:25,946 nipype.workflow INFO:
+	 [Node] Finished "_targets1".
+190705-03:02:25,946 nipype.workflow INFO:
+	 [Node] Finished "_targets0".
+190705-03:02:25,976 nipype.workflow INFO:
+	 [Node] Finished "_targets1".
+190705-03:02:26,186 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.recon_report" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/recon_report".
+190705-03:02:26,273 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:26,274 nipype.workflow INFO:
+	 [Node] Running "recon_report" ("niworkflows.interfaces.segmentation.ReconAllRPT"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190705-03:02:26,277 nipype.interface INFO:
+	 recon-all complete : Not running
+190705-03:02:28,850 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.targets" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/targets".
+190705-03:02:28,871 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.targets".
+190705-03:02:28,920 nipype.workflow INFO:
+	 [Node] Setting-up "_targets0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/targets/mapflow/_targets0".
+190705-03:02:28,921 nipype.workflow INFO:
+	 [Node] Cached "_targets0" - collecting precomputed outputs
+190705-03:02:28,921 nipype.workflow INFO:
+	 [Node] "_targets0" found cached.
+190705-03:02:28,922 nipype.workflow INFO:
+	 [Node] Setting-up "_targets1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/targets/mapflow/_targets1".
+190705-03:02:28,923 nipype.workflow INFO:
+	 [Node] Cached "_targets1" - collecting precomputed outputs
+190705-03:02:28,923 nipype.workflow INFO:
+	 [Node] "_targets1" found cached.
+190705-03:02:28,940 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.targets".
+190705-03:02:29,47 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.targets" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/targets".
+190705-03:02:29,69 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.targets".
+190705-03:02:29,246 nipype.workflow INFO:
+	 [Node] Setting-up "_targets0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/targets/mapflow/_targets0".
+190705-03:02:29,247 nipype.workflow INFO:
+	 [Node] Cached "_targets0" - collecting precomputed outputs
+190705-03:02:29,247 nipype.workflow INFO:
+	 [Node] "_targets0" found cached.
+190705-03:02:29,248 nipype.workflow INFO:
+	 [Node] Setting-up "_targets1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/targets/mapflow/_targets1".
+190705-03:02:29,249 nipype.workflow INFO:
+	 [Node] Cached "_targets1" - collecting precomputed outputs
+190705-03:02:29,249 nipype.workflow INFO:
+	 [Node] "_targets1" found cached.
+190705-03:02:29,316 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.targets".
+190705-03:02:33,188 nipype.workflow INFO:
+	 [Node] Setting-up "_midthickness0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/midthickness/mapflow/_midthickness0".
+190705-03:02:33,196 nipype.workflow INFO:
+	 [Node] Setting-up "_midthickness1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/midthickness/mapflow/_midthickness1".
+190705-03:02:33,229 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_midthickness0".
+190705-03:02:33,230 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_midthickness1".
+190705-03:02:33,616 nipype.workflow INFO:
+	 [Node] Running "_midthickness1" ("niworkflows.interfaces.freesurfer.MakeMidthickness"), a CommandLine Interface with command:
+cp /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT202/surf/lh.midthickness /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/midthickness/mapflow/_midthickness1/lh.midthickness
+190705-03:02:33,671 nipype.workflow INFO:
+	 [Node] Running "_midthickness0" ("niworkflows.interfaces.freesurfer.MakeMidthickness"), a CommandLine Interface with command:
+cp /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT202/surf/rh.midthickness /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/midthickness/mapflow/_midthickness0/rh.midthickness
+190705-03:02:34,136 nipype.workflow INFO:
+	 [Node] Finished "_midthickness1".
+190705-03:02:34,191 nipype.workflow INFO:
+	 [Node] Finished "_midthickness0".
+190705-03:02:40,653 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.recon_report".
+190705-03:02:42,826 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.midthickness" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/midthickness".
+190705-03:02:42,829 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.midthickness".
+190705-03:02:42,847 nipype.workflow INFO:
+	 [Node] Setting-up "_midthickness0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/midthickness/mapflow/_midthickness0".
+190705-03:02:42,848 nipype.workflow INFO:
+	 [Node] Cached "_midthickness0" - collecting precomputed outputs
+190705-03:02:42,848 nipype.workflow INFO:
+	 [Node] "_midthickness0" found cached.
+190705-03:02:42,849 nipype.workflow INFO:
+	 [Node] Setting-up "_midthickness1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/midthickness/mapflow/_midthickness1".
+190705-03:02:42,850 nipype.workflow INFO:
+	 [Node] Cached "_midthickness1" - collecting precomputed outputs
+190705-03:02:42,850 nipype.workflow INFO:
+	 [Node] "_midthickness1" found cached.
+190705-03:02:42,856 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.midthickness".
+190705-03:02:51,97 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.save_midthickness" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/save_midthickness".
+190705-03:02:51,97 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.save_midthickness".
+190705-03:02:51,254 nipype.workflow INFO:
+	 [Node] Running "save_midthickness" ("nipype.interfaces.io.DataSink")
+190705-03:02:51,374 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.save_midthickness".
+190705-03:04:55,106 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler1".
+190705-03:04:55,118 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_sampler1".
+190705-03:04:55,120 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler0".
+190705-03:04:55,121 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_sampler0".
+190705-03:04:55,132 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler1".
+190705-03:04:55,132 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_sampler1".
+190705-03:04:55,228 nipype.workflow INFO:
+	 [Node] Running "_sampler1" ("nipype.interfaces.freesurfer.utils.SampleToSurface"), a CommandLine Interface with command:
+mri_vol2surf --cortex --hemi lh --interp trilinear --o /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler1/lh.fsaverage5.gii  --srcsubject sub-TPOT202 --reg /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/set_xfm_source/out_concat.lta --projfrac-avg 0.000 1.000 0.200 --mov /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/rename_src/mapflow/_rename_src1/fsaverage5.nii --trgsubject fsaverage5
+190705-03:04:55,235 nipype.workflow INFO:
+	 [Node] Running "_sampler0" ("nipype.interfaces.freesurfer.utils.SampleToSurface"), a CommandLine Interface with command:
+mri_vol2surf --cortex --hemi lh --interp trilinear --o /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler0/lh.fsnative.gii  --srcsubject sub-TPOT202 --reg /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/set_xfm_source/out_concat.lta --projfrac-avg 0.000 1.000 0.200 --mov /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/rename_src/mapflow/_rename_src0/fsnative.nii --trgsubject sub-TPOT202
+190705-03:04:55,246 nipype.workflow INFO:
+	 [Node] Running "_sampler1" ("nipype.interfaces.freesurfer.utils.SampleToSurface"), a CommandLine Interface with command:
+mri_vol2surf --cortex --hemi rh --interp trilinear --o /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler1/rh.fsaverage5.gii  --srcsubject sub-TPOT202 --reg /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/set_xfm_source/out_concat.lta --projfrac-avg 0.000 1.000 0.200 --mov /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/rename_src/mapflow/_rename_src1/fsaverage5.nii --trgsubject fsaverage5
+190705-03:04:58,399 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler1".
+190705-03:04:58,425 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler0".
+190705-03:04:58,445 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler0".
+190705-03:04:58,467 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_sampler0".
+190705-03:04:58,479 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_sampler1".
+190705-03:04:58,510 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler0".
+190705-03:04:58,510 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_sampler0".
+190705-03:04:58,552 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler1".
+190705-03:04:58,563 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_sampler1".
+190705-03:04:58,563 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_sampler0".
+190705-03:04:58,693 nipype.workflow INFO:
+	 [Node] Running "_sampler0" ("nipype.interfaces.freesurfer.utils.SampleToSurface"), a CommandLine Interface with command:
+mri_vol2surf --cortex --hemi lh --interp trilinear --o /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler0/lh.fsnative.gii  --srcsubject sub-TPOT202 --reg /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/set_xfm_source/out_concat.lta --projfrac-avg 0.000 1.000 0.200 --mov /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/rename_src/mapflow/_rename_src0/fsnative.nii --trgsubject sub-TPOT202
+190705-03:04:58,697 nipype.workflow INFO:
+	 [Node] Running "_sampler0" ("nipype.interfaces.freesurfer.utils.SampleToSurface"), a CommandLine Interface with command:
+mri_vol2surf --cortex --hemi rh --interp trilinear --o /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler0/rh.fsnative.gii  --srcsubject sub-TPOT202 --reg /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/set_xfm_source/out_concat.lta --projfrac-avg 0.000 1.000 0.200 --mov /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/rename_src/mapflow/_rename_src0/fsnative.nii --trgsubject sub-TPOT202
+190705-03:04:58,739 nipype.workflow INFO:
+	 [Node] Running "_sampler1" ("nipype.interfaces.freesurfer.utils.SampleToSurface"), a CommandLine Interface with command:
+mri_vol2surf --cortex --hemi rh --interp trilinear --o /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler1/rh.fsaverage5.gii  --srcsubject sub-TPOT202 --reg /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/set_xfm_source/out_concat.lta --projfrac-avg 0.000 1.000 0.200 --mov /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/rename_src/mapflow/_rename_src1/fsaverage5.nii --trgsubject fsaverage5
+190705-03:04:58,743 nipype.workflow INFO:
+	 [Node] Running "_sampler0" ("nipype.interfaces.freesurfer.utils.SampleToSurface"), a CommandLine Interface with command:
+mri_vol2surf --cortex --hemi rh --interp trilinear --o /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler0/rh.fsnative.gii  --srcsubject sub-TPOT202 --reg /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/set_xfm_source/out_concat.lta --projfrac-avg 0.000 1.000 0.200 --mov /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/rename_src/mapflow/_rename_src0/fsnative.nii --trgsubject sub-TPOT202
+190705-03:04:58,747 nipype.workflow INFO:
+	 [Node] Running "_sampler1" ("nipype.interfaces.freesurfer.utils.SampleToSurface"), a CommandLine Interface with command:
+mri_vol2surf --cortex --hemi lh --interp trilinear --o /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler1/lh.fsaverage5.gii  --srcsubject sub-TPOT202 --reg /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/set_xfm_source/out_concat.lta --projfrac-avg 0.000 1.000 0.200 --mov /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/rename_src/mapflow/_rename_src1/fsaverage5.nii --trgsubject fsaverage5
+190705-03:06:22,766 nipype.workflow INFO:
+	 [Node] Finished "_sampler1".
+190705-03:06:23,782 nipype.workflow INFO:
+	 [Node] Finished "_sampler1".
+190705-03:06:25,163 nipype.workflow INFO:
+	 [Node] Finished "_sampler1".
+190705-03:06:25,864 nipype.workflow INFO:
+	 [Node] Finished "_sampler1".
+190705-03:06:45,840 nipype.workflow INFO:
+	 [Node] Finished "_sampler0".
+190705-03:06:46,617 nipype.workflow INFO:
+	 [Node] Finished "_sampler0".
+190705-03:06:47,81 nipype.workflow INFO:
+	 [Node] Finished "_sampler0".
+190705-03:06:47,448 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.sampler" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_rh/sampler".
+190705-03:06:47,464 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.sampler" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_lh/sampler".
+190705-03:06:47,466 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.sampler".
+190705-03:06:47,466 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.sampler".
+190705-03:06:47,469 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.sampler" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_lh/sampler".
+190705-03:06:47,486 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.sampler".
+190705-03:06:47,557 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler0".
+190705-03:06:47,558 nipype.workflow INFO:
+	 [Node] Cached "_sampler0" - collecting precomputed outputs
+190705-03:06:47,558 nipype.workflow INFO:
+	 [Node] "_sampler0" found cached.
+190705-03:06:47,559 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler1".
+190705-03:06:47,560 nipype.workflow INFO:
+	 [Node] Cached "_sampler1" - collecting precomputed outputs
+190705-03:06:47,561 nipype.workflow INFO:
+	 [Node] "_sampler1" found cached.
+190705-03:06:47,563 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler0".
+190705-03:06:47,564 nipype.workflow INFO:
+	 [Node] Cached "_sampler0" - collecting precomputed outputs
+190705-03:06:47,564 nipype.workflow INFO:
+	 [Node] "_sampler0" found cached.
+190705-03:06:47,565 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler1".
+190705-03:06:47,566 nipype.workflow INFO:
+	 [Node] Cached "_sampler1" - collecting precomputed outputs
+190705-03:06:47,567 nipype.workflow INFO:
+	 [Node] "_sampler1" found cached.
+190705-03:06:47,592 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler0".
+190705-03:06:47,593 nipype.workflow INFO:
+	 [Node] Cached "_sampler0" - collecting precomputed outputs
+190705-03:06:47,593 nipype.workflow INFO:
+	 [Node] "_sampler0" found cached.
+190705-03:06:47,594 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_lh/sampler/mapflow/_sampler1".
+190705-03:06:47,595 nipype.workflow INFO:
+	 [Node] Cached "_sampler1" - collecting precomputed outputs
+190705-03:06:47,596 nipype.workflow INFO:
+	 [Node] "_sampler1" found cached.
+190705-03:06:47,621 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.sampler".
+190705-03:06:47,630 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.sampler".
+190705-03:06:47,664 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.sampler".
+190705-03:06:48,55 nipype.workflow INFO:
+	 [Node] Finished "_sampler0".
+190705-03:06:49,615 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.sampler" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_rh/sampler".
+190705-03:06:49,619 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.sampler".
+190705-03:06:49,645 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler0".
+190705-03:06:49,648 nipype.workflow INFO:
+	 [Node] Cached "_sampler0" - collecting precomputed outputs
+190705-03:06:49,648 nipype.workflow INFO:
+	 [Node] "_sampler0" found cached.
+190705-03:06:49,651 nipype.workflow INFO:
+	 [Node] Setting-up "_sampler1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/_hemi_rh/sampler/mapflow/_sampler1".
+190705-03:06:49,654 nipype.workflow INFO:
+	 [Node] Cached "_sampler1" - collecting precomputed outputs
+190705-03:06:49,654 nipype.workflow INFO:
+	 [Node] "_sampler1" found cached.
+190705-03:06:49,667 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.sampler".
+190705-03:07:00,317 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata1".
+190705-03:07:00,332 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata0".
+190705-03:07:00,353 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_update_metadata0".
+190705-03:07:00,370 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_update_metadata1".
+190705-03:07:00,540 nipype.workflow INFO:
+	 [Node] Running "_update_metadata0" ("niworkflows.interfaces.surf.GiftiSetAnatomicalStructure")
+190705-03:07:00,546 nipype.workflow INFO:
+	 [Node] Running "_update_metadata1" ("niworkflows.interfaces.surf.GiftiSetAnatomicalStructure")
+190705-03:07:00,662 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata2" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata2".
+190705-03:07:00,716 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata3" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata3".
+190705-03:07:00,726 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_update_metadata2".
+190705-03:07:00,792 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_update_metadata3".
+190705-03:07:00,875 nipype.workflow INFO:
+	 [Node] Running "_update_metadata3" ("niworkflows.interfaces.surf.GiftiSetAnatomicalStructure")
+190705-03:07:00,898 nipype.workflow INFO:
+	 [Node] Running "_update_metadata2" ("niworkflows.interfaces.surf.GiftiSetAnatomicalStructure")
+190705-03:07:03,836 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata2" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata2".
+190705-03:07:03,865 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata3" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata3".
+190705-03:07:03,871 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata1".
+190705-03:07:03,903 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_update_metadata1".
+190705-03:07:03,903 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_update_metadata2".
+190705-03:07:03,904 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_update_metadata3".
+190705-03:07:03,958 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata0".
+190705-03:07:04,4 nipype.workflow INFO:
+	 [Node] Outdated cache found for "_update_metadata0".
+190705-03:07:04,22 nipype.workflow INFO:
+	 [Node] Finished "_update_metadata1".
+190705-03:07:04,54 nipype.workflow INFO:
+	 [Node] Running "_update_metadata1" ("niworkflows.interfaces.surf.GiftiSetAnatomicalStructure")
+190705-03:07:04,89 nipype.workflow INFO:
+	 [Node] Running "_update_metadata2" ("niworkflows.interfaces.surf.GiftiSetAnatomicalStructure")
+190705-03:07:04,106 nipype.workflow INFO:
+	 [Node] Running "_update_metadata3" ("niworkflows.interfaces.surf.GiftiSetAnatomicalStructure")
+190705-03:07:04,157 nipype.workflow INFO:
+	 [Node] Running "_update_metadata0" ("niworkflows.interfaces.surf.GiftiSetAnatomicalStructure")
+190705-03:07:04,444 nipype.workflow INFO:
+	 [Node] Finished "_update_metadata3".
+190705-03:07:06,749 nipype.workflow INFO:
+	 [Node] Finished "_update_metadata1".
+190705-03:07:06,826 nipype.workflow INFO:
+	 [Node] Finished "_update_metadata3".
+190705-03:07:31,889 nipype.workflow INFO:
+	 [Node] Finished "_update_metadata0".
+190705-03:07:32,300 nipype.workflow INFO:
+	 [Node] Finished "_update_metadata2".
+190705-03:07:32,653 nipype.workflow INFO:
+	 [Node] Finished "_update_metadata2".
+190705-03:07:32,670 nipype.workflow INFO:
+	 [Node] Finished "_update_metadata0".
+190705-03:07:35,751 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.update_metadata" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/update_metadata".
+190705-03:07:35,761 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.update_metadata" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/update_metadata".
+190705-03:07:35,762 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.update_metadata".
+190705-03:07:35,762 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.update_metadata".
+190705-03:07:35,780 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata0".
+190705-03:07:35,781 nipype.workflow INFO:
+	 [Node] Cached "_update_metadata0" - collecting precomputed outputs
+190705-03:07:35,781 nipype.workflow INFO:
+	 [Node] "_update_metadata0" found cached.
+190705-03:07:35,782 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata1".
+190705-03:07:35,782 nipype.workflow INFO:
+	 [Node] Cached "_update_metadata1" - collecting precomputed outputs
+190705-03:07:35,782 nipype.workflow INFO:
+	 [Node] "_update_metadata1" found cached.
+190705-03:07:35,783 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata2" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata2".
+190705-03:07:35,784 nipype.workflow INFO:
+	 [Node] Cached "_update_metadata2" - collecting precomputed outputs
+190705-03:07:35,784 nipype.workflow INFO:
+	 [Node] "_update_metadata2" found cached.
+190705-03:07:35,785 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata3" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata3".
+190705-03:07:35,785 nipype.workflow INFO:
+	 [Node] Cached "_update_metadata3" - collecting precomputed outputs
+190705-03:07:35,785 nipype.workflow INFO:
+	 [Node] "_update_metadata3" found cached.
+190705-03:07:35,787 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata0".
+190705-03:07:35,787 nipype.workflow INFO:
+	 [Node] Cached "_update_metadata0" - collecting precomputed outputs
+190705-03:07:35,788 nipype.workflow INFO:
+	 [Node] "_update_metadata0" found cached.
+190705-03:07:35,788 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata1".
+190705-03:07:35,789 nipype.workflow INFO:
+	 [Node] Cached "_update_metadata1" - collecting precomputed outputs
+190705-03:07:35,789 nipype.workflow INFO:
+	 [Node] "_update_metadata1" found cached.
+190705-03:07:35,790 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata2" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata2".
+190705-03:07:35,790 nipype.workflow INFO:
+	 [Node] Cached "_update_metadata2" - collecting precomputed outputs
+190705-03:07:35,790 nipype.workflow INFO:
+	 [Node] "_update_metadata2" found cached.
+190705-03:07:35,791 nipype.workflow INFO:
+	 [Node] Setting-up "_update_metadata3" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT202_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_surf_wf/update_metadata/mapflow/_update_metadata3".
+190705-03:07:35,792 nipype.workflow INFO:
+	 [Node] Cached "_update_metadata3" - collecting precomputed outputs
+190705-03:07:35,792 nipype.workflow INFO:
+	 [Node] "_update_metadata3" found cached.
+190705-03:07:35,803 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_surf_wf.update_metadata".
+190705-03:07:35,804 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT202_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_surf_wf.update_metadata".
+
+
+
+done
+
+-------------------------------
+
+Starting on: video
+
+
+
+<--- Last few GCs --->
+
+[185322:0x24e1150]  2492801 ms: Mark-sweep 1223.9 (1417.8) -> 1223.9 (1383.8) MB, 1075.1 / 0.0 ms  (average mu = 0.976, current mu = 0.000) last resort GC in old space requested
+[185322:0x24e1150]  2493869 ms: Mark-sweep 1223.9 (1383.8) -> 1223.9 (1380.3) MB, 1067.5 / 0.0 ms  (average mu = 0.951, current mu = 0.000) last resort GC in old space requested
+
+
+<--- JS stacktrace --->
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x3ab5ed15be1d]
+Security context: 0x095dfaa9e6e1 <JSObject>
+    1: getFiles [0x18eeabb91d01] [/usr/lib/node_modules/bids-validator/utils/files/readDir.js:~96] [pc=0x3ab5ed57b49d](this=0x2b1bd619ad11 <JSGlobal Object>,dir=0x01c5f409ddc9 <String[164]: /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT171_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_confounds_wf>,file...
+
+Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
+
+
+
+done
+
+-------------------------------
