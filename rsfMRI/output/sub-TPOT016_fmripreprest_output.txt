@@ -1091,3 +1091,14 @@ antsApplyTransforms --default-value 0 --dimensionality 3 --float 1 --input /proj
 	 [Node] Running "bold_transform" ("niworkflows.interfaces.itk.MultiApplyTransforms")
 190729-23:00:38,898 nipype.workflow INFO:
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT016_wf.func_preproc_ses_1_task_rest_run_01_wf.sdc_wf.pepolar_unwarp_wf.unwarp_reference".
+190729-23:04:33,543 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT016_wf.func_preproc_ses_1_task_rest_run_02_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.fmap2ref_reg".
+190729-23:04:35,589 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT016_wf.func_preproc_ses_1_task_rest_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.init_aff" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT016_wf/func_preproc_ses_1_task_rest_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/init_aff".
+190729-23:04:35,589 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT016_wf.func_preproc_ses_1_task_rest_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.init_aff".
+190729-23:04:35,835 nipype.workflow INFO:
+	 [Node] Running "init_aff" ("niworkflows.interfaces.ants.AI"), a CommandLine Interface with command:
+antsAI -c [10,0.000001,10] -d 3 -x /opt/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz -m Mattes[/opt/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz,/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT016_wf/func_preproc_ses_1_task_rest_run_01_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference/ref_bold_valid_corrected_trans.nii.gz,32,Regular,0.200000] -o initialization.mat -p 0 -s [20.000000,0.120000] -t Affine[0.100000] -v 1
+190729-23:06:48,842 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT016_wf.func_preproc_ses_1_task_rest_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.init_aff".
