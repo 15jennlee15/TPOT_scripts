@@ -171,3 +171,23 @@ It is released under the [CC0](https://creativecommons.org/publicdomain/zero/1.0
 ### References
 
 
+190729-23:54:41,539 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT033_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_hmc_wf.mcflirt" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT033_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_hmc_wf/mcflirt".
+190729-23:54:41,549 nipype.workflow INFO:
+	 [Node] Running "mcflirt" ("nipype.interfaces.fsl.preprocess.MCFLIRT"), a CommandLine Interface with command:
+mcflirt -in /projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT033/ses-1/func/sub-TPOT033_ses-1_task-rest_run-02_bold.nii.gz -out /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT033_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_hmc_wf/mcflirt/sub-TPOT033_ses-1_task-rest_run-02_bold_mcf.nii.gz -reffile /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT033_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reference_wf/gen_ref/ref_bold.nii.gz -mats -plots
+190729-23:54:49,236 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT033_wf.func_preproc_ses_1_task_rest_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.init_aff" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT033_wf/func_preproc_ses_1_task_rest_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/init_aff".
+190729-23:54:49,455 nipype.workflow INFO:
+	 [Node] Running "init_aff" ("niworkflows.interfaces.ants.AI"), a CommandLine Interface with command:
+antsAI -c [10,0.000001,10] -d 3 -x /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz -m Mattes[/home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz,/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT033_wf/func_preproc_ses_1_task_rest_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/split/mapflow/_split0/vol0000.nii.gz,32,Regular,0.200000] -o initialization.mat -p 0 -s [20.000000,0.120000] -t Affine[0.100000] -v 1
+190729-23:54:49,953 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT033_wf.func_preproc_ses_1_task_rest_run_01_wf.bold_split" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT033_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_split".
+190729-23:54:49,957 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT033_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_split" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT033_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_split".
+190729-23:54:50,366 nipype.workflow INFO:
+	 [Node] Running "bold_split" ("nipype.interfaces.fsl.utils.Split"), a CommandLine Interface with command:
+fslsplit /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT033_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_stc_wf/copy_xform/sub-TPOT033_ses-1_task-rest_run-01_bold_tshift_xform.nii.gz -t
+190729-23:54:50,370 nipype.workflow INFO:
+	 [Node] Running "bold_split" ("nipype.interfaces.fsl.utils.Split"), a CommandLine Interface with command:
+fslsplit /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT033_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_stc_wf/copy_xform/sub-TPOT033_ses-1_task-rest_run-02_bold_tshift_xform.nii.gz -t

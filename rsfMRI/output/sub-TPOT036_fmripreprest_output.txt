@@ -171,3 +171,22 @@ It is released under the [CC0](https://creativecommons.org/publicdomain/zero/1.0
 ### References
 
 
+190729-23:54:44,310 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT036_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_hmc_wf.mcflirt" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_hmc_wf/mcflirt".
+190729-23:54:44,311 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT036_wf.func_preproc_ses_1_task_rest_run_01_wf.bold_hmc_wf.mcflirt" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_hmc_wf/mcflirt".
+190729-23:54:44,320 nipype.workflow INFO:
+	 [Node] Running "mcflirt" ("nipype.interfaces.fsl.preprocess.MCFLIRT"), a CommandLine Interface with command:
+mcflirt -in /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_reference_wf/validate/sub-TPOT036_ses-1_task-rest_run-01_bold_valid.nii.gz -out /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_hmc_wf/mcflirt/sub-TPOT036_ses-1_task-rest_run-01_bold_valid_mcf.nii.gz -reffile /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_reference_wf/gen_ref/ref_bold.nii.gz -mats -plots
+190729-23:54:44,678 nipype.workflow INFO:
+	 [Node] Running "mcflirt" ("nipype.interfaces.fsl.preprocess.MCFLIRT"), a CommandLine Interface with command:
+mcflirt -in /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reference_wf/validate/sub-TPOT036_ses-1_task-rest_run-02_bold_valid.nii.gz -out /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_hmc_wf/mcflirt/sub-TPOT036_ses-1_task-rest_run-02_bold_valid_mcf.nii.gz -reffile /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reference_wf/gen_ref/ref_bold.nii.gz -mats -plots
+190729-23:54:56,642 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT036_wf.func_preproc_ses_1_task_rest_run_01_wf.bold_stc_wf.copy_xform" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_stc_wf/copy_xform".
+190729-23:54:56,675 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT036_wf.func_preproc_ses_1_task_rest_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.init_aff" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/init_aff".
+190729-23:54:56,905 nipype.workflow INFO:
+	 [Node] Running "init_aff" ("niworkflows.interfaces.ants.AI"), a CommandLine Interface with command:
+antsAI -c [10,0.000001,10] -d 3 -x /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz -m Mattes[/home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz,/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/split/mapflow/_split0/vol0000.nii.gz,32,Regular,0.200000] -o initialization.mat -p 0 -s [20.000000,0.120000] -t Affine[0.100000] -v 1
+190729-23:54:56,938 nipype.workflow INFO:
+	 [Node] Running "copy_xform" ("niworkflows.interfaces.utils.CopyXForm")
