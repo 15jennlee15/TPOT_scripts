@@ -37,7 +37,7 @@ singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${deri
 --participant_label ${subid} \
  -w ${working_dir} \
  -t ${task} --use-aroma --write-graph \
---output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative \
+--output-spaces T1w MNI152NLin2009cAsym MNI152NLin6Asym:res-2 fsaverage5 fsnative \
 --omp-nthreads 8 --nthreads 12 --mem_mb 30000 \
 --write-graph \
 --skip_bids_validation \
