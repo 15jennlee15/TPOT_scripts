@@ -7,7 +7,7 @@
 # Set bids directories
 bids_dir="${group_dir}"/"${study}"/bids_data
 derivatives="${bids_dir}"/derivatives
-working_dir="${derivatives}"/working_bids_fmripreprest/
+working_dir="${derivatives}"/working_bids_fmripreprest_test/
 image="${group_dir}"/"${container}"
 
 echo -e "\nFmriprep on $subid"
