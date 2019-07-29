@@ -12,7 +12,7 @@
 group=adapt_lab
 group_dir=/projects/adapt_lab/shared
 #container=BIDS/SingularityContainers/poldracklab_fmriprep_latest-2017-07-20-dd77d76c5e14.img
-container=containers/fmriprep_test.simg
+container=containers/fmriprep-1.4.1.simg
 study="TPOT"
 
 # Set subject list
