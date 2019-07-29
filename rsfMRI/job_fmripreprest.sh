@@ -38,7 +38,6 @@ singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${deri
  -w ${working_dir} \
  -t ${task} --use-aroma --write-graph \
 --output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative \
---mem-mb 100000 \
 --write-graph \
 --skip_bids_validation \
 --fs-license-file $FS_LICENSE
