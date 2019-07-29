@@ -1,48 +1,50 @@
-The ``--output_space`` option has been deprecated in version 1.4.0. Your selection of spaces "T1w, template, fsaverage5, fsnative" will be inserted at the front of the ``--output-spaces`` argument list. Please update your scripts to use ``--output-spaces``.
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-/usr/local/miniconda/lib/python3.7/site-packages/bids/layout/layout.py:62: UserWarning: Accessing entities as attributes is deprecated as of 0.7. Please use the .entities dictionary instead (i.e., .entities['suffix'] instead of .suffix.
-  % (attr, attr))
-Error in atexit._run_exitfuncs:
-Traceback (most recent call last):
-  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/process.py", line 101, in _python_exit
-    thread_wakeup.wakeup()
-  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/process.py", line 89, in wakeup
-    self._writer.send_bytes(b"")
-  File "/usr/local/miniconda/lib/python3.7/multiprocessing/connection.py", line 183, in send_bytes
-    self._check_closed()
-  File "/usr/local/miniconda/lib/python3.7/multiprocessing/connection.py", line 136, in _check_closed
-    raise OSError("handle is closed")
-OSError: handle is closed
+usage: fmriprep [-h] [--version] [--skip_bids_validation]
+                [--participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]]
+                [-t TASK_ID] [--echo-idx ECHO_IDX] [--nthreads NTHREADS]
+                [--omp-nthreads OMP_NTHREADS] [--mem_mb MEM_MB] [--low-mem]
+                [--use-plugin USE_PLUGIN] [--anat-only] [--boilerplate]
+                [--ignore-aroma-denoising-errors] [--error-on-aroma-warnings]
+                [-v] [--debug]
+                [--ignore {fieldmaps,slicetiming,sbref} [{fieldmaps,slicetiming,sbref} ...]]
+                [--longitudinal] [--t2s-coreg] [--bold2t1w-dof {6,9,12}]
+                [--output-space {T1w,template,fsnative,fsaverage,fsaverage6,fsaverage5} [{T1w,template,fsnative,fsaverage,fsaverage6,fsaverage5} ...]]
+                [--force-bbr] [--force-no-bbr]
+                [--template {MNI152NLin2009cAsym}]
+                [--output-grid-reference OUTPUT_GRID_REFERENCE]
+                [--template-resampling-grid TEMPLATE_RESAMPLING_GRID]
+                [--medial-surface-nan] [--use-aroma]
+                [--aroma-melodic-dimensionality AROMA_MELODIC_DIMENSIONALITY]
+                [--skull-strip-template {OASIS30ANTs,NKI}]
+                [--skull-strip-fixed-seed] [--fmap-bspline] [--fmap-no-demean]
+                [--use-syn-sdc] [--force-syn] [--fs-license-file PATH]
+                [--no-submm-recon] [--cifti-output | --fs-no-reconall]
+                [-w WORK_DIR] [--resource-monitor] [--reports-only]
+                [--run-uuid RUN_UUID] [--write-graph] [--stop-on-first-crash]
+                [--notrack] [--sloppy]
+                bids_dir output_dir {participant}
+fmriprep: error: unrecognized arguments: --output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative
+usage: fmriprep [-h] [--version] [--skip_bids_validation]
+                [--participant_label PARTICIPANT_LABEL [PARTICIPANT_LABEL ...]]
+                [-t TASK_ID] [--echo-idx ECHO_IDX] [--nthreads NTHREADS]
+                [--omp-nthreads OMP_NTHREADS] [--mem_mb MEM_MB] [--low-mem]
+                [--use-plugin USE_PLUGIN] [--anat-only] [--boilerplate]
+                [--ignore-aroma-denoising-errors] [--error-on-aroma-warnings]
+                [-v] [--debug]
+                [--ignore {fieldmaps,slicetiming,sbref} [{fieldmaps,slicetiming,sbref} ...]]
+                [--longitudinal] [--t2s-coreg] [--bold2t1w-dof {6,9,12}]
+                [--output-space {T1w,template,fsnative,fsaverage,fsaverage6,fsaverage5} [{T1w,template,fsnative,fsaverage,fsaverage6,fsaverage5} ...]]
+                [--force-bbr] [--force-no-bbr]
+                [--template {MNI152NLin2009cAsym}]
+                [--output-grid-reference OUTPUT_GRID_REFERENCE]
+                [--template-resampling-grid TEMPLATE_RESAMPLING_GRID]
+                [--medial-surface-nan] [--use-aroma]
+                [--aroma-melodic-dimensionality AROMA_MELODIC_DIMENSIONALITY]
+                [--skull-strip-template {OASIS30ANTs,NKI}]
+                [--skull-strip-fixed-seed] [--fmap-bspline] [--fmap-no-demean]
+                [--use-syn-sdc] [--force-syn] [--fs-license-file PATH]
+                [--no-submm-recon] [--cifti-output | --fs-no-reconall]
+                [-w WORK_DIR] [--resource-monitor] [--reports-only]
+                [--run-uuid RUN_UUID] [--write-graph] [--stop-on-first-crash]
+                [--notrack] [--sloppy]
+                bids_dir output_dir {participant}
+fmriprep: error: unrecognized arguments: --output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative
