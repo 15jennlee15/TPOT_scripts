@@ -1665,3 +1665,57 @@ fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.apply_mask".
 190730-00:57:54,591 nipype.workflow INFO:
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_confounds_wf.dvars".
+190730-01:20:23,165 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.norm".
+190730-01:20:24,502 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.map_brainmask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/map_brainmask".
+190730-01:20:24,503 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.map_brainmask".
+190730-01:20:24,565 nipype.workflow INFO:
+	 [Node] Running "map_brainmask" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --float 1 --input /home/fmriprep/.cache/templateflow/tpl-OASIS30ANTs/tpl-OASIS30ANTs_res-01_label-brain_probseg.nii.gz --interpolation Gaussian --output tpl-OASIS30ANTs_res-01_label-brain_probseg_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT004/ses-1/anat/sub-TPOT004_ses-1_T1w.nii.gz --transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/norm/anat_to_template0GenericAffine.mat, 1 ] --transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/norm/anat_to_template1InverseWarp.nii.gz, 0 ]
+190730-01:20:52,967 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.map_brainmask".
+190730-01:20:54,521 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.thr_brainmask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/thr_brainmask".
+190730-01:20:54,522 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.thr_brainmask".
+190730-01:20:54,579 nipype.workflow INFO:
+	 [Node] Running "thr_brainmask" ("niworkflows.interfaces.ants.ThresholdImage"), a CommandLine Interface with command:
+ThresholdImage 3 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/map_brainmask/tpl-OASIS30ANTs_res-01_label-brain_probseg_trans.nii.gz tpl-OASIS30ANTs_res-01_label-brain_probseg_trans_resampled.nii.gz 0.500000 1.000000 1.000000 0.000000
+190730-01:20:55,833 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.thr_brainmask".
+190730-01:20:56,535 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.03_pad_mask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/03_pad_mask".
+190730-01:20:56,536 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.03_pad_mask".
+190730-01:20:56,538 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.dil_brainmask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/dil_brainmask".
+190730-01:20:56,539 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.dil_brainmask".
+190730-01:20:56,601 nipype.workflow INFO:
+	 [Node] Running "dil_brainmask" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 tpl-OASIS30ANTs_res-01_label-brain_probseg_trans_resampled_maths.nii.gz MD /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/thr_brainmask/tpl-OASIS30ANTs_res-01_label-brain_probseg_trans_resampled.nii.gz 2
+190730-01:20:56,702 nipype.workflow INFO:
+	 [Node] Running "03_pad_mask" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 tpl-OASIS30ANTs_res-01_label-brain_probseg_trans_resampled_maths.nii.gz PadImage /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/thr_brainmask/tpl-OASIS30ANTs_res-01_label-brain_probseg_trans_resampled.nii.gz 10
+190730-01:20:59,242 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.03_pad_mask".
+190730-01:20:59,479 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.dil_brainmask".
+190730-01:21:00,540 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.get_brainmask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/get_brainmask".
+190730-01:21:00,541 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.get_brainmask".
+190730-01:21:00,591 nipype.workflow INFO:
+	 [Node] Running "get_brainmask" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 tpl-OASIS30ANTs_res-01_label-brain_probseg_trans_resampled_maths_maths.nii.gz GetLargestComponent /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/dil_brainmask/tpl-OASIS30ANTs_res-01_label-brain_probseg_trans_resampled_maths.nii.gz
+190730-01:21:02,214 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.get_brainmask".
+190730-01:21:02,502 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.01_atropos" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/01_atropos".
+190730-01:21:02,503 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.01_atropos".
+190730-01:21:02,556 nipype.workflow INFO:
+	 [Node] Running "01_atropos" ("nipype.interfaces.ants.segmentation.Atropos"), a CommandLine Interface with command:
+Atropos --image-dimensionality 3 --initialization KMeans[3] --intensity-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/inu_n4/mapflow/_inu_n40/sub-TPOT004_ses-1_T1w_maths_corrected.nii.gz --likelihood-model Gaussian --mask-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/get_brainmask/tpl-OASIS30ANTs_res-01_label-brain_probseg_trans_resampled_maths_maths.nii.gz --mrf [0.1,1x1x1] --convergence [3,0] --output [sub-TPOT004_ses-1_T1w_maths_corrected_labeled.nii.gz] --use-random-seed 1
