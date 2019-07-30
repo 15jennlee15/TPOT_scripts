@@ -2622,3 +2622,119 @@ fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_01_wf.boldmask_to_t1w".
 190730-01:24:01,728 nipype.workflow INFO:
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.boldmask_to_t1w".
+190730-01:39:42,642 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.anat_preproc_wf.t1_seg".
+190730-01:41:33,750 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.fmap_unwarp_report_wf.map_seg" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/fmap_unwarp_report_wf/map_seg".
+190730-01:41:33,751 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.wm_roi" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/wm_roi".
+190730-01:41:33,752 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.csf_roi" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/csf_roi".
+190730-01:41:33,753 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.tpms_add_csf_wm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/tpms_add_csf_wm".
+190730-01:41:33,804 nipype.workflow INFO:
+	 [Node] Running "wm_roi" ("niworkflows.interfaces.utils.TPM2ROI")
+190730-01:41:33,819 nipype.workflow INFO:
+	 [Node] Running "csf_roi" ("niworkflows.interfaces.utils.TPM2ROI")
+190730-01:41:33,831 nipype.workflow INFO:
+	 [Node] Running "tpms_add_csf_wm" ("niworkflows.interfaces.utils.AddTPMs")
+190730-01:41:33,843 nipype.workflow INFO:
+	 [Node] Running "map_seg" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --dimensionality 3 --float 1 --input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/anat_preproc_wf/t1_seg/highres001_N4Corrected0_masked_seg.nii.gz --interpolation MultiLabel --output highres001_N4Corrected0_masked_seg_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference/ref_bold_valid_corrected_trans.nii.gz --transform /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reg_wf/bbreg_wf/fsl2itk_inv/affine.txt
+190730-01:41:44,441 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.csf_roi".
+190730-01:41:48,855 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.tcc_tfm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/tcc_tfm".
+190730-01:41:48,861 nipype.workflow INFO:
+	 [Node] Running "tcc_tfm" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --float 1 --input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/csf_roi/highres001_N4Corrected0_rbrainmask_eroded.nii.gz --interpolation NearestNeighbor --output highres001_N4Corrected0_rbrainmask_eroded_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/combine_masks/ref_image_valid_corrected_brain_mask_maths.nii.gz --transform /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reg_wf/bbreg_wf/fsl2itk_inv/affine.txt
+190730-01:41:54,28 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.tcc_tfm".
+190730-01:41:54,955 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.tpms_add_csf_wm".
+190730-01:41:57,575 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.tcc_msk" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/tcc_msk".
+190730-01:41:57,655 nipype.workflow INFO:
+	 [Node] Running "tcc_msk" ("nipype.interfaces.utility.wrappers.Function")
+190730-01:41:58,267 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.tcc_msk".
+190730-01:42:04,521 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.csf_tfm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/csf_tfm".
+190730-01:42:04,577 nipype.workflow INFO:
+	 [Node] Running "csf_tfm" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --float 1 --input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/csf_roi/highres001_N4Corrected0_masked_prob_0_roi.nii.gz --interpolation NearestNeighbor --output highres001_N4Corrected0_masked_prob_0_roi_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/combine_masks/ref_image_valid_corrected_brain_mask_maths.nii.gz --transform /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reg_wf/bbreg_wf/fsl2itk_inv/affine.txt
+190730-01:42:04,773 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.tcompcor" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/tcompcor".
+190730-01:42:04,912 nipype.workflow INFO:
+	 [Node] Running "tcompcor" ("niworkflows.interfaces.patches.RobustTCompCor")
+190730-01:42:09,751 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.csf_tfm".
+190730-01:42:13,426 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.csf_msk" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/csf_msk".
+190730-01:42:13,449 nipype.workflow INFO:
+	 [Node] Running "csf_msk" ("nipype.interfaces.utility.wrappers.Function")
+190730-01:42:13,896 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.csf_msk".
+190730-01:42:17,386 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.acc_roi" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/acc_roi".
+190730-01:42:17,403 nipype.workflow INFO:
+	 [Node] Running "acc_roi" ("niworkflows.interfaces.utils.TPM2ROI")
+190730-01:42:50,811 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.wm_roi".
+190730-01:42:54,656 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.wm_tfm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/wm_tfm".
+190730-01:42:54,686 nipype.workflow INFO:
+	 [Node] Running "wm_tfm" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --float 1 --input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/wm_roi/highres001_N4Corrected0_masked_prob_2_roi.nii.gz --interpolation NearestNeighbor --output highres001_N4Corrected0_masked_prob_2_roi_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/combine_masks/ref_image_valid_corrected_brain_mask_maths.nii.gz --transform /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reg_wf/bbreg_wf/fsl2itk_inv/affine.txt
+190730-01:42:58,740 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.wm_tfm".
+190730-01:43:03,436 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.wm_msk" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/wm_msk".
+190730-01:43:03,457 nipype.workflow INFO:
+	 [Node] Running "wm_msk" ("nipype.interfaces.utility.wrappers.Function")
+190730-01:43:03,924 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.wm_msk".
+190730-01:43:10,507 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.tcompcor".
+190730-01:43:15,157 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_01_wf.fmap_unwarp_report_wf.map_seg" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_01_wf/fmap_unwarp_report_wf/map_seg".
+190730-01:43:15,261 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.signals" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/signals".
+190730-01:43:15,262 nipype.workflow INFO:
+	 [Node] Running "map_seg" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --dimensionality 3 --float 1 --input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/anat_preproc_wf/t1_seg/highres001_N4Corrected0_masked_seg.nii.gz --interpolation MultiLabel --output highres001_N4Corrected0_masked_seg_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_01_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference/ref_bold_valid_corrected_trans.nii.gz --transform /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_reg_wf/bbreg_wf/fsl2itk_inv/affine.txt
+190730-01:43:15,274 nipype.workflow INFO:
+	 [Node] Running "signals" ("niworkflows.interfaces.images.SignalExtraction")
+190730-01:43:34,535 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.acc_roi".
+190730-01:43:37,661 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.acc_tfm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/acc_tfm".
+190730-01:43:37,667 nipype.workflow INFO:
+	 [Node] Running "acc_tfm" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --float 1 --input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/acc_roi/highres001_N4Corrected0_masked_prob_0_tpmsum_roi.nii.gz --interpolation NearestNeighbor --output highres001_N4Corrected0_masked_prob_0_tpmsum_roi_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/combine_masks/ref_image_valid_corrected_brain_mask_maths.nii.gz --transform /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reg_wf/bbreg_wf/fsl2itk_inv/affine.txt
+190730-01:43:41,385 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.acc_tfm".
+190730-01:43:44,292 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.acc_msk" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/acc_msk".
+190730-01:43:44,305 nipype.workflow INFO:
+	 [Node] Running "acc_msk" ("nipype.interfaces.utility.wrappers.Function")
+190730-01:43:44,816 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.acc_msk".
+190730-01:43:53,302 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.acompcor" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_confounds_wf/acompcor".
+190730-01:43:53,468 nipype.workflow INFO:
+	 [Node] Running "acompcor" ("niworkflows.interfaces.patches.RobustACompCor")
+190730-01:44:11,983 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.fmap_unwarp_report_wf.map_seg".
+190730-01:44:16,319 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.fmap_unwarp_report_wf.sel_wm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/fmap_unwarp_report_wf/sel_wm".
+190730-01:44:16,324 nipype.workflow INFO:
+	 [Node] Running "sel_wm" ("nipype.interfaces.utility.wrappers.Function")
+190730-01:44:16,753 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.fmap_unwarp_report_wf.sel_wm".
+190730-01:44:20,662 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.fmap_unwarp_report_wf.bold_rpt" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT025_wf/func_preproc_ses_1_task_rest_run_02_wf/fmap_unwarp_report_wf/bold_rpt".
+190730-01:44:20,667 nipype.workflow INFO:
+	 [Node] Running "bold_rpt" ("niworkflows.interfaces.registration.SimpleBeforeAfterRPT")
+190730-01:44:29,640 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT025_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_confounds_wf.signals".
