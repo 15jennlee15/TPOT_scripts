@@ -34,7 +34,7 @@ echo -e "\n"
 
 export FS_LICENSE=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/license.txt
 
-singularity run --bind "${group_dir}":"${group_dir}" $image $bids_dir $derivatives participant --participant_label $subid -w $working_dir -t $task --output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative --write-graph --fs-license-file $FS_LICENSE --skip_bids_validation --omp-nthreads 8 --nthreads 12 --mem_mb 30000
+singularity run --bind "${group_dir}":"${group_dir}" $image $bids_dir $derivatives participant --participant_label $subid -w $working_dir -t $task --output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative --omp-nthreads 8 --nthreads 12 --mem_mb 30000 --write-graph --fs-license-file $FS_LICENSE --skip_bids_validation 
 
 echo -e "\n"
 echo -e "\ndone"
