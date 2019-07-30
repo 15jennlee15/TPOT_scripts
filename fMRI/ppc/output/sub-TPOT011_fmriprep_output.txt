@@ -2132,3 +2132,81 @@ fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_
 	 [Node] Running "dvars" ("nipype.algorithms.confounds.ComputeDVARS")
 190730-00:44:59,261 nipype.workflow INFO:
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_02_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.apply_mask".
+190730-00:53:52,810 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_02_wf.bold_confounds_wf.dvars".
+190730-00:56:42,107 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.qwarp".
+190730-00:56:43,742 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.cphdr_warp" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/cphdr_warp".
+190730-00:56:43,764 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.cphdr_warp".
+190730-00:56:44,144 nipype.workflow INFO:
+	 [Node] Running "cphdr_warp" ("niworkflows.interfaces.utils.CopyHeader")
+190730-00:56:46,39 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.cphdr_warp".
+190730-00:56:47,891 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.to_ants" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/to_ants".
+190730-00:56:47,913 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.to_ants".
+190730-00:56:48,194 nipype.workflow INFO:
+	 [Node] Running "to_ants" ("nipype.interfaces.utility.wrappers.Function")
+190730-00:56:49,517 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.to_ants".
+190730-00:56:54,891 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.unwarp_reference" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference".
+190730-00:56:54,903 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.unwarp_reference".
+190730-00:56:55,253 nipype.workflow INFO:
+	 [Node] Running "unwarp_reference" ("niworkflows.interfaces.registration.ANTSApplyTransformsRPT"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --dimensionality 3 --float 1 --input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/n4_correct/ref_bold_corrected.nii.gz --interpolation LanczosWindowedSinc --output ref_bold_corrected_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/n4_correct/ref_bold_corrected.nii.gz --transform /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/cphdr_warp/_warpfieldQwarp_PLUS_WARP_fixhdr.nii.gz
+190730-00:56:58,639 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_bold_trans_wf.bold_transform" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_bold_trans_wf/bold_transform".
+190730-00:56:58,654 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_bold_trans_wf.bold_transform".
+190730-00:57:01,124 nipype.workflow INFO:
+	 [Node] Running "bold_transform" ("niworkflows.interfaces.itk.MultiApplyTransforms")
+190730-00:58:01,952 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.unwarp_reference".
+190730-00:58:09,83 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.init_aff" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/init_aff".
+190730-00:58:09,83 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.init_aff".
+190730-00:58:09,411 nipype.workflow INFO:
+	 [Node] Running "init_aff" ("niworkflows.interfaces.ants.AI"), a CommandLine Interface with command:
+antsAI -c [10,0.000001,10] -d 3 -x /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz -m Mattes[/home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz,/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference/ref_bold_corrected_trans.nii.gz,32,Regular,0.200000] -o initialization.mat -p 0 -s [20.000000,0.120000] -t Affine[0.100000] -v 1
+190730-01:01:32,729 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.init_aff".
+190730-01:01:40,129 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.norm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/norm".
+190730-01:01:40,130 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.norm".
+190730-01:01:40,265 nipype.workflow INFO:
+	 [Node] Running "norm" ("niworkflows.interfaces.fixes.FixHeaderRegistration"), a CommandLine Interface with command:
+antsRegistration --collapse-output-transforms 1 --dimensionality 3 --float 1 --initial-moving-transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/init_aff/initialization.mat, 0 ] --initialize-transforms-per-stage 0 --interpolation Linear --output transform --transform Affine[ 0.1 ] --metric Mattes[ /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz, /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference/ref_bold_corrected_trans.nii.gz, 1, 64, Random, 0.2 ] --convergence [ 200, 1e-09, 10 ] --smoothing-sigmas 2.0mm --shrink-factors 2 --use-estimate-learning-rate-once 1 --use-histogram-matching 1 --winsorize-image-intensities [ 0.05, 0.98 ]  --write-composite-transform 0
+190730-01:02:57,778 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.norm".
+190730-01:03:04,608 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.map_brainmask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/map_brainmask".
+190730-01:03:04,630 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.map_brainmask".
+190730-01:03:04,721 nipype.workflow INFO:
+	 [Node] Running "map_brainmask" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --float 1 --input /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz --interpolation MultiLabel --output tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference/ref_bold_corrected_trans.nii.gz --transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/norm/transform0GenericAffine.mat, 1 ]
+190730-01:04:54,9 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.map_brainmask".
+190730-01:05:00,512 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate".
+190730-01:05:00,512 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate".
+190730-01:05:00,729 nipype.workflow INFO:
+	 [Node] Running "pre_mask_dilate" ("nipype.interfaces.fsl.maths.DilateImage"), a CommandLine Interface with command:
+fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/map_brainmask/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans.nii.gz -kernel sphere 3.0000 -dilF /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil.nii.gz
+190730-01:05:19,442 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate".
+190730-01:05:34,180 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.n4_correct" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/n4_correct".
+190730-01:05:34,191 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_2_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.n4_correct".
+190730-01:05:34,258 nipype.workflow INFO:
+	 [Node] Running "n4_correct" ("nipype.interfaces.ants.segmentation.N4BiasFieldCorrection"), a CommandLine Interface with command:
+N4BiasFieldCorrection --bspline-fitting [ 200 ] -d 3 --input-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference/ref_bold_corrected_trans.nii.gz --mask-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_2_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/check_hdr/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil_hdr.nii.gz --output ref_bold_corrected_trans_corrected.nii.gz
