@@ -24,6 +24,6 @@ for SUBJ in $SUBJLIST; do
 #SUBID=`echo $SUBJ|awk '{print $1}' FS=","`
 #SESSID=`echo $SUBJ|awk '{print $2}' FS=","`
 	
-sbatch --export subid=${SUBJ},group_dir=${group_dir},study=${study},container=${container} --job-name fmriprep_"${SUBJ}" --partition=long -A "${group}" --mem=50G -o "${group_dir}"/"${study}"/TPOT_Scripts/fMRI/ppc/output/"${SUBJ}"_fmriprep_output.txt -e "${group_dir}"/"${study}"/TPOT_Scripts/fMRI/ppc/output/"${SUBJ}"_fmriprep_error.txt job_fmripreptask.sh
+sbatch --export subid=${SUBJ},group_dir=${group_dir},study=${study},container=${container} --job-name fmriprep_"${SUBJ}" --partition=long -A "${group}" --cpus-per-task=16 --mem-per-cpu=4G -o "${group_dir}"/"${study}"/TPOT_Scripts/fMRI/ppc/output/"${SUBJ}"_fmriprep_output.txt -e "${group_dir}"/"${study}"/TPOT_Scripts/fMRI/ppc/output/"${SUBJ}"_fmriprep_error.txt job_fmripreptask.sh
 	
 done
