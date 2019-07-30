@@ -31,6 +31,7 @@ task="rest"
 echo -e "\nStarting on: $task"
 echo -e "\n"
 
+
 export FS_LICENSE=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/license.txt
 
 singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${derivatives} participant \
@@ -38,9 +39,7 @@ singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${deri
  -w ${working_dir} \
  -t ${task} --use-aroma --write-graph \
 --output-spaces T1w MNI152NLin2009cAsym MNI152NLin6Asym:res-2 fsaverage5 fsnative \
--n 1 --omp-nthreads 8 --nthreads 12 --mem_mb 30000 \
---write-graph \
---skip_bids_validation \
+--omp-nthreads 8 --nthreads 12 --mem_mb 30000 \
 --fs-license-file $FS_LICENSE
 
 echo -e "\n"
