@@ -1,58 +1,32 @@
 
 Fmriprep on sub-TPOT006
 
-Container: /projects/adapt_lab/shared/containers/fmriprep-1.4.0.simg
+Container: /projects/adapt_lab/shared/containers/fmriprep-1.4.1.simg
 
 Subject directory: /projects/adapt_lab/shared/TPOT/bids_data
 
 Starting on: affect
 
 
+	1: [ERR] No BIDS compatible data found for at least one subject. (code: 67 - NO_VALID_DATA_FOUND_FOR_SUBJECT)
+		./sub-TPOT013_2
+		./sub-TPOT030_2
+		./sub-TPOT051_2
 
-<--- Last few GCs --->
+	Please visit https://neurostars.org/search?q=NO_VALID_DATA_FOUND_FOR_SUBJECT for existing conversations about this issue.
 
-[44622:0x24e1150]  2128867 ms: Mark-sweep 1223.2 (1414.3) -> 1223.2 (1380.3) MB, 1324.0 / 0.0 ms  (average mu = 0.957, current mu = 0.000) last resort GC in old space requested
-[44622:0x24e1150]  2130089 ms: Mark-sweep 1223.2 (1380.3) -> 1223.2 (1377.3) MB, 1222.5 / 0.0 ms  (average mu = 0.914, current mu = 0.000) last resort GC in old space requested
+	1: [WARN] The recommended file /README is missing. See Section 03 (Modality agnostic files) of the BIDS specification. (code: 101 - README_FILE_MISSING)
 
-
-<--- JS stacktrace --->
-
-==== JS stack trace =========================================
-
-    0: ExitFrame [pc: 0xb5f7f2dbe1d]
-Security context: 0x1b959b09e6e1 <JSObject>
-    1: getFiles [0x19ba2994e59] [/usr/lib/node_modules/bids-validator/utils/files/readDir.js:~96] [pc=0xb5f7f6fb49d](this=0x00871ae9ad11 <JSGlobal Object>,dir=0x3f282d97bb39 <String[177]: /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT133_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_confounds_wf/ds_report_conf_...
-
-Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
+	Please visit https://neurostars.org/search?q=README_FILE_MISSING for existing conversations about this issue.
 
 
-
-done
-
--------------------------------
-
-Starting on: video
-
+        Summary:                    Available Tasks:        Available Modalities: 
+        3637 Files, 178.59GB        affect                  T1w                   
+        149 - Subjects              rest                    dwi                   
+        1 - Session                 video                   bold                  
+                                                            fieldmap              
 
 
-<--- Last few GCs --->
-
-[50275:0x24e1150]  2130356 ms: Mark-sweep 1222.9 (1419.3) -> 1222.8 (1385.3) MB, 1212.1 / 0.0 ms  (average mu = 0.972, current mu = 0.000) last resort GC in old space requested
-[50275:0x24e1150]  2131660 ms: Mark-sweep 1222.8 (1385.3) -> 1222.8 (1381.8) MB, 1304.3 / 0.0 ms  (average mu = 0.941, current mu = 0.000) last resort GC in old space requested
-
-
-<--- JS stacktrace --->
-
-==== JS stack trace =========================================
-
-    0: ExitFrame [pc: 0x7ca6cfdbe1d]
-Security context: 0x1ee56a29e6e1 <JSObject>
-    1: _filter [0x1ef5e2cf6609] [/usr/lib/node_modules/bids-validator/node_modules/ignore/index.js:~393] [pc=0x7ca6cffc2e4](this=0x00b994495e09 <IgnoreBase map = 0x13b210f1d4d9>,path=0x33bb592fa469 <String[136]: derivatives/working/fmriprep_wf/single_subject_TPOT133_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_confounds_wf/ds_report_conf_corr/>,slices=0x1f...
+	If you have any questions, please post on https://neurostars.org/tags/bids.
 
 Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
-
-
-
-done
-
--------------------------------
