@@ -419,3 +419,99 @@ ImageMath 3 tpl-OASIS30ANTs_res-01_T1w_maths.nii.gz Laplacian /home/fmriprep/.ca
 190730-22:06:15,433 nipype.workflow INFO:
 	 [Node] Running "_truncate_images0" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
 ImageMath 3 sub-TPOT004_ses-1_T1w_maths.nii.gz TruncateImageIntensity /projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT004/ses-1/anat/sub-TPOT004_ses-1_T1w.nii.gz 0.01 0.999 256
+190730-22:06:21,275 nipype.workflow INFO:
+	 [Node] Finished "_truncate_images0".
+190730-22:06:21,283 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.truncate_images".
+190730-22:07:04,248 nipype.interface INFO:
+	 stderr 2019-07-30T22:07:04.246636:++ Max displacement in automask = 0.28 (mm) at sub-brick 15
+190730-22:07:04,248 nipype.interface INFO:
+	 stderr 2019-07-30T22:07:04.246636:++ Max delta displ  in automask = 0.20 (mm) at sub-brick 12
+190730-22:07:07,265 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_reference_wf.gen_ref".
+190730-22:07:07,516 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_hmc_wf.mcflirt" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_hmc_wf/mcflirt".
+190730-22:07:07,525 nipype.workflow INFO:
+	 [Node] Running "mcflirt" ("nipype.interfaces.fsl.preprocess.MCFLIRT"), a CommandLine Interface with command:
+mcflirt -in /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_reference_wf/validate/sub-TPOT004_ses-1_task-affect_acq-2_bold_valid.nii.gz -out /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_hmc_wf/mcflirt/sub-TPOT004_ses-1_task-affect_acq-2_bold_valid_mcf.nii.gz -reffile /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_reference_wf/gen_ref/ref_bold.nii.gz -mats -plots
+190730-22:07:09,561 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_stc_wf.slice_timing_correction" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_stc_wf/slice_timing_correction".
+190730-22:07:09,575 nipype.workflow INFO:
+	 [Node] Running "slice_timing_correction" ("nipype.interfaces.afni.preprocess.TShift"), a CommandLine Interface with command:
+3dTshift -ignore 0 -prefix sub-TPOT004_ses-1_task-affect_acq-2_bold_valid_tshift.nii.gz -tpattern @slice_timing.1D -TR 2s /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_stc_wf/slice_timing_correction/sub-TPOT004_ses-1_task-affect_acq-2_bold_valid.nii.gz
+190730-22:07:21,947 nipype.interface INFO:
+	 stderr 2019-07-30T22:07:21.947211:++ Max displacement in automask = 0.20 (mm) at sub-brick 8
+190730-22:07:21,947 nipype.interface INFO:
+	 stderr 2019-07-30T22:07:21.947211:++ Max delta displ  in automask = 0.28 (mm) at sub-brick 8
+190730-22:07:25,184 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_reference_wf.gen_ref".
+190730-22:07:25,450 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_hmc_wf.mcflirt" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_hmc_wf/mcflirt".
+190730-22:07:25,460 nipype.workflow INFO:
+	 [Node] Running "mcflirt" ("nipype.interfaces.fsl.preprocess.MCFLIRT"), a CommandLine Interface with command:
+mcflirt -in /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_reference_wf/validate/sub-TPOT004_ses-1_task-affect_acq-1_bold_valid.nii.gz -out /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_hmc_wf/mcflirt/sub-TPOT004_ses-1_task-affect_acq-1_bold_valid_mcf.nii.gz -reffile /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_reference_wf/gen_ref/ref_bold.nii.gz -mats -plots
+190730-22:07:27,480 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_stc_wf.slice_timing_correction" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_stc_wf/slice_timing_correction".
+190730-22:07:27,491 nipype.workflow INFO:
+	 [Node] Running "slice_timing_correction" ("nipype.interfaces.afni.preprocess.TShift"), a CommandLine Interface with command:
+3dTshift -ignore 0 -prefix sub-TPOT004_ses-1_task-affect_acq-1_bold_valid_tshift.nii.gz -tpattern @slice_timing.1D -TR 2s /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_stc_wf/slice_timing_correction/sub-TPOT004_ses-1_task-affect_acq-1_bold_valid.nii.gz
+190730-22:07:42,264 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_stc_wf.slice_timing_correction".
+190730-22:07:43,524 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_stc_wf.copy_xform" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_stc_wf/copy_xform".
+190730-22:07:43,531 nipype.workflow INFO:
+	 [Node] Running "copy_xform" ("niworkflows.interfaces.utils.CopyXForm")
+190730-22:07:54,535 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_stc_wf.copy_xform".
+190730-22:07:55,603 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_split" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_split".
+190730-22:07:55,619 nipype.workflow INFO:
+	 [Node] Running "bold_split" ("nipype.interfaces.fsl.utils.Split"), a CommandLine Interface with command:
+fslsplit /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_stc_wf/copy_xform/sub-TPOT004_ses-1_task-affect_acq-2_bold_valid_tshift_xform.nii.gz -t
+190730-22:07:57,172 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_stc_wf.slice_timing_correction".
+190730-22:07:57,548 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_stc_wf.copy_xform" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_stc_wf/copy_xform".
+190730-22:07:57,555 nipype.workflow INFO:
+	 [Node] Running "copy_xform" ("niworkflows.interfaces.utils.CopyXForm")
+190730-22:08:06,725 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_hmc_wf.mcflirt".
+190730-22:08:07,519 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_hmc_wf.normalize_motion" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_hmc_wf/normalize_motion".
+190730-22:08:07,526 nipype.workflow INFO:
+	 [Node] Running "normalize_motion" ("niworkflows.interfaces.utils.NormalizeMotionParams")
+190730-22:08:07,553 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_hmc_wf.normalize_motion".
+190730-22:08:09,704 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_confounds_wf.fdisp" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_2_wf/bold_confounds_wf/fdisp".
+190730-22:08:09,719 nipype.workflow INFO:
+	 [Node] Running "fdisp" ("nipype.algorithms.confounds.FramewiseDisplacement")
+190730-22:08:09,741 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_confounds_wf.fdisp".
+190730-22:08:11,100 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_stc_wf.copy_xform".
+190730-22:08:11,539 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_split" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_split".
+190730-22:08:11,553 nipype.workflow INFO:
+	 [Node] Running "bold_split" ("nipype.interfaces.fsl.utils.Split"), a CommandLine Interface with command:
+fslsplit /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_stc_wf/copy_xform/sub-TPOT004_ses-1_task-affect_acq-1_bold_valid_tshift_xform.nii.gz -t
+190730-22:08:19,31 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_split".
+190730-22:08:27,37 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_hmc_wf.mcflirt".
+190730-22:08:27,593 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_hmc_wf.normalize_motion" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_hmc_wf/normalize_motion".
+190730-22:08:27,600 nipype.workflow INFO:
+	 [Node] Running "normalize_motion" ("niworkflows.interfaces.utils.NormalizeMotionParams")
+190730-22:08:27,621 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_hmc_wf.normalize_motion".
+190730-22:08:29,793 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_confounds_wf.fdisp" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmriprep_wf/single_subject_TPOT004_wf/func_preproc_ses_1_task_affect_acq_1_wf/bold_confounds_wf/fdisp".
+190730-22:08:29,801 nipype.workflow INFO:
+	 [Node] Running "fdisp" ("nipype.algorithms.confounds.FramewiseDisplacement")
+190730-22:08:29,819 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_confounds_wf.fdisp".
+190730-22:08:34,445 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.func_preproc_ses_1_task_affect_acq_1_wf.bold_split".
+190730-22:09:22,130 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.bids_info".
