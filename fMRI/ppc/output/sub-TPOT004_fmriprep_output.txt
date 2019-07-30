@@ -1719,3 +1719,101 @@ ImageMath 3 tpl-OASIS30ANTs_res-01_label-brain_probseg_trans_resampled_maths_mat
 190730-01:21:02,556 nipype.workflow INFO:
 	 [Node] Running "01_atropos" ("nipype.interfaces.ants.segmentation.Atropos"), a CommandLine Interface with command:
 Atropos --image-dimensionality 3 --initialization KMeans[3] --intensity-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/inu_n4/mapflow/_inu_n40/sub-TPOT004_ses-1_T1w_maths_corrected.nii.gz --likelihood-model Gaussian --mask-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/get_brainmask/tpl-OASIS30ANTs_res-01_label-brain_probseg_trans_resampled_maths_maths.nii.gz --mrf [0.1,1x1x1] --convergence [3,0] --output [sub-TPOT004_ses-1_T1w_maths_corrected_labeled.nii.gz] --use-random-seed 1
+190730-01:21:53,191 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.01_atropos".
+190730-01:21:54,585 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.02_pad_segm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/02_pad_segm".
+190730-01:21:54,586 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.02_pad_segm".
+190730-01:21:54,636 nipype.workflow INFO:
+	 [Node] Running "02_pad_segm" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths.nii.gz PadImage /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/01_atropos/sub-TPOT004_ses-1_T1w_maths_corrected_labeled.nii.gz 10
+190730-01:21:56,80 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.02_pad_segm".
+190730-01:21:56,535 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.04_sel_labels" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/04_sel_labels".
+190730-01:21:56,536 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.04_sel_labels".
+190730-01:21:56,605 nipype.workflow INFO:
+	 [Node] Running "04_sel_labels" ("nipype.interfaces.utility.wrappers.Function")
+190730-01:21:56,981 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.04_sel_labels".
+190730-01:21:58,602 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.27_depad_csf" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/27_depad_csf".
+190730-01:21:58,602 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.27_depad_csf".
+190730-01:21:58,618 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.10_me_csf" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/10_me_csf".
+190730-01:21:58,619 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.10_me_csf".
+190730-01:21:58,634 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.06_get_gm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/06_get_gm".
+190730-01:21:58,634 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.06_get_gm".
+190730-01:21:58,648 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.05_get_wm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/05_get_wm".
+190730-01:21:58,649 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.05_get_wm".
+190730-01:21:58,698 nipype.workflow INFO:
+	 [Node] Running "06_get_gm" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-02_maths.nii.gz GetLargestComponent /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/04_sel_labels/sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-02.nii.gz
+190730-01:21:58,770 nipype.workflow INFO:
+	 [Node] Running "27_depad_csf" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-01_maths.nii.gz PadImage /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/04_sel_labels/sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-01.nii.gz -10
+190730-01:21:58,844 nipype.workflow INFO:
+	 [Node] Running "10_me_csf" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-01_maths.nii.gz ME /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/04_sel_labels/sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-01.nii.gz 10
+190730-01:21:58,868 nipype.workflow INFO:
+	 [Node] Running "05_get_wm" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-03_maths.nii.gz GetLargestComponent /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/04_sel_labels/sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-03.nii.gz
+190730-01:22:02,321 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.27_depad_csf".
+190730-01:22:04,212 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.05_get_wm".
+190730-01:22:04,213 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.06_get_gm".
+190730-01:22:04,719 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.07_fill_gm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/07_fill_gm".
+190730-01:22:04,720 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.07_fill_gm".
+190730-01:22:04,721 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.09_relabel_wm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/09_relabel_wm".
+190730-01:22:04,729 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.09_relabel_wm".
+190730-01:22:05,118 nipype.workflow INFO:
+	 [Node] Running "07_fill_gm" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-02_maths_maths.nii.gz FillHoles /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/06_get_gm/sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-02_maths.nii.gz 2
+190730-01:22:05,181 nipype.workflow INFO:
+	 [Node] Running "09_relabel_wm" ("nipype.interfaces.ants.utils.MultiplyImages"), a CommandLine Interface with command:
+MultiplyImages 3 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/05_get_wm/sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-03_maths.nii.gz 3.0 09_relabel_wm.nii.gz
+190730-01:22:08,192 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.09_relabel_wm".
+190730-01:22:08,863 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.26_depad_wm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/26_depad_wm".
+190730-01:22:08,881 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.26_depad_wm".
+190730-01:22:09,301 nipype.workflow INFO:
+	 [Node] Running "26_depad_wm" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 09_relabel_wm_maths.nii.gz PadImage /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/09_relabel_wm/09_relabel_wm.nii.gz -10
+190730-01:22:10,908 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.10_me_csf".
+190730-01:22:11,469 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.26_depad_wm".
+190730-01:22:16,244 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.07_fill_gm".
+190730-01:22:16,557 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.08_mult_gm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/08_mult_gm".
+190730-01:22:16,558 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.08_mult_gm".
+190730-01:22:16,610 nipype.workflow INFO:
+	 [Node] Running "08_mult_gm" ("nipype.interfaces.ants.utils.MultiplyImages"), a CommandLine Interface with command:
+MultiplyImages 3 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/06_get_gm/sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-02_maths.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/07_fill_gm/sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-02_maths_maths.nii.gz 08_mult_gm.nii.gz
+190730-01:22:17,734 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.08_mult_gm".
+190730-01:22:18,569 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.11_add_gm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/11_add_gm".
+190730-01:22:18,569 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT004_wf.anat_preproc_wf.brain_extraction_wf.atropos_wf.11_add_gm".
+190730-01:22:18,625 nipype.workflow INFO:
+	 [Node] Running "11_add_gm" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 08_mult_gm_maths.nii.gz addtozero /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/08_mult_gm/08_mult_gm.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT004_wf/anat_preproc_wf/brain_extraction_wf/atropos_wf/10_me_csf/sub-TPOT004_ses-1_T1w_maths_corrected_labeled_maths_class-01_maths.nii.gz
