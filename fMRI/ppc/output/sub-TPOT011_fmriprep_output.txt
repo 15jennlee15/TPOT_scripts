@@ -1845,3 +1845,57 @@ antsApplyTransforms --default-value 0 --float 1 --input /home/fmriprep/.cache/te
 	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_02_wf.bold_bold_trans_wf.merge".
 190730-00:22:38,609 nipype.workflow INFO:
 	 [Node] Running "merge" ("fmriprep.interfaces.nilearn.Merge")
+190730-00:23:16,431 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.map_brainmask".
+190730-00:23:18,342 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate".
+190730-00:23:18,348 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate".
+190730-00:23:18,674 nipype.workflow INFO:
+	 [Node] Running "pre_mask_dilate" ("nipype.interfaces.fsl.maths.DilateImage"), a CommandLine Interface with command:
+fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/map_brainmask/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans.nii.gz -kernel sphere 3.0000 -dilF /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil.nii.gz
+190730-00:23:27,940 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate".
+190730-00:23:33,695 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.n4_correct" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/n4_correct".
+190730-00:23:33,696 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.n4_correct".
+190730-00:23:34,34 nipype.workflow INFO:
+	 [Node] Running "n4_correct" ("nipype.interfaces.ants.segmentation.N4BiasFieldCorrection"), a CommandLine Interface with command:
+N4BiasFieldCorrection --bspline-fitting [ 200 ] -d 3 --input-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/gen_ref/ref_bold.nii.gz --mask-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/check_hdr/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil_hdr.nii.gz --output ref_bold_corrected.nii.gz
+190730-00:24:39,658 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.n4_correct".
+190730-00:24:41,780 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass".
+190730-00:24:41,782 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass".
+190730-00:24:41,982 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_pass" ("nipype.interfaces.fsl.preprocess.BET"), a CommandLine Interface with command:
+bet /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/n4_correct/ref_bold_corrected.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/ref_bold_corrected_brain.nii.gz -f 0.20 -m
+190730-00:24:57,343 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass".
+190730-00:25:00,217 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate".
+190730-00:25:00,222 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate".
+190730-00:25:00,470 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_dilate" ("nipype.interfaces.fsl.maths.DilateImage"), a CommandLine Interface with command:
+fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/ref_bold_corrected_brain_mask.nii.gz -kernel sphere 6.0000 -dilF /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate/ref_bold_corrected_brain_mask_dil.nii.gz
+190730-00:25:44,317 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate".
+190730-00:25:46,240 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_mask".
+190730-00:25:46,243 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask".
+190730-00:25:46,502 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_mask" ("nipype.interfaces.fsl.maths.ApplyMask"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/ref_bold_corrected_brain.nii.gz -mas /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate/ref_bold_corrected_brain_mask_dil.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_mask/ref_bold_corrected_brain_masked.nii.gz
+190730-00:25:48,218 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask".
+190730-00:25:50,289 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.unifize" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/unifize".
+190730-00:25:50,290 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT011_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.unifize".
+190730-00:25:50,593 nipype.workflow INFO:
+	 [Node] Running "unifize" ("nipype.interfaces.afni.utils.Unifize"), a CommandLine Interface with command:
+3dUnifize -clfrac 0.2 -rbt 18.3 65.0 90.0 -prefix uni.nii.gz -T2 -input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working/fmriprep_wf/single_subject_TPOT011_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/unifize/ref_bold_corrected_brain_masked.nii.gz
