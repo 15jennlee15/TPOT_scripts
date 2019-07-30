@@ -2331,3 +2331,98 @@ antsApplyTransforms --default-value 0 --float 1 --input /projects/adapt_lab/shar
 190730-02:40:30,238 nipype.workflow INFO:
 	 [Node] Running "aparc_t1w_tfm" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
 antsApplyTransforms --default-value 0 --float 1 --input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/anat_preproc_wf/surface_recon_wf/segs_to_native_aparc_aseg/tonii/aparc+aseg_vol_out.nii.gz --interpolation MultiLabel --output aparc+aseg_vol_out_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_t1_trans_wf/gen_ref/sub-TPOT036_ses-1_T1w_corrected_xform_masked_reference.nii.gz -t identity
+190730-02:40:43,206 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT036_wf.func_preproc_ses_1_task_rest_run_01_wf.bold_t1_trans_wf.aseg_t1w_tfm".
+190730-02:40:43,375 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT036_wf.func_preproc_ses_1_task_rest_run_01_wf.bold_t1_trans_wf.aparc_t1w_tfm".
+190730-02:41:14,248 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT036_wf.func_preproc_ses_1_task_rest_run_01_wf.bold_reg_wf.bbreg_wf.mri_coreg".
+190730-02:41:15,729 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT036_wf.func_preproc_ses_1_task_rest_run_01_wf.bold_reg_wf.bbreg_wf.bbregister" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_reg_wf/bbreg_wf/bbregister".
+190730-02:41:15,733 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT036_wf.anat_preproc_wf.anat_norm_wf.registration" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/anat_preproc_wf/anat_norm_wf/_template_MNI152NLin2009cAsym/registration".
+190730-02:41:15,851 nipype.workflow INFO:
+	 [Node] Running "bbregister" ("niworkflows.interfaces.freesurfer.PatchedBBRegisterRPT"), a CommandLine Interface with command:
+bbregister --t2 --6 --init-reg /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_reg_wf/bbreg_wf/mri_coreg/registration.lta --lta /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_reg_wf/bbreg_wf/bbregister/uni_xform_masked_bbreg_sub-TPOT036.lta --reg /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_reg_wf/bbreg_wf/bbregister/uni_xform_masked_bbreg_sub-TPOT036.dat --o /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_reg_wf/bbreg_wf/bbregister/uni_xform_masked_bbreg.nii.gz --mov /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_reg_wf/bbreg_wf/bbregister/uni_xform_masked.nii.gz --s sub-TPOT036
+190730-02:41:15,884 nipype.workflow INFO:
+	 [Node] Running "registration" ("niworkflows.interfaces.mni.RobustMNINormalization")
+190730-02:42:01,192 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:01.192442:
+190730-02:42:01,192 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:01.192442:Matrix from LTA:
+190730-02:42:01,192 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:01.192442: 0.99989  -0.01431  -0.00351   1.24013;
+190730-02:42:01,192 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:01.192442: 0.00513   0.11477   0.99338  -34.59371;
+190730-02:42:01,192 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:01.192442:-0.01381  -0.99329   0.11483  -15.77337;
+190730-02:42:01,193 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:01.192442: 0.00000   0.00000   0.00000   1.00000;
+190730-02:42:02,74 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:
+190730-02:42:02,74 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reg_wf/bbreg_wf/bbregister/uni_xform_masked.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT036/mri/brainmask.mgz
+190730-02:42:02,74 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:movvol /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reg_wf/bbreg_wf/bbregister/uni_xform_masked.nii.gz
+190730-02:42:02,74 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:targvol /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT036/mri/brainmask.mgz
+190730-02:42:02,74 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:outvol /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reg_wf/bbreg_wf/bbregister/uni_xform_masked_warped.nii.gz
+190730-02:42:02,74 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:regfile /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest/fmriprep_wf/single_subject_TPOT036_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reg_wf/bbreg_wf/bbregister/uni_xform_masked_bbreg_sub-TPOT036.lta
+190730-02:42:02,74 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:invert 0
+190730-02:42:02,74 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:tal    0
+190730-02:42:02,75 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:talres 2
+190730-02:42:02,75 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:regheader 0
+190730-02:42:02,75 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:noresample 0
+190730-02:42:02,75 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:interp  nearest (0)
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:precision  float (3)
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:Gdiag_no  -1
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:Synth      0
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:SynthSeed  1564994613
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:Final tkRAS-to-tkRAS Matrix is:
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502: 0.99989  -0.01431  -0.00351   1.24013;
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502: 0.00513   0.11477   0.99338  -34.59370;
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:-0.01381  -0.99329   0.11483  -15.77337;
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502: 0.00000   0.00000   0.00000   1.00000;
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:
+190730-02:42:02,93 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:Vox2Vox Matrix is:
+190730-02:42:02,94 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502: 0.39996  -0.00140   0.00572  -10.24341;
+190730-02:42:02,94 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:-0.00553   0.04593   0.39732  -7.71908;
+190730-02:42:02,94 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502:-0.00205  -0.39735   0.04591   61.41008;
+190730-02:42:02,94 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:02.074502: 0.00000   0.00000   0.00000   1.00000;
+190730-02:42:08,467 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:08.467627:
+190730-02:42:08,467 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:08.467627:Resampling
+190730-02:42:08,467 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:08.467627:Output registration matrix is identity
+190730-02:42:08,467 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:08.467627:
+190730-02:42:08,467 nipype.interface INFO:
+	 stdout 2019-07-30T02:42:08.467627:mri_vol2vol done
