@@ -37,6 +37,9 @@ INFO:dcm2bids:session: 1
 INFO:dcm2bids:config: /projects/adapt_lab/shared/TPOT/TPOT_Scripts/org/conversion/study_config.json
 INFO:dcm2bids:BIDS directory: /projects/adapt_lab/shared/TPOT/bids_data
 INFO:dcm2bids:
+INFO:dcm2bids:Old dcm2niix output found
+INFO:dcm2bids:Cleaning the old dcm2niix output and rerun it because --forceDcm2niix
+INFO:dcm2bids:
 INFO:dcm2bids:--- running dcm2niix ---
 INFO:dcm2bids:subprocess: dcm2niix -b y -ba y -z y -f '%3s_%f_%p_%t' -o /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT119_ses-1 /projects/lcni/dcm/adapt_lab/Allen/TPOT/TPOT119_20180309_152212
 INFO:dcm2bids:
@@ -149,7 +152,7 @@ slices stacked despite varying acquisition numbers (if this is not desired pleas
 Warning: Saving 65 DTI gradients. Validate vectors (images are not axial slices).
 Convert 65 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT119_ses-1/015_TPOT119_20180309_152212_diff_mb2_g2_64dirs_2mm_rl_20180309152213 (90x104x72x65)
 compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT119_ses-1/015_TPOT119_20180309_152212_diff_mb2_g2_64dirs_2mm_rl_20180309152213.nii"
-Conversion required 247.356126 seconds (6.468980 for core code).
+Conversion required 135.186161 seconds (4.774694 for core code).
 
 INFO:dcm2bids:
 INFO:dcm2bids:Sidecars matching:
@@ -190,3 +193,12 @@ INFO:dcm2bids:Checking if a description matches several sidecars ...
 INFO:dcm2bids:'task-rest_bold' has several runs
 INFO:dcm2bids:
 INFO:dcm2bids:moving acquisitions into BIDS output directory
+INFO:dcm2bids:overwriting: sub-TPOT119_ses-1_T1w
+INFO:dcm2bids:overwriting: sub-TPOT119_ses-1_task-rest_run-01_bold
+INFO:dcm2bids:overwriting: sub-TPOT119_ses-1_task-rest_run-02_bold
+INFO:dcm2bids:overwriting: sub-TPOT119_ses-1_task-affect_acq-1_bold
+INFO:dcm2bids:overwriting: sub-TPOT119_ses-1_task-affect_acq-2_bold
+INFO:dcm2bids:overwriting: sub-TPOT119_ses-1_acq-rl_dwi
+INFO:dcm2bids:overwriting: sub-TPOT119_ses-1_acq-lr_dwi
+INFO:dcm2bids:overwriting: sub-TPOT119_ses-1_dir-ap_epi
+INFO:dcm2bids:overwriting: sub-TPOT119_ses-1_dir-pa_epi

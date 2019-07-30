@@ -37,6 +37,9 @@ INFO:dcm2bids:session: 1
 INFO:dcm2bids:config: /projects/adapt_lab/shared/TPOT/TPOT_Scripts/org/conversion/study_config.json
 INFO:dcm2bids:BIDS directory: /projects/adapt_lab/shared/TPOT/bids_data
 INFO:dcm2bids:
+INFO:dcm2bids:Old dcm2niix output found
+INFO:dcm2bids:Cleaning the old dcm2niix output and rerun it because --forceDcm2niix
+INFO:dcm2bids:
 INFO:dcm2bids:--- running dcm2niix ---
 INFO:dcm2bids:subprocess: dcm2niix -b y -ba y -z y -f '%3s_%f_%p_%t' -o /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT120_ses-1 /projects/lcni/dcm/adapt_lab/Allen/TPOT/TPOT120_20180209_091858
 INFO:dcm2bids:
@@ -134,7 +137,7 @@ compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tm
 Convert 1 DICOM as /projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT120_ses-1/004_TPOT120_20180209_091858_AAHScout_20180209091858b (162x162x1x1)
 Warning: Check that 2D images are not mirrored.
 compress: "/usr/bin/pigz" -n -f -6 "/projects/adapt_lab/shared/TPOT/bids_data/tmp_dcm2bids/sub-TPOT120_ses-1/004_TPOT120_20180209_091858_AAHScout_20180209091858b.nii"
-Conversion required 242.102252 seconds (6.219900 for core code).
+Conversion required 131.687333 seconds (4.742521 for core code).
 
 INFO:dcm2bids:
 INFO:dcm2bids:Sidecars matching:
@@ -171,3 +174,8 @@ INFO:dcm2bids:Checking if a description matches several sidecars ...
 INFO:dcm2bids:'task-rest_bold' has several runs
 INFO:dcm2bids:
 INFO:dcm2bids:moving acquisitions into BIDS output directory
+INFO:dcm2bids:overwriting: sub-TPOT120_ses-1_T1w
+INFO:dcm2bids:overwriting: sub-TPOT120_ses-1_task-rest_run-01_bold
+INFO:dcm2bids:overwriting: sub-TPOT120_ses-1_task-rest_run-02_bold
+INFO:dcm2bids:overwriting: sub-TPOT120_ses-1_task-video_bold
+INFO:dcm2bids:overwriting: sub-TPOT120_ses-1_task-affect_acq-1_bold
