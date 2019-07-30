@@ -8,11 +8,16 @@ Subject directory: /projects/adapt_lab/shared/TPOT/bids_data
 Starting on: affect
 
 
+<<<<<<< HEAD
 190730-02:01:55,940 nipype.workflow IMPORTANT:
+=======
+190730-01:46:58,460 nipype.workflow IMPORTANT:
+>>>>>>> fb75bef41d8b97d2200b2fd2911bc7ccda523792
 	 
     Running fMRIPREP version 1.5.0rc1:
       * BIDS dataset path: /projects/adapt_lab/shared/TPOT/bids_data.
       * Participant list: ['TPOT002'].
+<<<<<<< HEAD
       * Run identifier: 20190730-015826_aa8556c2-d7c4-4ac1-a4a0-f4fe8ce99aaf.
     
 190730-02:02:03,766 nipype.workflow IMPORTANT:
@@ -37,38 +42,20 @@ Starting on: affect
 	 Creating BOLD surface-sampling workflow.
 190730-02:02:20,766 nipype.workflow IMPORTANT:
 	 Works derived from this fMRIPrep execution should include the following boilerplate:
+=======
+      * Run identifier: 20190730-014332_391ac3cc-4d75-47ec-9146-b01d8a1e0c56.
+    
+>>>>>>> fb75bef41d8b97d2200b2fd2911bc7ccda523792
 
 
-Results included in this manuscript come from preprocessing
-performed using *fMRIPrep* 1.5.0rc1
-(@fmriprep1; @fmriprep2; RRID:SCR_016216),
-which is based on *Nipype* 1.2.0
-(@nipype1; @nipype2; RRID:SCR_002502).
 
-Anatomical data preprocessing
+done
 
-: The T1-weighted (T1w) image was corrected for intensity non-uniformity (INU)
-with `N4BiasFieldCorrection` [@n4], distributed with ANTs 2.2.0 [@ants, RRID:SCR_004757], and used as T1w-reference throughout the workflow.
-The T1w-reference was then skull-stripped with a *Nipype* implementation of
-the `antsBrainExtraction.sh` workflow (from ANTs), using OASIS30ANTs
-as target template.
-Brain tissue segmentation of cerebrospinal fluid (CSF),
-white-matter (WM) and gray-matter (GM) was performed on
-the brain-extracted T1w using `fast` [FSL 5.0.9, RRID:SCR_002823,
-@fsl_fast].
-Brain surfaces were reconstructed using `recon-all` [FreeSurfer 6.0.1,
-RRID:SCR_001847, @fs_reconall], and the brain mask estimated
-previously was refined with a custom variation of the method to reconcile
-ANTs-derived and FreeSurfer-derived segmentations of the cortical
-gray-matter of Mindboggle [RRID:SCR_002438, @mindboggle].
-Volume-based spatial normalization to one standard space (MNI152NLin2009cAsym) was performed through
-nonlinear registration with `antsRegistration` (ANTs 2.2.0),
-using brain-extracted versions of both T1w reference and the T1w template.
-The following template was selected for spatial normalization:
-*ICBM 152 Nonlinear Asymmetrical template version 2009c* [@mni152nlin2009casym, RRID:SCR_008796; TemplateFlow ID: MNI152NLin2009cAsym].
+-------------------------------
 
-Functional data preprocessing
+Starting on: video
 
+<<<<<<< HEAD
 : For each of the 2 BOLD runs found per subject (across all
 tasks and sessions), the following preprocessing was performed.
 First, a reference volume and its skull-stripped version were generated
@@ -415,3 +402,6 @@ fslsplit /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_test/fmri
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT002_wf.func_preproc_ses_1_task_affect_acq_2_wf.bold_split".
 190730-02:05:57,469 nipype.workflow INFO:
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT002_wf.bids_info".
+=======
+
+>>>>>>> fb75bef41d8b97d2200b2fd2911bc7ccda523792
