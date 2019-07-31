@@ -40,7 +40,7 @@ singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${deri
  --use-aroma --write-graph \
 --output-spaces T1w MNI152NLin2009cAsym MNI152NLin6Asym:res-2 fsaverage5 fsnative \
 --omp-nthreads 8 --nthreads 12 --mem_mb 30000 \
---fs-license-file $FS_LICENSE
+--fs-license-file $FS_LICENSE 
 
 echo -e "\n"
 echo -e "\ndone"
