@@ -23,6 +23,9 @@ working_dir="${derivatives}"/working_bids_fmripreprest_test/
 image="${group_dir}"/"${container}"
 SUBJECT_LIST=subject_list.txt
 
+# Create working directory
+mkdir -p $working_dir
+
 FMRIPREP_OPTS="--omp-nthreads 8 --nthreads 12 --mem_mb 30000 --ignore-aroma-denoising-errors --output-space T1w template fsaverage5 fsnative --template-resampling-grid 2mm --medial-surface-nan --cifti-output --use-aroma"
 
 unset PYTHONPATH
