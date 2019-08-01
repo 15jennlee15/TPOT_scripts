@@ -1,0 +1,24 @@
+Running task 1
+Commandline: singularity run --bind /projects/adapt_lab/shared:/projects/adapt_lab/shared /projects/adapt_lab/shared/containers/fmriprep-1.4.1.simg /projects/adapt_lab/shared/TPOT/bids_data /projects/adapt_lab/shared/TPOT/bids_data/derivatives participant --participant-label sub-TPOT011 -w /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/ --omp-nthreads 8 --nthreads 12 --mem_mb 30000 --ignore-aroma-denoising-errors --output-space T1w template fsaverage5 fsnative --template-resampling-grid 2mm --medial-surface-nan --cifti-output --use-aroma
+	[31m1: [ERR] No BIDS compatible data found for at least one subject. (code: 67 - NO_VALID_DATA_FOUND_FOR_SUBJECT)[39m
+		./sub-TPOT013_2
+		./sub-TPOT030_2
+		./sub-TPOT051_2
+
+[36m	Please visit https://neurostars.org/search?q=NO_VALID_DATA_FOUND_FOR_SUBJECT for existing conversations about this issue.[39m
+
+	[33m1: [WARN] The recommended file /README is missing. See Section 03 (Modality agnostic files) of the BIDS specification. (code: 101 - README_FILE_MISSING)[39m
+
+[36m	Please visit https://neurostars.org/search?q=README_FILE_MISSING for existing conversations about this issue.[39m
+
+
+        [34m[4mSummary:[24m[39m                    [34m[4mAvailable Tasks:[24m[39m        [34m[4mAvailable Modalities:[24m[39m 
+        3637 Files, 178.59GB        affect                  T1w                   
+        149 - Subjects              rest                    dwi                   
+        1 - Session                 video                   bold                  
+                                                            fieldmap              
+
+
+[36m	If you have any questions, please post on https://neurostars.org/tags/bids.[39m
+
+Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
