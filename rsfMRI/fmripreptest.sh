@@ -31,7 +31,7 @@ FMRIPREP_OPTS="--omp-nthreads 8 --nthreads 12 --mem_mb 30000 --ignore-aroma-deno
 unset PYTHONPATH
 export FS_LICENSE=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/license.txt
 subject=$( sed "${SLURM_ARRAY_TASK_ID}q;d" ${SUBJECT_LIST} )
-cmd="singularity run ${image} ${bids_dir} ${derivatives} participant --participant-label $subject -w ${working_dir} ${FMRIPREP_OPTS}"
+cmd="singularity run  --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${derivatives} participant --participant-label $subject -w ${working_dir} ${FMRIPREP_OPTS}"
 
 echo Running task ${SLURM_ARRAY_TASK_ID}
 echo Commandline: $cmd
