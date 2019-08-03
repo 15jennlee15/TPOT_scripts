@@ -34,7 +34,7 @@ echo -e "\n"
 
 export FS_LICENSE=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/license.txt
 
-FMRIPREP_OPTS="--ignore-aroma-denoising-errors --output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative --template-resampling-grid 2mm --medial-surface-nan --cifti-output --use-aroma"
+FMRIPREP_OPTS="--output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative --cifti-output --use-aroma --write_graph --skip_bids_validation"
 
 singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${derivatives} participant --participant-label $subid -w ${working_dir} -t "affect" ${FMRIPREP_OPTS} 
 
