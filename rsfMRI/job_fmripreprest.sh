@@ -36,7 +36,7 @@ export FS_LICENSE=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/license.tx
 
 FMRIPREP_OPTS="--ignore-aroma-denoising-errors --output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative --template-resampling-grid 2mm --medial-surface-nan --cifti-output --use-aroma"
 
-singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${derivatives} participant --participant-label $subid -w ${working_dir} -t "rest" ${FMRIPREP_OPTS} 
+singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${derivatives} participant --participant-label $subid -w ${working_dir} -t "affect" ${FMRIPREP_OPTS} 
 
 echo -e "\n"
 echo -e "\ndone"
