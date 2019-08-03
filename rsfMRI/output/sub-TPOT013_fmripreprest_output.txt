@@ -1385,3 +1385,101 @@ antsRegistration --collapse-output-transforms 1 --dimensionality 3 --float 1 --i
 190803-20:45:05,804 nipype.workflow INFO:
 	 [Node] Running "qwarp" ("nipype.interfaces.afni.preprocess.QwarpPlusMinus"), a CommandLine Interface with command:
 3dQwarp -prefix Qwarp.nii.gz -plusminus -noXdis  -noZdis -base /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/qwarp/transform_Warped.nii.gz -blur -1.0 -1.0 -source /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/qwarp/transform_Warped_c0000.nii.gz -minpatch 9 -nopadWARP -noweight -pblur 0.05 0.05
+190803-20:59:15,808 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT013_wf.func_preproc_ses_1_task_affect_acq_1_run_03_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.fmap2ref_reg".
+190803-20:59:22,199 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT013_wf.func_preproc_ses_1_task_affect_acq_1_run_03_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.fmap2ref_reg" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/func_preproc_ses_1_task_affect_acq_1_run_03_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/fmap2ref_reg".
+190803-20:59:22,231 nipype.workflow INFO:
+	 [Node] Running "fmap2ref_reg" ("nipype.interfaces.ants.registration.Registration"), a CommandLine Interface with command:
+antsRegistration --collapse-output-transforms 1 --dimensionality 3 --float 1 --initialize-transforms-per-stage 0 --interpolation LanczosWindowedSinc --output [ transform, transform_Warped.nii.gz ] --transform Translation[ 0.05 ] --metric Mattes[ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/func_preproc_ses_1_task_affect_acq_1_run_03_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/func_preproc_ses_1_task_affect_acq_1_run_03_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, 1, 64, Random, 0.5 ] --convergence [ 500, 1e-07, 200 ] --smoothing-sigmas 8.0mm --shrink-factors 2 --use-estimate-learning-rate-once 1 --use-histogram-matching 1 --transform Rigid[ 0.01 ] --metric Mattes[ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/func_preproc_ses_1_task_affect_acq_1_run_03_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/func_preproc_ses_1_task_affect_acq_1_run_03_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, 1, 64, Random, 0.5 ] --convergence [ 200, 1e-08, 100 ] --smoothing-sigmas 2.0mm --shrink-factors 1 --use-estimate-learning-rate-once 1 --use-histogram-matching 1 --winsorize-image-intensities [ 0.005, 0.998 ]  --write-composite-transform 1
+190803-21:01:58,986 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.anat_template_wf.t1_merge".
+190803-21:02:04,281 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.anat_template_wf.t1_reorient" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/t1_reorient".
+190803-21:02:04,287 nipype.workflow INFO:
+	 [Node] Running "t1_reorient" ("nipype.interfaces.image.Reorient")
+190803-21:02:04,484 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.anat_template_wf.t1_reorient".
+190803-21:02:12,741 nipype.workflow INFO:
+	 [Node] Setting-up "_concat_affines0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/concat_affines/mapflow/_concat_affines0".
+190803-21:02:12,817 nipype.workflow INFO:
+	 [Node] Setting-up "_concat_affines1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/concat_affines/mapflow/_concat_affines1".
+190803-21:02:12,887 nipype.workflow INFO:
+	 [Node] Running "_concat_affines0" ("niworkflows.interfaces.freesurfer.PatchedConcatenateLTA"), a CommandLine Interface with command:
+mri_concatenate_lta -invertout -out_type 1 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/t1_conform_xfm/mapflow/_t1_conform_xfm0/out.lta /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/t1_merge/tp1.lta out_concat.lta
+190803-21:02:12,897 nipype.workflow INFO:
+	 [Node] Running "_concat_affines1" ("niworkflows.interfaces.freesurfer.PatchedConcatenateLTA"), a CommandLine Interface with command:
+mri_concatenate_lta -invertout -out_type 1 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/t1_conform_xfm/mapflow/_t1_conform_xfm1/out.lta /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/t1_merge/tp2.lta out_concat.lta
+190803-21:02:15,67 nipype.workflow INFO:
+	 [Node] Finished "_concat_affines0".
+190803-21:02:15,104 nipype.workflow INFO:
+	 [Node] Finished "_concat_affines1".
+190803-21:02:15,777 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.surface_recon_wf.fov_check" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/surface_recon_wf/fov_check".
+190803-21:02:15,791 nipype.workflow INFO:
+	 [Node] Running "fov_check" ("nipype.interfaces.utility.wrappers.Function")
+190803-21:02:16,455 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.surface_recon_wf.recon_config" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/surface_recon_wf/recon_config".
+190803-21:02:16,566 nipype.workflow INFO:
+	 [Node] Running "recon_config" ("niworkflows.interfaces.freesurfer.FSDetectInputs")
+190803-21:02:16,897 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.surface_recon_wf.recon_config".
+190803-21:02:19,748 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.brain_extraction_wf.truncate_images" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/brain_extraction_wf/truncate_images".
+190803-21:02:19,768 nipype.workflow INFO:
+	 [Node] Setting-up "_truncate_images0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/brain_extraction_wf/truncate_images/mapflow/_truncate_images0".
+190803-21:02:19,804 nipype.workflow INFO:
+	 [Node] Running "_truncate_images0" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 sub-TPOT013_ses-1_T1w_template_maths.nii.gz TruncateImageIntensity /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/t1_merge/sub-TPOT013_ses-1_T1w_template.nii.gz 0.01 0.999 256
+190803-21:02:20,500 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.anat_template_wf.concat_affines" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/concat_affines".
+190803-21:02:20,656 nipype.workflow INFO:
+	 [Node] Setting-up "_concat_affines0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/concat_affines/mapflow/_concat_affines0".
+190803-21:02:20,657 nipype.workflow INFO:
+	 [Node] Cached "_concat_affines0" - collecting precomputed outputs
+190803-21:02:20,657 nipype.workflow INFO:
+	 [Node] "_concat_affines0" found cached.
+190803-21:02:20,658 nipype.workflow INFO:
+	 [Node] Setting-up "_concat_affines1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/concat_affines/mapflow/_concat_affines1".
+190803-21:02:20,659 nipype.workflow INFO:
+	 [Node] Cached "_concat_affines1" - collecting precomputed outputs
+190803-21:02:20,659 nipype.workflow INFO:
+	 [Node] "_concat_affines1" found cached.
+190803-21:02:20,740 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.anat_template_wf.concat_affines".
+190803-21:02:21,140 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.surface_recon_wf.fov_check".
+190803-21:02:32,928 nipype.workflow INFO:
+	 [Node] Setting-up "_lta_to_itk1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/lta_to_itk/mapflow/_lta_to_itk1".
+190803-21:02:32,937 nipype.workflow INFO:
+	 [Node] Setting-up "_lta_to_itk0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/lta_to_itk/mapflow/_lta_to_itk0".
+190803-21:02:33,25 nipype.workflow INFO:
+	 [Node] Running "_lta_to_itk1" ("niworkflows.interfaces.freesurfer.PatchedLTAConvert"), a CommandLine Interface with command:
+lta_convert --inlta /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/concat_affines/mapflow/_concat_affines1/out_concat.lta --outitk /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/lta_to_itk/mapflow/_lta_to_itk1/out.txt
+190803-21:02:33,48 nipype.workflow INFO:
+	 [Node] Running "_lta_to_itk0" ("niworkflows.interfaces.freesurfer.PatchedLTAConvert"), a CommandLine Interface with command:
+lta_convert --inlta /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/concat_affines/mapflow/_concat_affines0/out_concat.lta --outitk /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/lta_to_itk/mapflow/_lta_to_itk0/out.txt
+190803-21:02:34,870 nipype.workflow INFO:
+	 [Node] Finished "_lta_to_itk1".
+190803-21:02:34,884 nipype.workflow INFO:
+	 [Node] Finished "_lta_to_itk0".
+190803-21:03:09,40 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.anat_template_wf.lta_to_itk" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/lta_to_itk".
+190803-21:03:09,109 nipype.workflow INFO:
+	 [Node] Setting-up "_lta_to_itk0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/lta_to_itk/mapflow/_lta_to_itk0".
+190803-21:03:09,110 nipype.workflow INFO:
+	 [Node] Cached "_lta_to_itk0" - collecting precomputed outputs
+190803-21:03:09,110 nipype.workflow INFO:
+	 [Node] "_lta_to_itk0" found cached.
+190803-21:03:09,111 nipype.workflow INFO:
+	 [Node] Setting-up "_lta_to_itk1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT013_wf/anat_preproc_wf/anat_template_wf/lta_to_itk/mapflow/_lta_to_itk1".
+190803-21:03:09,112 nipype.workflow INFO:
+	 [Node] Cached "_lta_to_itk1" - collecting precomputed outputs
+190803-21:03:09,112 nipype.workflow INFO:
+	 [Node] "_lta_to_itk1" found cached.
+190803-21:03:09,204 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.anat_template_wf.lta_to_itk".
+190803-21:03:09,567 nipype.workflow INFO:
+	 [Node] Finished "_truncate_images0".
+190803-21:03:09,599 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT013_wf.anat_preproc_wf.brain_extraction_wf.truncate_images".
