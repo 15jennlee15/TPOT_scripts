@@ -36,7 +36,7 @@ FMRIPREP_OPTS="--output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative --cif
 singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${derivatives} participant \
 --participant-label $subid \
  -w ${working_dir} \
- -t "video" \
+ -t "affect" \
  ${FMRIPREP_OPTS} 
 
 echo -e "\n"
