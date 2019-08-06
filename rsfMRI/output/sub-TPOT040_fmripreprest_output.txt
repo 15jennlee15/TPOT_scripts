@@ -227,3 +227,35 @@ fslsplit /projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT040/ses-1/fmap/sub-TP
 	 [Node] Finished "_split0".
 190806-22:07:32,14 nipype.workflow INFO:
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT040_wf.func_preproc_ses_1_task_rest_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.split".
+190806-22:07:46,294 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT040_wf.func_preproc_ses_1_task_rest_run_02_wf.bold_reference_wf.validate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT040_wf/func_preproc_ses_1_task_rest_run_02_wf/bold_reference_wf/validate".
+190806-22:07:46,321 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT040_wf.anat_preproc_wf.brain_extraction_wf.res_tmpl" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT040_wf/anat_preproc_wf/brain_extraction_wf/res_tmpl".
+190806-22:07:46,390 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT040_wf.func_preproc_ses_1_task_rest_run_01_wf.bold_reference_wf.validate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT040_wf/func_preproc_ses_1_task_rest_run_01_wf/bold_reference_wf/validate".
+190806-22:07:46,439 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT040_wf.anat_preproc_wf.brain_extraction_wf.lap_tmpl" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT040_wf/anat_preproc_wf/brain_extraction_wf/lap_tmpl".
+190806-22:07:46,474 nipype.workflow INFO:
+	 [Node] Running "validate" ("niworkflows.interfaces.images.ValidateImage")
+190806-22:07:46,498 nipype.workflow INFO:
+	 [Node] Running "res_tmpl" ("niworkflows.interfaces.ants.ResampleImageBySpacing"), a CommandLine Interface with command:
+ResampleImageBySpacing 3 /home/fmriprep/.cache/templateflow/tpl-OASIS30ANTs/tpl-OASIS30ANTs_res-01_T1w.nii.gz tpl-OASIS30ANTs_res-01_T1w_resampled.nii.gz 4 4 4 1
+190806-22:07:46,524 nipype.workflow INFO:
+	 [Node] Running "validate" ("niworkflows.interfaces.images.ValidateImage")
+190806-22:07:46,580 nipype.workflow INFO:
+	 [Node] Running "lap_tmpl" ("niworkflows.interfaces.ants.ImageMath"), a CommandLine Interface with command:
+ImageMath 3 tpl-OASIS30ANTs_res-01_T1w_maths.nii.gz Laplacian /home/fmriprep/.cache/templateflow/tpl-OASIS30ANTs/tpl-OASIS30ANTs_res-01_T1w.nii.gz 1.5 1
+190806-22:07:47,839 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT040_wf.bidssrc" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids_fmripreprest_test/fmriprep_wf/single_subject_TPOT040_wf/bidssrc".
+190806-22:07:48,55 nipype.workflow INFO:
+	 [Node] Running "bidssrc" ("niworkflows.interfaces.bids.BIDSDataGrabber")
+190806-22:07:48,57 nipype.interface WARNING:
+	 No "t2w" images found for sub-<undefined>
+190806-22:07:48,57 nipype.interface WARNING:
+	 No "flair" images found for sub-<undefined>
+190806-22:07:48,57 nipype.interface WARNING:
+	 No "sbref" images found for sub-<undefined>
+190806-22:07:48,57 nipype.interface WARNING:
+	 No "roi" images found for sub-<undefined>
+190806-22:07:48,148 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT040_wf.bidssrc".
