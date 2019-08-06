@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 #
 # This script runs fmriprep on subjects located in the 
 # BIDS directory and saves ppc-ed output and motion confounds
@@ -30,6 +30,9 @@ echo -e "\nStarting on: $task"
 echo -e "\n"
 
 export FS_LICENSE=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/license.txt
+
+
+
 
 FMRIPREP_OPTS="--output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative --cifti-output --use-aroma --write-graph"
 
