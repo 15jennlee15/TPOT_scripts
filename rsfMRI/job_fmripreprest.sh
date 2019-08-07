@@ -5,10 +5,10 @@
 # in the derivatives folder.
 
 # Set bids directories
-bids_dir="${group_dir}""${study}"/bids_data
+bids_dir="${group_dir}"/"${study}"/bids_data
 derivatives="${bids_dir}"/derivatives
-working_dir="${derivatives}"/working_bids_fmripreprest/
-image="${group_dir}""${container}"
+working_dir="${derivatives}"/working_bids_fmripreprest_test/
+image="${group_dir}"/"${container}"
 
 echo -e "\nFmriprep on $subid"
 echo -e "\nContainer: $image"
@@ -31,16 +31,12 @@ task="rest"
 echo -e "\nStarting on: $task"
 echo -e "\n"
 
-export FS_LICENSE=/projects/adapt_lab/shared/SHARP/SHARP_Scripts/rsfMRI/license.txt
 
-singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${derivatives} participant \
---participant_label ${subid} \
- -w ${working_dir} \
- -t ${task} --use-aroma --write-graph \
---output-space {'T1w','template','fsaverage5','fsnative'} \
---mem-mb 100000 \
---skip_bids_validation \
---fs-license-file $FS_LICENSE
+export FS_LICENSE=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/license.txt
+
+FMRIPREP_OPTS="--output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative --cifti-output --use-aroma --write-graph"
+
+singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${derivatives} participant --participant-label $subid -w ${working_dir} -t "rest" ${FMRIPREP_OPTS} 
 
 echo -e "\n"
 echo -e "\ndone"
