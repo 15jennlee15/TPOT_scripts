@@ -37,7 +37,7 @@ def main():
             for sequence_folder_name in sequence_folder_names:
                 expected_sequence = [es for es in expected_timepoint[0].sequences if es.name == sequence_folder_name]
                 if len(expected_sequence) == 1:
-                    sequence_fullpath = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0])
+                    sequence_fullpath = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0],sequence_folder_name)
                 else:
                     write_to_errorlog("SEQUENCE DIRECTORY WARNING! %s missing or user entered duplicate or non-existant sequence folder name." % (sequence_folder_name))
                 if cfg.order_sequences and sequence_folder_name=="func":
@@ -270,7 +270,7 @@ def check_sequence_folder_count(sequence_folder_names: list, expected_sequences:
         write_to_outputlog("\n EXISTS: %s. \n" % (log_message))
 
 # Check files
-def check_sequence_files(subject: str, timepoint: str, sequence: str, expected_sequence: object):
+def check_sequence_files(subject: str, timepoint: str, sequence: str, expected_sequence: object,sequence_folder_name:str):
     """
     Compare the contents of a given sequence folder to the expected contents.
 
