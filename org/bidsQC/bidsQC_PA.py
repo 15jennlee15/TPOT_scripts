@@ -37,7 +37,7 @@ def main():
             for sequence_folder_name in sequence_folder_names:
                 expected_sequence = [es for es in expected_timepoint[0].sequences if es.name == sequence_folder_name]
                 if len(expected_sequence) == 1:
-                    sequence_fullpath = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0],sequence_folder_name)
+                    sequence_fullpath = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0],sequence_folder_name,expected_timepoint[0].sequences)
                 else:
                     write_to_errorlog("SEQUENCE DIRECTORY WARNING! %s missing or user entered duplicate or non-existant sequence folder name." % (sequence_folder_name))
                 if cfg.order_sequences and sequence_folder_name=="func":
@@ -385,8 +385,8 @@ def move_files_tmp(target_file:str, subject:str, timepoint:str):
     write_to_outputlog("MOVED: %s to %s" % (target_filename, tempdir_fullpath))
 
 def rename_files(sequence_fullpath:str, sequence: str, sequence_folder_name:str,expected_sequences:list):
-    print(expected_sequences)
-    for es in expected_sequences:
+    print(expected_sequence)
+    for es in expected_sequence:
         if es.name == sequence_folder_name:
             print("I am doing this", es.name)
 
