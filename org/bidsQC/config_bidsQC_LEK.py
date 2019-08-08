@@ -10,6 +10,8 @@ from bidsQC_classes import TimePoint
 # They can be removed if desired.
 group = 'adapt_lab'
 study = 'TPOT'
+# sub_prefix = 'sub-'
+sub_prefix = 'sub-TPOT' # adam's way
 
 # Set directories (Check these for your study)
 # These variables are used in the main script and need to be defined here. 
