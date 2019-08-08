@@ -294,8 +294,8 @@ def check_sequence_files(subject: str, timepoint: str, sequence: str, expected_s
     validate_sequencefilecount(expected_sequence, sequence_fullpath, extension_nifti, timepoint, subject)
     write_to_outputlog('-'*20 + ' checking number of files ' + '-'*20)
     for key in expected_sequence.files.keys():
-        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_json, subject, timepoint,sequence,sequence_folder_name)
-        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_nifti, subject, timepoint,sequence,sequence_folder_name)
+        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_json, subject, timepoint,sequence,sequence_folder_name,expected_sequence)
+        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_nifti, subject, timepoint,sequence,sequence_folder_name,expected_sequence)
     return sequence_fullpath
 
 # Validate sequence files
@@ -310,7 +310,7 @@ def validate_sequencefilecount(expected_sequence: object, sequence_fullpath: str
         write_to_errorlog("WARNING! Too many %s files in %s %s %s" % (extension, subject, timepoint, os.path.basename(sequence_fullpath)))
         
 # Fix files
-def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, extension: str, subject: str, timepoint: str,sequence:str,sequence_folder_name:str):
+def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, extension: str, subject: str, timepoint: str,sequence:str,sequence_folder_name:str,expected_sequence:object):
     """
     Compare the contents of a given sequence folder to the expected contents. \
     If more than the expected number of runs of a file exist, move the appropriate \
@@ -351,7 +351,7 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
                 if run_int <= difference: 
                     move_files_tmp(targetfile_fullpath, subject, timepoint)
                 elif run_int > difference:
-                    rename_files(sequence_fullpath,sequence,sequence_folder_name)
+                    rename_files(sequence_fullpath,sequence,sequence_folder_name,expected_sequence)
                     if expected_numfiles == 1:
                         os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index:run_index + 7], ''))
                         write_to_outputlog("RENAMED: %s, dropped run from filename" % (targetfile_fullpath))
@@ -384,7 +384,7 @@ def move_files_tmp(target_file:str, subject:str, timepoint:str):
     target_filename = os.path.basename(target_file)
     write_to_outputlog("MOVED: %s to %s" % (target_filename, tempdir_fullpath))
 
-def rename_files(sequence_fullpath:str, sequence: str, sequence_folder_name:str):
+def rename_files(sequence_fullpath:str, sequence: str, sequence_folder_name:str,expected_sequence:object):
     for es in expected_sequence:
         if es.name == sequence_folder_name:
             print("I am doing this", es.name)
