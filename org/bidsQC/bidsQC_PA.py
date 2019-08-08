@@ -351,8 +351,8 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
                 if run_int <= difference: 
                     move_files_tmp(targetfile_fullpath, subject, timepoint)
                 elif run_int > difference:
-                    rename_files(sequence_fullpath,sequence,sequence_folder_name,expected_sequences)
                     if expected_numfiles == 1:
+                        print([run_index:run_index + 7])
                         os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index:run_index + 7], ''))
                         write_to_outputlog("RENAMED: %s, dropped run from filename" % (targetfile_fullpath))
                     elif expected_numfiles > 1:
@@ -388,7 +388,7 @@ def rename_files(sequence_fullpath:str, sequence: str, sequence_folder_name:str,
     print(expected_sequences)
     for es in expected_sequences:
         if es.name == sequence_folder_name:
-            print("I am doing this", es.name)
+            
 
 
 # Call main
