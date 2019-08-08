@@ -73,7 +73,7 @@ def initiate_qc_mats(subjectdirs):
         # qcMat = np.empty((nSubs,(nSeqTypes)))
         qcMat = np.empty((nSubs,(nScans)))
         qcMat.fill(np.nan)
-    subnumstrings = list(map(lambda x: x.replace(sub_prefix,''),subjectdirs))
+    subnumstrings = list(map(lambda x: x.replace(cfg.sub_prefix,''),subjectdirs))
     subnums = list(map(int,subnumstrings))
     subnumarray = np.array(subnums).reshape(nSubs,1)
     qcMat = np.concatenate((subnumarray,qcMat),1) # horizontally concatenate
