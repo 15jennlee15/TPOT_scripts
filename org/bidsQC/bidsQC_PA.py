@@ -294,8 +294,8 @@ def check_sequence_files(subject: str, timepoint: str, sequence: str, expected_s
     validate_sequencefilecount(expected_sequence, sequence_fullpath, extension_nifti, timepoint, subject)
     write_to_outputlog('-'*20 + ' checking number of files ' + '-'*20)
     for key in expected_sequence.files.keys():
-        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_json, subject, timepoint,sequence)
-        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_nifti, subject, timepoint,sequence)
+        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_json, subject, timepoint,sequence,sequence_folder_name)
+        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_nifti, subject, timepoint,sequence,sequence_folder_name)
     return sequence_fullpath
 
 # Validate sequence files
@@ -310,7 +310,7 @@ def validate_sequencefilecount(expected_sequence: object, sequence_fullpath: str
         write_to_errorlog("WARNING! Too many %s files in %s %s %s" % (extension, subject, timepoint, os.path.basename(sequence_fullpath)))
         
 # Fix files
-def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, extension: str, subject: str, timepoint: str,sequence:str):
+def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, extension: str, subject: str, timepoint: str,sequence:str,sequence_folder_name:str):
     """
     Compare the contents of a given sequence folder to the expected contents. \
     If more than the expected number of runs of a file exist, move the appropriate \
