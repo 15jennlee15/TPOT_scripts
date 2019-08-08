@@ -294,8 +294,8 @@ def check_sequence_files(subject: str, timepoint: str, sequence: str, expected_s
     validate_sequencefilecount(expected_sequence, sequence_fullpath, extension_nifti, timepoint, subject)
     write_to_outputlog('-'*20 + ' checking number of files ' + '-'*20)
     for key in expected_sequence.files.keys():
-        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_json, subject, timepoint,sequence,sequence_folder_name,expected_sequence)
-        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_nifti, subject, timepoint,sequence,sequence_folder_name,expected_sequence)
+        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_json, subject, timepoint,sequence,sequence_folder_name,expected_sequences)
+        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_nifti, subject, timepoint,sequence,sequence_folder_name,expected_sequences)
     return sequence_fullpath
 
 # Validate sequence files
