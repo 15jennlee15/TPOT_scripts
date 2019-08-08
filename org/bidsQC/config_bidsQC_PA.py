@@ -40,7 +40,7 @@ gzipped = True
 # This is for tasks that use counterbalancing (of e.g. stimulus blocks) and for which we want to identify the content
 # with the 'acq-' label and order administered with the 'task-' label.
 order_sequences = True
-tasks_to_order = 'affect', #comma after single item makes it a tuple instead of a string
+tasks_to_order = 'affect_acq-1','affect_acq-2' #comma after single item makes it a tuple instead of a string
 
 
 # Paths that are required and that should not be changed
