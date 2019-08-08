@@ -37,7 +37,7 @@ def main():
             for sequence_folder_name in sequence_folder_names:
                 expected_sequence = [es for es in expected_timepoint[0].sequences if es.name == sequence_folder_name]
                 if len(expected_sequence) == 1:
-                    sequence_fullpath = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0],sequence_folder_name,expected_timepoint[0].sequences)
+                    sequence_fullpath = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0])
                 else:
                     write_to_errorlog("SEQUENCE DIRECTORY WARNING! %s missing or user entered duplicate or non-existant sequence folder name." % (sequence_folder_name))
                 if cfg.order_sequences and sequence_folder_name=="func":
@@ -270,7 +270,7 @@ def check_sequence_folder_count(sequence_folder_names: list, expected_sequences:
         write_to_outputlog("\n EXISTS: %s. \n" % (log_message))
 
 # Check files
-def check_sequence_files(subject: str, timepoint: str, sequence: str, expected_sequence: object,sequence_folder_name:str,expected_sequences:list):
+def check_sequence_files(subject: str, timepoint: str, sequence: str, expected_sequence: object):
     """
     Compare the contents of a given sequence folder to the expected contents.
 
@@ -294,8 +294,8 @@ def check_sequence_files(subject: str, timepoint: str, sequence: str, expected_s
     validate_sequencefilecount(expected_sequence, sequence_fullpath, extension_nifti, timepoint, subject)
     write_to_outputlog('-'*20 + ' checking number of files ' + '-'*20)
     for key in expected_sequence.files.keys():
-        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_json, subject, timepoint,sequence,sequence_folder_name,expected_sequences)
-        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_nifti, subject, timepoint,sequence,sequence_folder_name,expected_sequences)
+        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_json, subject, timepoint)
+        fix_files(sequence_fullpath, key, expected_sequence.files[key], extension_nifti, subject, timepoint)
     return sequence_fullpath
 
 # Validate sequence files
@@ -310,7 +310,7 @@ def validate_sequencefilecount(expected_sequence: object, sequence_fullpath: str
         write_to_errorlog("WARNING! Too many %s files in %s %s %s" % (extension, subject, timepoint, os.path.basename(sequence_fullpath)))
         
 # Fix files
-def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, extension: str, subject: str, timepoint: str,sequence:str,sequence_folder_name:str,expected_sequences:list):
+def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, extension: str, subject: str, timepoint: str):
     """
     Compare the contents of a given sequence folder to the expected contents. \
     If more than the expected number of runs of a file exist, move the appropriate \
@@ -352,7 +352,6 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
                     move_files_tmp(targetfile_fullpath, subject, timepoint)
                 elif run_int > difference:
                     if expected_numfiles == 1:
-                        print([run_index:run_index + 7])
                         os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index:run_index + 7], ''))
                         write_to_outputlog("RENAMED: %s, dropped run from filename" % (targetfile_fullpath))
                     elif expected_numfiles > 1:
@@ -383,12 +382,6 @@ def move_files_tmp(target_file:str, subject:str, timepoint:str):
     shutil.move(target_file, tempdir_fullpath)
     target_filename = os.path.basename(target_file)
     write_to_outputlog("MOVED: %s to %s" % (target_filename, tempdir_fullpath))
-
-def rename_files(sequence_fullpath:str, sequence: str, sequence_folder_name:str,expected_sequences:list):
-    print(expected_sequences)
-    for es in expected_sequences:
-        if es.name == sequence_folder_name:
-            
 
 
 # Call main
