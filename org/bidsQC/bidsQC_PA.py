@@ -384,9 +384,9 @@ def move_files_tmp(target_file:str, subject:str, timepoint:str):
     write_to_outputlog("MOVED: %s to %s" % (target_filename, tempdir_fullpath))
 
 def rename_files(sequence_fullpath:str, target_file:str, sequence: str, sequence_folder_name:str):
-for es in expected_sequence:
-    if es.name == sequence_folder_name:
-        print("I am doing this" es.name)
+    for es in expected_sequence:
+        if es.name == sequence_folder_name:
+            print("I am doing this" es.name)
 
 
 # Call main
