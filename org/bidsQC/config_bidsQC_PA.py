@@ -18,7 +18,7 @@ logdir = os.path.join(os.getcwd(), 'logs_bidsQC')  # Where log files will go
 # HPC:
 # bidsdir = os.path.join(os.sep, 'projects', group, 'shared', study, 'bids_data')  # Where your subjects' nifti directories are
 # Local:
-bidsdir = os.path.join(os.sep, '/projects/adapt_lab/shared/TPOT/temp_bids_data', study, 'temp_bids_data')  # Where your subjects' nifti directories are
+bidsdir = os.path.join(os.sep, '/projects/adapt_lab/shared/', study, 'temp_bids_data')  # Where your subjects' nifti directories are
 
 # Create a dictionary (the thing below) for each timepoint in your study where the pairs are 'sequence_directory_name' : 'expected_number_runs'
 # Each unique version of a sequence gets its own entry, e.g. 'gng_acq-1' and 'gng_acq-2'
