@@ -33,6 +33,7 @@ def main():
         check_timepoint_count(timepoints, cfg.expected_timepoints, subject)
         for timepoint in timepoints:
             sequence_folder_names = get_sequences(subject, timepoint)
+            print(sequence_folder_names)
             expected_timepoint = [etp for etp in cfg.expected_timepoints if etp.name == timepoint]
             if len(expected_timepoint) == 1:
                 check_sequence_folder_count(sequence_folder_names, expected_timepoint[0].sequences, subject, timepoint)
