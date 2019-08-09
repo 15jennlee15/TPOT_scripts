@@ -1,4 +1,4 @@
-q#!/bin/bash
+#!/bin/bash
 #
 # This script runs fmriprep on subjects located in the 
 # BIDS directory and saves ppc-ed output and motion confounds
