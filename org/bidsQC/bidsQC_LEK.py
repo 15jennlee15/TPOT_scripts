@@ -33,7 +33,6 @@ def main():
         check_timepoint_count(timepoints, cfg.expected_timepoints, subject)
         for timepoint in timepoints:
             sequence_folder_names = get_sequences(subject, timepoint)
-            print(sequence_folder_names)
             expected_timepoint = [etp for etp in cfg.expected_timepoints if etp.name == timepoint]
             if len(expected_timepoint) == 1:
                 check_sequence_folder_count(sequence_folder_names, expected_timepoint[0].sequences, subject, timepoint)
@@ -90,7 +89,7 @@ def drop_runnum(files_all_target_tasks, tasks_to_order, sequence_fullpath):
             targetfile_fullpath = os.path.join(sequence_fullpath, target_file)
             os.rename(targetfile_fullpath, targetfile_fullpath.replace(target_file[run_index:run_index + 7], ''))
             write_to_outputlog('Dropped runnum from ' + target_file)
-    sequence_files = os.listdir(sequence_fullpath)
+    sequence_files = sorted(os.listdir(sequence_fullpath))
     files_torename = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
     return files_torename
     
@@ -133,7 +132,7 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
     Pull SeriesNumber from the JSON file and append it as a prefix to the appropriate json and nifti files.
     """
     write_to_outputlog('Appending sequence numbers')
-    sequence_files = os.listdir(sequence_fullpath)
+    sequence_files = sorted(os.listdir(sequence_fullpath))
     #files_all_target_tasks = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
     files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order)]
     extensions = '.nii.gz', '.json'
@@ -148,7 +147,7 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
         for extension in extensions:
             new_file_name = str(series_number) + '_' + file_basename + extension
             os.rename(os.path.join(sequence_fullpath, file_basename + extension), os.path.join(sequence_fullpath, new_file_name))
-    sequence_files = os.listdir(sequence_fullpath)
+    sequence_files = sorted(os.listdir(sequence_fullpath))
     files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order)]
     return files_all_target_tasks
 
@@ -224,8 +223,8 @@ def get_subjectdirs() -> list:
     @rtype:  list
     @return: list of bidsdir directories that start with the prefix sub
     """
-    bidsdir_contents = os.listdir(cfg.bidsdir)
-    has_sub_prefix = [subdir for subdir in bidsdir_contents if subdir.startswith('sub-')]
+    bidsdir_contents = sorted(os.listdir(cfg.bidsdir))
+    has_sub_prefix = [subdir for subdir in bidsdir_contents if subdir.startswith(sub_prefix)]
     subjectdirs = [subdir for subdir in has_sub_prefix if os.path.isdir(os.path.join(cfg.bidsdir, subdir))]
     subjectdirs.sort()
     return subjectdirs
@@ -242,7 +241,7 @@ def get_timepoints(subject: str) -> list:
     @return: list of ses-wave folders in the subject directory
     """
     subject_fullpath = os.path.join(cfg.bidsdir, subject)
-    subjectdir_contents = os.listdir(subject_fullpath)
+    subjectdir_contents = sorted(os.listdir(subject_fullpath))
     return [f for f in subjectdir_contents if not f.startswith('.')]
 
 # Check subjects' sessions
@@ -278,7 +277,7 @@ def get_sequences(subject: str, timepoint: str) -> list:
     @return:                    list of sequence folders that exist in the subject directory
     """
     timepoint_fullpath = os.path.join(cfg.bidsdir, subject, timepoint)
-    timepoint_contents = os.listdir(timepoint_fullpath)
+    timepoint_contents = sorted(os.listdir(timepoint_fullpath))
     return [f for f in timepoint_contents if not f.startswith('.')]
 
 # Check subjects' sessions
@@ -339,7 +338,7 @@ def validate_sequencefilecount(expected_sequence: object, sequence_fullpath: str
     Compare the number of files of a given sequence type to the number of expected files \
     for that sequence, specified in the configuration file.    
     """
-    sequence_files = os.listdir(sequence_fullpath)
+    sequence_files = sorted(os.listdir(sequence_fullpath))
     found_allfiles = [file for file in sequence_files if file.endswith(extension)]
     if len(found_allfiles) > expected_sequence.get_filecount():
         write_to_errorlog("WARNING! Too many %s files in %s %s %s" % (extension, subject, timepoint, os.path.basename(sequence_fullpath)))
@@ -365,7 +364,7 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
     @type timepoint:                        string
     @param timepoint:                       Name of timepoint
     """
-    sequence_files = os.listdir(sequence_fullpath)
+    sequence_files = sorted(os.listdir(sequence_fullpath))
     found_files = [file for file in sequence_files if file_group in file and file.endswith(extension)]
     if len(found_files) == expected_numfiles:
         write_to_outputlog("OK: %s has correct number of %s %s files in %s." % (subject, file_group, extension, timepoint))
