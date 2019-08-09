@@ -38,18 +38,26 @@ def main():
                 check_sequence_folder_count(sequence_folder_names, expected_timepoint[0].sequences, subject, timepoint)
             else:
                 write_to_errorlog("TIMEPOINT WARNING! %s missing or user entered duplicate or non-existant timepoint." % (timepoint))
-            for i_seq,sequence_folder_name in enumerate(sequence_folder_names):
+            # for i_seq,sequence_folder_name in enumerate(sequence_folder_names):
+            # changed to loop thru expected sequences rather than ones that actually exist
+            for i_seq,sequence_folder_name in enumerate(expected_timepoint[0].sequences):
+                # but then for each seq you have to get the name field cuz it's an obj
+                sequence_folder_name = sequence_folder_name.name
+                # how many of the expected sequences match the current name? can't be 0 anymore, could be > 1
                 expected_sequence = [es for es in expected_timepoint[0].sequences if es.name == sequence_folder_name]
-                if len(expected_sequence) == 1:
-                    sequence_fullpath,nFound_json_array,nFound_nii_array = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0])
-                    startIdx = idx[i_seq]
-                    endIdx = startIdx+nFound_json_array.size
-                    qcMat_json[i_sub,startIdx:endIdx] = nFound_json_array
-                    qcMat_nii[i_sub,startIdx:endIdx] = nFound_nii_array
-                else:
-                    write_to_errorlog("SEQUENCE DIRECTORY WARNING! %s missing or user entered duplicate or non-existant sequence folder name." % (sequence_folder_name))
-                # print(qcMat_json)
-                # print(qcMat_nii)
+                actual_sequence = [a_s for a_s in sequence_folder_names if a_s == sequence_folder_name] # can be 0 or 1
+                if len(actual_sequence) == 1:
+                    if len(expected_sequence) == 1:
+                        sequence_fullpath,nFound_json_array,nFound_nii_array = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0])
+                        #i_seq = find(sequence_folder_name,expected_timepoint[0].sequences)
+                        startIdx = idx[i_seq]
+                        endIdx = startIdx+nFound_json_array.size
+                        qcMat_json[i_sub,startIdx:endIdx] = nFound_json_array
+                        qcMat_nii[i_sub,startIdx:endIdx] = nFound_nii_array
+                    else:
+                        write_to_errorlog("SEQUENCE DIRECTORY WARNING! %s missing or user entered duplicate or non-existant sequence folder name." % (sequence_folder_name))
+                    # print(qcMat_json)
+                    # print(qcMat_nii)
                 np.savetxt(cfg.outputmat_nii,qcMat_nii,delimiter='\t')
                 np.savetxt(cfg.outputmat_json,qcMat_json,delimiter='\t')
                 if cfg.order_sequences and sequence_folder_name=="func":
