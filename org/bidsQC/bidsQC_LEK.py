@@ -224,7 +224,7 @@ def get_subjectdirs() -> list:
     @return: list of bidsdir directories that start with the prefix sub
     """
     bidsdir_contents = sorted(os.listdir(cfg.bidsdir))
-    has_sub_prefix = [subdir for subdir in bidsdir_contents if subdir.startswith(sub_prefix)]
+    has_sub_prefix = [subdir for subdir in bidsdir_contents if subdir.startswith(cfg.sub_prefix)]
     subjectdirs = [subdir for subdir in has_sub_prefix if os.path.isdir(os.path.join(cfg.bidsdir, subdir))]
     subjectdirs.sort()
     return subjectdirs
