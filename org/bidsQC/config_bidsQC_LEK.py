@@ -10,8 +10,8 @@ from bidsQC_classes import TimePoint
 # They can be removed if desired.
 group = 'adapt_lab'
 study = 'TPOT'
-sub_prefix = 'sub-'
-#sub_prefix = 'sub-TPOT' # adam's way
+#sub_prefix = 'sub-'
+sub_prefix = 'sub-TPOT' # adam's way
 # extra_files_delete_criteria = "first" # set to "first" or "smallest"
 extra_files_delete_criteria = "smallest" # set to "first" or "smallest"
 
@@ -19,8 +19,8 @@ extra_files_delete_criteria = "smallest" # set to "first" or "smallest"
 # These variables are used in the main script and need to be defined here. 
 # They need to exist prior to running the script.
 logdir = os.path.join(os.getcwd(), 'logs_bidsQC')  # Where log files will go
-#bidsdir = os.path.join(os.sep, 'projects', group, 'shared', study, 'bids_data_lek')  # Where your subjects' nifti directories are
-bidsdir = os.path.join(os.sep, '/Users/laurenkahn/Desktop', study, 'bids_data')  # Where your subjects' nifti directories are
+bidsdir = os.path.join(os.sep, 'projects', group, 'shared', study, 'bids_data_lek')  # Where your subjects' nifti directories are
+#bidsdir = os.path.join(os.sep, '/Users/laurenkahn/Desktop', study, 'bids_data')  # Where your subjects' nifti directories are
 
 
 # Create a dictionary (the thing below) for each timepoint in your study where the pairs are 'sequence_directory_name' : 'expected_number_runs'
