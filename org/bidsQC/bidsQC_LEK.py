@@ -410,6 +410,8 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
                     write_to_errorlog('VALUE ERROR in fix_files:\n    Subject: %s\n     File: %s' %(subject, found_file))
         elif cfg.extra_files_delete_criteria == "smallest":
             found_file_paths = list(map(lambda f:os.path.join(sequence_fullpath,f),found_files))
+            if extension==".json":
+                found_file_paths = list(map(lambda p:p.replace(".json",".nii.gz"),found_file_paths))
             file_sizes = list(map(os.path.getsize,found_file_paths))
             file_size_ranks = ss.rankdata(file_sizes,method="min")
             file_size_ranks = len(file_size_ranks)-file_size_ranks+1 #flip ranks
