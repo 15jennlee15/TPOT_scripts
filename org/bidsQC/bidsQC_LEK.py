@@ -10,6 +10,8 @@ import sys
 import re
 import multiprocessing as mp
 import numpy as np
+import scipy
+from scipy import stats as ss
 
 
 # Main function
@@ -372,7 +374,7 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
     @type timepoint:                        string
     @param timepoint:                       Name of timepoint
     """
-    sequence_files = sorted(os.listdir(sequence_fullpath))
+    sequence_files = os.listdir(sequence_fullpath)
     found_files = [file for file in sequence_files if file_group in file and file.endswith(extension)]
     if len(found_files) == expected_numfiles:
         write_to_outputlog("OK: %s has correct number of %s %s files in %s." % (subject, file_group, extension, timepoint))
@@ -384,28 +386,62 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
         difference = len(found_files) - expected_numfiles
         found_files.sort()
         write_to_outputlog("\n FIXING FILES: %s \n" % (extension))
-        for found_file in found_files:
-            try:
-                run_index = found_file.index("_run-")
-                run_number = found_file[run_index + 5:run_index + 7]
-                run_int = int(run_number) 
-                targetfile_fullpath = os.path.join(sequence_fullpath, found_file)
-                if run_int <= difference: 
-                    move_files_tmp(targetfile_fullpath, subject, timepoint)
-                elif run_int > difference:
-                    if expected_numfiles == 1:
-                        os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index:run_index + 7], ''))
-                        write_to_outputlog("RENAMED: %s, dropped run from filename" % (targetfile_fullpath))
-                    elif expected_numfiles > 1:
-                        new_int = run_int - difference
-                        int_str = str(new_int)
-                        new_runnum = int_str.zfill(2)
-                        new_runstr = 'run-' + new_runnum
-                        os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index + 1:run_index + 7], new_runstr))
-                        write_to_outputlog("RENAMED: %s with run-%s" % (targetfile_fullpath, new_runnum))
-            except ValueError:
-                write_to_errorlog('VALUE ERROR in fix_files:\n    Subject: %s\n     File: %s' %(subject, found_file))
-        return len(found_files)
+        if cfg.extra_files_delete_criteria == "first":
+            for found_file in found_files:
+                try:
+                    run_index = found_file.index("_run-")
+                    run_number = found_file[run_index + 5:run_index + 7]
+                    run_int = int(run_number) 
+                    targetfile_fullpath = os.path.join(sequence_fullpath, found_file)
+                    if run_int <= difference: 
+                        move_files_tmp(targetfile_fullpath, subject, timepoint)
+                    elif run_int > difference:
+                        if expected_numfiles == 1:
+                            os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index:run_index + 7], ''))
+                            write_to_outputlog("RENAMED: %s, dropped run from filename" % (targetfile_fullpath))
+                        elif expected_numfiles > 1:
+                            new_int = run_int - difference
+                            int_str = str(new_int)
+                            new_runnum = int_str.zfill(2)
+                            new_runstr = 'run-' + new_runnum
+                            os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index + 1:run_index + 7], new_runstr))
+                            write_to_outputlog("RENAMED: %s with run-%s" % (targetfile_fullpath, new_runnum))
+                except ValueError:
+                    write_to_errorlog('VALUE ERROR in fix_files:\n    Subject: %s\n     File: %s' %(subject, found_file))
+        elif cfg.extra_files_delete_criteria == "smallest":
+            found_file_paths = list(map(lambda f:os.path.join(sequence_fullpath,f),found_files))
+            file_sizes = list(map(os.path.getsize,found_file_paths))
+            file_size_ranks = ss.rankdata(file_sizes,method="min")
+            file_size_ranks = len(file_size_ranks)-file_size_ranks+1 #flip ranks
+            delete_bool = file_size_ranks>expected_numfiles
+            new_int=0
+            for i_file,found_file in enumerate(found_files):
+                try:
+                    run_index = found_file.index("_run-")
+                    run_number = found_file[run_index + 5:run_index + 7]
+                    run_int = int(run_number) 
+                    targetfile_fullpath = os.path.join(sequence_fullpath, found_file)
+                    if sum(delete_bool)>difference:
+                        write_to_outputlog("\nWARNING: Too many files removed: %i removed, %i expected; due to tie in file size\n" % (sum(delete_bool),difference))
+                    if delete_bool[i_file]:
+                    # delete (move) it!
+                        move_files_tmp(targetfile_fullpath, subject, timepoint)
+                    else: # don't delete! but get rid of runnum or correct it
+                        if expected_numfiles == 1:
+                            os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index:run_index + 7], ''))
+                            write_to_outputlog("RENAMED: %s, dropped run from filename" % (targetfile_fullpath))
+                        elif expected_numfiles > 1:
+                            new_int = new_int+1
+                            int_str = str(new_int)
+                            new_runnum = int_str.zfill(2)
+                            new_runstr = 'run-' + new_runnum
+                            os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index + 1:run_index + 7], new_runstr))
+                            write_to_outputlog("RENAMED: %s with run-%s" % (targetfile_fullpath, new_runnum))
+                except ValueError:
+                    write_to_errorlog('VALUE ERROR in fix_files:\n    Subject: %s\n     File: %s' %(subject, found_file))
+
+
+    return len(found_files)
 
 
 def move_files_tmp(target_file:str, subject:str, timepoint:str):
