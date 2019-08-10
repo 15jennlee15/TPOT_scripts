@@ -10,8 +10,10 @@ from bidsQC_classes import TimePoint
 # They can be removed if desired.
 group = 'adapt_lab'
 study = 'TPOT'
-# sub_prefix = 'sub-'
+#sub_prefix = 'sub-'
 sub_prefix = 'sub-TPOT' # adam's way
+# extra_files_delete_criteria = "first" # set to "first" or "smallest"
+extra_files_delete_criteria = "smallest" # set to "first" or "smallest"
 
 # Set directories (Check these for your study)
 # These variables are used in the main script and need to be defined here. 

@@ -10,6 +10,8 @@ import sys
 import re
 import multiprocessing as mp
 import numpy as np
+import scipy
+from scipy import stats as ss
 
 
 # Main function
@@ -38,18 +40,26 @@ def main():
                 check_sequence_folder_count(sequence_folder_names, expected_timepoint[0].sequences, subject, timepoint)
             else:
                 write_to_errorlog("TIMEPOINT WARNING! %s missing or user entered duplicate or non-existant timepoint." % (timepoint))
-            for i_seq,sequence_folder_name in enumerate(sequence_folder_names):
+            # for i_seq,sequence_folder_name in enumerate(sequence_folder_names):
+            # changed to loop thru expected sequences rather than ones that actually exist
+            for i_seq,sequence_folder_name in enumerate(expected_timepoint[0].sequences):
+                # but then for each seq you have to get the name field cuz it's an obj
+                sequence_folder_name = sequence_folder_name.name
+                # how many of the expected sequences match the current name? can't be 0 anymore, could be > 1
                 expected_sequence = [es for es in expected_timepoint[0].sequences if es.name == sequence_folder_name]
-                if len(expected_sequence) == 1:
-                    sequence_fullpath,nFound_json_array,nFound_nii_array = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0])
-                    startIdx = idx[i_seq]
-                    endIdx = startIdx+nFound_json_array.size
-                    qcMat_json[i_sub,startIdx:endIdx] = nFound_json_array
-                    qcMat_nii[i_sub,startIdx:endIdx] = nFound_nii_array
-                else:
-                    write_to_errorlog("SEQUENCE DIRECTORY WARNING! %s missing or user entered duplicate or non-existant sequence folder name." % (sequence_folder_name))
-                # print(qcMat_json)
-                # print(qcMat_nii)
+                actual_sequence = [a_s for a_s in sequence_folder_names if a_s == sequence_folder_name] # can be 0 or 1
+                if len(actual_sequence) == 1:
+                    if len(expected_sequence) == 1:
+                        sequence_fullpath,nFound_json_array,nFound_nii_array = check_sequence_files(subject, timepoint, sequence_folder_name, expected_sequence[0])
+                        #i_seq = find(sequence_folder_name,expected_timepoint[0].sequences)
+                        startIdx = idx[i_seq]
+                        endIdx = startIdx+nFound_json_array.size
+                        qcMat_json[i_sub,startIdx:endIdx] = nFound_json_array
+                        qcMat_nii[i_sub,startIdx:endIdx] = nFound_nii_array
+                    else:
+                        write_to_errorlog("SEQUENCE DIRECTORY WARNING! %s missing or user entered duplicate or non-existant sequence folder name." % (sequence_folder_name))
+                    # print(qcMat_json)
+                    # print(qcMat_nii)
                 np.savetxt(cfg.outputmat_nii,qcMat_nii,delimiter='\t')
                 np.savetxt(cfg.outputmat_json,qcMat_json,delimiter='\t')
                 if cfg.order_sequences and sequence_folder_name=="func":
@@ -89,7 +99,7 @@ def drop_runnum(files_all_target_tasks, tasks_to_order, sequence_fullpath):
             targetfile_fullpath = os.path.join(sequence_fullpath, target_file)
             os.rename(targetfile_fullpath, targetfile_fullpath.replace(target_file[run_index:run_index + 7], ''))
             write_to_outputlog('Dropped runnum from ' + target_file)
-    sequence_files = os.listdir(sequence_fullpath)
+    sequence_files = sorted(os.listdir(sequence_fullpath))
     files_torename = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
     return files_torename
     
@@ -132,7 +142,7 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
     Pull SeriesNumber from the JSON file and append it as a prefix to the appropriate json and nifti files.
     """
     write_to_outputlog('Appending sequence numbers')
-    sequence_files = os.listdir(sequence_fullpath)
+    sequence_files = sorted(os.listdir(sequence_fullpath))
     #files_all_target_tasks = [sequence_file for sequence_file in sequence_files for task in tasks_to_order if str(task) in sequence_file]
     files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order)]
     extensions = '.nii.gz', '.json'
@@ -147,7 +157,7 @@ def append_series_number(sequence_fullpath:str, bidsdir:str, tasks_to_order: lis
         for extension in extensions:
             new_file_name = str(series_number) + '_' + file_basename + extension
             os.rename(os.path.join(sequence_fullpath, file_basename + extension), os.path.join(sequence_fullpath, new_file_name))
-    sequence_files = os.listdir(sequence_fullpath)
+    sequence_files = sorted(os.listdir(sequence_fullpath))
     files_all_target_tasks = [sequence_file for sequence_file in sequence_files if any(str(task) in sequence_file for task in tasks_to_order)]
     return files_all_target_tasks
 
@@ -223,8 +233,8 @@ def get_subjectdirs() -> list:
     @rtype:  list
     @return: list of bidsdir directories that start with the prefix sub
     """
-    bidsdir_contents = os.listdir(cfg.bidsdir)
-    has_sub_prefix = [subdir for subdir in bidsdir_contents if subdir.startswith('sub-')]
+    bidsdir_contents = sorted(os.listdir(cfg.bidsdir))
+    has_sub_prefix = [subdir for subdir in bidsdir_contents if subdir.startswith(cfg.sub_prefix)]
     subjectdirs = [subdir for subdir in has_sub_prefix if os.path.isdir(os.path.join(cfg.bidsdir, subdir))]
     subjectdirs.sort()
     return subjectdirs
@@ -241,7 +251,7 @@ def get_timepoints(subject: str) -> list:
     @return: list of ses-wave folders in the subject directory
     """
     subject_fullpath = os.path.join(cfg.bidsdir, subject)
-    subjectdir_contents = os.listdir(subject_fullpath)
+    subjectdir_contents = sorted(os.listdir(subject_fullpath))
     return [f for f in subjectdir_contents if not f.startswith('.')]
 
 # Check subjects' sessions
@@ -277,7 +287,7 @@ def get_sequences(subject: str, timepoint: str) -> list:
     @return:                    list of sequence folders that exist in the subject directory
     """
     timepoint_fullpath = os.path.join(cfg.bidsdir, subject, timepoint)
-    timepoint_contents = os.listdir(timepoint_fullpath)
+    timepoint_contents = sorted(os.listdir(timepoint_fullpath))
     return [f for f in timepoint_contents if not f.startswith('.')]
 
 # Check subjects' sessions
@@ -338,7 +348,7 @@ def validate_sequencefilecount(expected_sequence: object, sequence_fullpath: str
     Compare the number of files of a given sequence type to the number of expected files \
     for that sequence, specified in the configuration file.    
     """
-    sequence_files = os.listdir(sequence_fullpath)
+    sequence_files = sorted(os.listdir(sequence_fullpath))
     found_allfiles = [file for file in sequence_files if file.endswith(extension)]
     if len(found_allfiles) > expected_sequence.get_filecount():
         write_to_errorlog("WARNING! Too many %s files in %s %s %s" % (extension, subject, timepoint, os.path.basename(sequence_fullpath)))
@@ -376,28 +386,66 @@ def fix_files(sequence_fullpath: str, file_group: str, expected_numfiles: int, e
         difference = len(found_files) - expected_numfiles
         found_files.sort()
         write_to_outputlog("\n FIXING FILES: %s \n" % (extension))
-        for found_file in found_files:
-            try:
-                run_index = found_file.index("_run-")
-                run_number = found_file[run_index + 5:run_index + 7]
-                run_int = int(run_number) 
-                targetfile_fullpath = os.path.join(sequence_fullpath, found_file)
-                if run_int <= difference: 
-                    move_files_tmp(targetfile_fullpath, subject, timepoint)
-                elif run_int > difference:
-                    if expected_numfiles == 1:
-                        os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index:run_index + 7], ''))
-                        write_to_outputlog("RENAMED: %s, dropped run from filename" % (targetfile_fullpath))
-                    elif expected_numfiles > 1:
-                        new_int = run_int - difference
-                        int_str = str(new_int)
-                        new_runnum = int_str.zfill(2)
-                        new_runstr = 'run-' + new_runnum
-                        os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index + 1:run_index + 7], new_runstr))
-                        write_to_outputlog("RENAMED: %s with run-%s" % (targetfile_fullpath, new_runnum))
-            except ValueError:
-                write_to_errorlog('VALUE ERROR in fix_files:\n    Subject: %s\n     File: %s' %(subject, found_file))
-        return len(found_files)
+        if cfg.extra_files_delete_criteria == "first":
+            for found_file in found_files:
+                try:
+                    run_index = found_file.index("_run-")
+                    run_number = found_file[run_index + 5:run_index + 7]
+                    run_int = int(run_number) 
+                    targetfile_fullpath = os.path.join(sequence_fullpath, found_file)
+                    if run_int <= difference: 
+                        move_files_tmp(targetfile_fullpath, subject, timepoint)
+                    elif run_int > difference:
+                        if expected_numfiles == 1:
+                            os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index:run_index + 7], ''))
+                            write_to_outputlog("RENAMED: %s, dropped run from filename" % (targetfile_fullpath))
+                        elif expected_numfiles > 1:
+                            new_int = run_int - difference
+                            int_str = str(new_int)
+                            new_runnum = int_str.zfill(2)
+                            new_runstr = 'run-' + new_runnum
+                            os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index + 1:run_index + 7], new_runstr))
+                            write_to_outputlog("RENAMED: %s with run-%s" % (targetfile_fullpath, new_runnum))
+                except ValueError:
+                    write_to_errorlog('VALUE ERROR in fix_files:\n    Subject: %s\n     File: %s' %(subject, found_file))
+        elif cfg.extra_files_delete_criteria == "smallest":
+            found_file_paths = list(map(lambda f:os.path.join(sequence_fullpath,f),found_files))
+            if extension=="json":
+                found_file_paths = list(map(lambda p:p.replace(".json",".nii.gz"),found_file_paths))
+                print(found_file_paths)
+            file_sizes = list(map(os.path.getsize,found_file_paths))
+            print(file_sizes)
+            file_size_ranks = ss.rankdata(file_sizes,method="min")
+            file_size_ranks = len(file_size_ranks)-file_size_ranks+1 #flip ranks
+            delete_bool = file_size_ranks>expected_numfiles
+            new_int=0
+            for i_file,found_file in enumerate(found_files):
+                try:
+                    run_index = found_file.index("_run-")
+                    run_number = found_file[run_index + 5:run_index + 7]
+                    run_int = int(run_number) 
+                    targetfile_fullpath = os.path.join(sequence_fullpath, found_file)
+                    if sum(delete_bool)>difference:
+                        write_to_outputlog("\nWARNING: Too many files removed: %i removed, %i expected; due to tie in file size\n" % (sum(delete_bool),difference))
+                    if delete_bool[i_file]:
+                    # delete (move) it!
+                        move_files_tmp(targetfile_fullpath, subject, timepoint)
+                    else: # don't delete! but get rid of runnum or correct it
+                        if expected_numfiles == 1:
+                            os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index:run_index + 7], ''))
+                            write_to_outputlog("RENAMED: %s, dropped run from filename" % (targetfile_fullpath))
+                        elif expected_numfiles > 1:
+                            new_int = new_int+1
+                            int_str = str(new_int)
+                            new_runnum = int_str.zfill(2)
+                            new_runstr = 'run-' + new_runnum
+                            os.rename(targetfile_fullpath, targetfile_fullpath.replace(found_file[run_index + 1:run_index + 7], new_runstr))
+                            write_to_outputlog("RENAMED: %s with run-%s" % (targetfile_fullpath, new_runnum))
+                except ValueError:
+                    write_to_errorlog('VALUE ERROR in fix_files:\n    Subject: %s\n     File: %s' %(subject, found_file))
+
+
+    return len(found_files)
 
 
 def move_files_tmp(target_file:str, subject:str, timepoint:str):
