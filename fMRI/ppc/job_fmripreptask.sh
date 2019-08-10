@@ -24,7 +24,7 @@ mkdir -p $working_dir
 cd $bids_dir
 
 #Source task list
-task="video"
+task="affect"
 
 echo -e "\nStarting on: $task"
 echo -e "\n"
