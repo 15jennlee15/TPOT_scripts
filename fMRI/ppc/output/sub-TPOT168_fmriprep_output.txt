@@ -8,27 +8,7 @@ Subject directory: /projects/adapt_lab/shared/TPOT/bids_data
 Starting on: affect
 
 
-	1: [ERR] 'IntendedFor' field needs to point to an existing file. (code: 37 - INTENDED_FOR)
-		./sub-TPOT168/ses-1/fmap/sub-TPOT168_ses-1_dir-ap_epi.nii.gz
-			Evidence: ses-1/func/sub-TPOT168_ses-1_task-video_run-02_bold.nii.gz
-		./sub-TPOT168/ses-1/fmap/sub-TPOT168_ses-1_dir-ap_epi.nii.gz
-			Evidence: ses-1/func/sub-TPOT168_ses-1_task-video_run-01_bold.nii.gz
-		./sub-TPOT168/ses-1/fmap/sub-TPOT168_ses-1_dir-ap_epi.nii.gz
-			Evidence: ses-1/func/sub-TPOT168_ses-1_task-affect_acq-1_bold.nii.gz
-		./sub-TPOT168/ses-1/fmap/sub-TPOT168_ses-1_dir-ap_epi.nii.gz
-			Evidence: ses-1/func/sub-TPOT168_ses-1_task-rest_run-03_bold.nii.gz
-		./sub-TPOT168/ses-1/fmap/sub-TPOT168_ses-1_dir-pa_epi.nii.gz
-			Evidence: ses-1/func/sub-TPOT168_ses-1_task-affect_acq-1_bold.nii.gz
-		./sub-TPOT168/ses-1/fmap/sub-TPOT168_ses-1_dir-pa_epi.nii.gz
-			Evidence: ses-1/func/sub-TPOT168_ses-1_task-rest_run-03_bold.nii.gz
-		./sub-TPOT168/ses-1/fmap/sub-TPOT168_ses-1_dir-pa_epi.nii.gz
-			Evidence: ses-1/func/sub-TPOT168_ses-1_task-video_run-02_bold.nii.gz
-		./sub-TPOT168/ses-1/fmap/sub-TPOT168_ses-1_dir-pa_epi.nii.gz
-			Evidence: ses-1/func/sub-TPOT168_ses-1_task-video_run-01_bold.nii.gz
-
-	Please visit https://neurostars.org/search?q=INTENDED_FOR for existing conversations about this issue.
-
-	2: [ERR] No BIDS compatible data found for at least one subject. (code: 67 - NO_VALID_DATA_FOUND_FOR_SUBJECT)
+	1: [ERR] No BIDS compatible data found for at least one subject. (code: 67 - NO_VALID_DATA_FOUND_FOR_SUBJECT)
 		./sub-TPOT013_2
 		./sub-TPOT030_2
 		./sub-TPOT051_2
@@ -50,24 +30,24 @@ Starting on: affect
 	If you have any questions, please post on https://neurostars.org/tags/bids.
 
 Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
-190817-09:23:47,917 nipype.workflow IMPORTANT:
+190818-20:34:03,137 nipype.workflow IMPORTANT:
 	 
     Running fMRIPREP version 1.5.0rc1:
       * BIDS dataset path: /projects/adapt_lab/shared/TPOT/bids_data.
       * Participant list: ['TPOT168'].
-      * Run identifier: 20190817-092035_e9e57a6b-4469-468c-87a3-f22c96a443ac.
+      * Run identifier: 20190818-203051_c37d9819-f272-498f-9bf1-baeeff46deef.
     
-190817-09:23:54,309 nipype.workflow IMPORTANT:
+190818-20:34:10,299 nipype.workflow IMPORTANT:
 	 Creating bold processing workflow for "/projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT168/ses-1/func/sub-TPOT168_ses-1_task-affect_acq-1_run-01_bold.nii.gz" (0.20 GB / 185 TRs). Memory resampled/largemem=0.81/1.19 GB.
-190817-09:23:54,729 nipype.workflow IMPORTANT:
+190818-20:34:10,713 nipype.workflow IMPORTANT:
 	 No single-band-reference found for sub-TPOT168_ses-1_task-affect_acq-1_run-01_bold.nii.gz
-190817-09:23:57,693 nipype.workflow IMPORTANT:
+190818-20:34:13,318 nipype.workflow IMPORTANT:
 	 Slice-timing correction will be included.
-190817-09:23:57,737 nipype.workflow WARNING:
-	 SDC: no fieldmaps found or they were ignored (/projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT168/ses-1/func/sub-TPOT168_ses-1_task-affect_acq-1_run-01_bold.nii.gz).
-190817-09:23:58,844 nipype.workflow IMPORTANT:
+190818-20:34:13,654 nipype.workflow IMPORTANT:
+	 SDC: fieldmap estimation of type "epi" intended for /projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT168/ses-1/func/sub-TPOT168_ses-1_task-affect_acq-1_run-01_bold.nii.gz found.
+190818-20:34:14,612 nipype.workflow IMPORTANT:
 	 Creating BOLD surface-sampling workflow.
-190817-09:24:05,504 nipype.workflow IMPORTANT:
+190818-20:34:21,328 nipype.workflow IMPORTANT:
 	 Works derived from this fMRIPrep execution should include the following boilerplate:
 
 
@@ -105,6 +85,12 @@ Functional data preprocessing
 tasks and sessions), the following preprocessing was performed.
 First, a reference volume and its skull-stripped version were generated
 using a custom methodology of *fMRIPrep*.
+A deformation field to correct for susceptibility distortions was estimated
+based on two echo-planar imaging (EPI) references with opposing phase-encoding
+directions, using `3dQwarp` @afni (AFNI 20160207).
+Based on the estimated susceptibility distortion, an
+unwarped BOLD reference was calculated for a more accurate
+co-registration with the anatomical reference.
 The BOLD reference was then co-registered to the T1w reference using
 `bbregister` (FreeSurfer) which implements boundary-based registration [@bbr].
 Co-registration was configured with six degrees of freedom.
@@ -190,110 +176,343 @@ It is released under the [CC0](https://creativecommons.org/publicdomain/zero/1.0
 ### References
 
 
-190817-09:24:14,413 nipype.interface WARNING:
+190818-20:34:33,245 nipype.interface WARNING:
 	 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage exists; if multiple jobs are running in parallel, this can be safely ignored
-190817-09:24:27,486 nipype.workflow INFO:
+190818-20:34:34,49 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.split" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/split".
+190818-20:34:34,69 nipype.workflow INFO:
+	 [Node] Setting-up "_split0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/split/mapflow/_split0".
+190818-20:34:34,79 nipype.workflow INFO:
+	 [Node] Running "_split0" ("nipype.interfaces.fsl.utils.Split"), a CommandLine Interface with command:
+fslsplit /projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT168/ses-1/fmap/sub-TPOT168_ses-1_dir-ap_epi.nii.gz -t
+190818-20:34:34,134 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.split" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/split".
+190818-20:34:34,144 nipype.workflow INFO:
+	 [Node] Setting-up "_split0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/split/mapflow/_split0".
+190818-20:34:34,153 nipype.workflow INFO:
+	 [Node] Running "_split0" ("nipype.interfaces.fsl.utils.Split"), a CommandLine Interface with command:
+fslsplit /projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT168/ses-1/fmap/sub-TPOT168_ses-1_dir-pa_epi.nii.gz -t
+190818-20:34:34,460 nipype.workflow INFO:
+	 [Node] Finished "_split0".
+190818-20:34:34,466 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.split".
+190818-20:34:34,545 nipype.workflow INFO:
+	 [Node] Finished "_split0".
+190818-20:34:34,551 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.split".
+190818-20:34:38,770 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.merge" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/merge".
+190818-20:34:38,829 nipype.workflow INFO:
+	 [Node] Running "merge" ("niworkflows.interfaces.freesurfer.StructuralReference"), a CommandLine Interface with command:
+echo Only one time point!
+190818-20:34:38,992 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.merge".
+190818-20:34:39,452 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.merge" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/merge".
+190818-20:34:39,517 nipype.workflow INFO:
+	 [Node] Running "merge" ("niworkflows.interfaces.freesurfer.StructuralReference"), a CommandLine Interface with command:
+echo Only one time point!
+190818-20:34:39,756 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.merge".
+190818-20:34:42,146 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.init_aff" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/init_aff".
+190818-20:34:42,156 nipype.workflow INFO:
+	 [Node] Running "init_aff" ("niworkflows.interfaces.ants.AI"), a CommandLine Interface with command:
+antsAI -c [10,0.000001,10] -d 3 -x /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz -m Mattes[/home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz,/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/split/mapflow/_split0/vol0000.nii.gz,32,Regular,0.200000] -o initialization.mat -p 0 -s [20.000000,0.120000] -t Affine[0.100000] -v 1
+190818-20:34:44,453 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.init_aff" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/init_aff".
+190818-20:34:44,467 nipype.workflow INFO:
+	 [Node] Running "init_aff" ("niworkflows.interfaces.ants.AI"), a CommandLine Interface with command:
+antsAI -c [10,0.000001,10] -d 3 -x /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz -m Mattes[/home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz,/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/split/mapflow/_split0/vol0000.nii.gz,32,Regular,0.200000] -o initialization.mat -p 0 -s [20.000000,0.120000] -t Affine[0.100000] -v 1
+190818-20:34:48,117 nipype.workflow INFO:
 	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon1".
-190817-09:24:27,543 nipype.interface INFO:
+190818-20:34:48,184 nipype.interface INFO:
 	 recon-all complete : Not running
-190817-09:24:27,544 nipype.workflow INFO:
+190818-20:34:48,185 nipype.workflow INFO:
 	 [Node] Running "autorecon1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
 echo recon-all: nothing to do
-190817-09:24:27,547 nipype.interface INFO:
+190818-20:34:48,191 nipype.interface INFO:
 	 recon-all complete : Not running
-190817-09:24:27,710 nipype.workflow INFO:
+190818-20:34:48,363 nipype.workflow INFO:
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon1".
-190817-09:25:45,62 nipype.workflow INFO:
+190818-20:34:51,97 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.init_aff".
+190818-20:34:52,443 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.init_aff".
+190818-20:34:56,502 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.norm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/norm".
+190818-20:34:56,516 nipype.workflow INFO:
+	 [Node] Running "norm" ("niworkflows.interfaces.fixes.FixHeaderRegistration"), a CommandLine Interface with command:
+antsRegistration --collapse-output-transforms 1 --dimensionality 3 --float 1 --initial-moving-transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/init_aff/initialization.mat, 0 ] --initialize-transforms-per-stage 0 --interpolation Linear --output transform --transform Affine[ 0.1 ] --metric Mattes[ /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz, /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/split/mapflow/_split0/vol0000.nii.gz, 1, 64, Random, 0.2 ] --convergence [ 200, 1e-09, 10 ] --smoothing-sigmas 2.0mm --shrink-factors 2 --use-estimate-learning-rate-once 1 --use-histogram-matching 1 --winsorize-image-intensities [ 0.05, 0.98 ]  --write-composite-transform 0
+190818-20:34:57,549 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.norm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/norm".
+190818-20:34:57,561 nipype.workflow INFO:
+	 [Node] Running "norm" ("niworkflows.interfaces.fixes.FixHeaderRegistration"), a CommandLine Interface with command:
+antsRegistration --collapse-output-transforms 1 --dimensionality 3 --float 1 --initial-moving-transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/init_aff/initialization.mat, 0 ] --initialize-transforms-per-stage 0 --interpolation Linear --output transform --transform Affine[ 0.1 ] --metric Mattes[ /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz, /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/split/mapflow/_split0/vol0000.nii.gz, 1, 64, Random, 0.2 ] --convergence [ 200, 1e-09, 10 ] --smoothing-sigmas 2.0mm --shrink-factors 2 --use-estimate-learning-rate-once 1 --use-histogram-matching 1 --winsorize-image-intensities [ 0.05, 0.98 ]  --write-composite-transform 0
+190818-20:34:59,981 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.norm".
+190818-20:35:00,787 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.norm".
+190818-20:35:04,457 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.map_brainmask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/map_brainmask".
+190818-20:35:04,468 nipype.workflow INFO:
+	 [Node] Running "map_brainmask" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --float 1 --input /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz --interpolation MultiLabel --output tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/split/mapflow/_split0/vol0000.nii.gz --transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/norm/transform0GenericAffine.mat, 1 ]
+190818-20:35:05,283 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.map_brainmask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/map_brainmask".
+190818-20:35:05,292 nipype.workflow INFO:
+	 [Node] Running "map_brainmask" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --float 1 --input /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz --interpolation MultiLabel --output tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/split/mapflow/_split0/vol0000.nii.gz --transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/norm/transform0GenericAffine.mat, 1 ]
+190818-20:35:12,508 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.map_brainmask".
+190818-20:35:13,486 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.map_brainmask".
+190818-20:35:14,122 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate".
+190818-20:35:14,134 nipype.workflow INFO:
+	 [Node] Running "pre_mask_dilate" ("nipype.interfaces.fsl.maths.DilateImage"), a CommandLine Interface with command:
+fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/map_brainmask/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans.nii.gz -kernel sphere 3.0000 -dilF /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil.nii.gz
+190818-20:35:16,80 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate".
+190818-20:35:16,123 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate".
+190818-20:35:16,133 nipype.workflow INFO:
+	 [Node] Running "pre_mask_dilate" ("nipype.interfaces.fsl.maths.DilateImage"), a CommandLine Interface with command:
+fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/map_brainmask/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans.nii.gz -kernel sphere 3.0000 -dilF /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil.nii.gz
+190818-20:35:17,462 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate".
+190818-20:35:20,22 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.n4_correct" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/n4_correct".
+190818-20:35:20,34 nipype.workflow INFO:
+	 [Node] Running "n4_correct" ("nipype.interfaces.ants.segmentation.N4BiasFieldCorrection"), a CommandLine Interface with command:
+N4BiasFieldCorrection --bspline-fitting [ 200 ] -d 3 --input-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/split/mapflow/_split0/vol0000.nii.gz --mask-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/check_hdr/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil_hdr.nii.gz --output vol0000_corrected.nii.gz
+190818-20:35:22,26 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.n4_correct" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/n4_correct".
+190818-20:35:22,40 nipype.workflow INFO:
+	 [Node] Running "n4_correct" ("nipype.interfaces.ants.segmentation.N4BiasFieldCorrection"), a CommandLine Interface with command:
+N4BiasFieldCorrection --bspline-fitting [ 200 ] -d 3 --input-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/split/mapflow/_split0/vol0000.nii.gz --mask-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/check_hdr/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil_hdr.nii.gz --output vol0000_corrected.nii.gz
+190818-20:35:29,577 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.n4_correct".
+190818-20:35:31,337 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.n4_correct".
+190818-20:35:32,169 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass".
+190818-20:35:32,183 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_pass" ("nipype.interfaces.fsl.preprocess.BET"), a CommandLine Interface with command:
+bet /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/n4_correct/vol0000_corrected.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/vol0000_corrected_brain.nii.gz -f 0.20 -m
+190818-20:35:34,198 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass".
+190818-20:35:34,212 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_pass" ("nipype.interfaces.fsl.preprocess.BET"), a CommandLine Interface with command:
+bet /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/n4_correct/vol0000_corrected.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/vol0000_corrected_brain.nii.gz -f 0.20 -m
+190818-20:35:34,894 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass".
+190818-20:35:36,136 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate".
+190818-20:35:36,147 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_dilate" ("nipype.interfaces.fsl.maths.DilateImage"), a CommandLine Interface with command:
+fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/vol0000_corrected_brain_mask.nii.gz -kernel sphere 6.0000 -dilF /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate/vol0000_corrected_brain_mask_dil.nii.gz
+190818-20:35:36,465 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass".
+190818-20:35:38,168 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate".
+190818-20:35:38,177 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_dilate" ("nipype.interfaces.fsl.maths.DilateImage"), a CommandLine Interface with command:
+fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/vol0000_corrected_brain_mask.nii.gz -kernel sphere 6.0000 -dilF /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate/vol0000_corrected_brain_mask_dil.nii.gz
+190818-20:35:41,365 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate".
+190818-20:35:42,704 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate".
+190818-20:35:43,967 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_mask".
+190818-20:35:43,978 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_mask" ("nipype.interfaces.fsl.maths.ApplyMask"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/vol0000_corrected_brain.nii.gz -mas /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate/vol0000_corrected_brain_mask_dil.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_mask/vol0000_corrected_brain_masked.nii.gz
+190818-20:35:44,162 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_mask".
+190818-20:35:44,170 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_mask" ("nipype.interfaces.fsl.maths.ApplyMask"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/vol0000_corrected_brain.nii.gz -mas /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate/vol0000_corrected_brain_mask_dil.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_mask/vol0000_corrected_brain_masked.nii.gz
+190818-20:35:44,233 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask".
+190818-20:35:44,432 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask".
+190818-20:35:46,122 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.unifize" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/unifize".
+190818-20:35:46,131 nipype.workflow INFO:
+	 [Node] Running "unifize" ("nipype.interfaces.afni.utils.Unifize"), a CommandLine Interface with command:
+3dUnifize -clfrac 0.2 -rbt 18.3 65.0 90.0 -prefix uni.nii.gz -T2 -input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/unifize/vol0000_corrected_brain_masked.nii.gz
+190818-20:35:46,137 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.unifize" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/unifize".
+190818-20:35:46,147 nipype.workflow INFO:
+	 [Node] Running "unifize" ("nipype.interfaces.afni.utils.Unifize"), a CommandLine Interface with command:
+3dUnifize -clfrac 0.2 -rbt 18.3 65.0 90.0 -prefix uni.nii.gz -T2 -input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/unifize/vol0000_corrected_brain_masked.nii.gz
+190818-20:35:51,874 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.unifize".
+190818-20:35:52,35 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.unifize".
+190818-20:36:03,134 nipype.workflow INFO:
 	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.skull_strip_extern" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/skull_strip_extern".
-190817-09:25:45,100 nipype.workflow INFO:
+190818-20:36:03,170 nipype.workflow INFO:
 	 [Node] Running "skull_strip_extern" ("niworkflows.interfaces.freesurfer.FSInjectBrainExtracted")
-190817-09:25:45,110 nipype.workflow INFO:
+190818-20:36:03,182 nipype.workflow INFO:
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.skull_strip_extern".
-190817-09:25:46,90 nipype.workflow INFO:
+190818-20:36:03,840 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.fixhdr_unifize" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/fixhdr_unifize".
+190818-20:36:03,848 nipype.workflow INFO:
+	 [Node] Running "fixhdr_unifize" ("niworkflows.interfaces.utils.CopyXForm")
+190818-20:36:04,3 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.fixhdr_unifize" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/fixhdr_unifize".
+190818-20:36:04,11 nipype.workflow INFO:
+	 [Node] Running "fixhdr_unifize" ("niworkflows.interfaces.utils.CopyXForm")
+190818-20:36:04,101 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.fixhdr_unifize".
+190818-20:36:04,234 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.fixhdr_unifize".
+190818-20:36:04,640 nipype.workflow INFO:
 	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon2_vol" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon2_vol".
-190817-09:25:46,128 nipype.interface INFO:
+190818-20:36:04,695 nipype.interface INFO:
 	 recon-all complete : Not running
-190817-09:25:46,129 nipype.workflow INFO:
+190818-20:36:04,697 nipype.workflow INFO:
 	 [Node] Running "autorecon2_vol" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
 echo recon-all: nothing to do
-190817-09:25:46,132 nipype.interface INFO:
+190818-20:36:04,701 nipype.interface INFO:
 	 recon-all complete : Not running
-190817-09:25:46,219 nipype.workflow INFO:
+190818-20:36:04,788 nipype.workflow INFO:
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon2_vol".
-190817-09:25:50,382 nipype.workflow INFO:
-	 [Node] Setting-up "_autorecon_surfs1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs1".
-190817-09:25:50,428 nipype.interface INFO:
-	 recon-all complete : Not running
-190817-09:25:50,428 nipype.workflow INFO:
-	 [Node] Running "_autorecon_surfs1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
-echo recon-all: nothing to do
-190817-09:25:50,432 nipype.interface INFO:
-	 recon-all complete : Not running
-190817-09:25:50,436 nipype.workflow INFO:
+190818-20:36:05,867 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.skullstrip_second_pass" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_second_pass".
+190818-20:36:05,885 nipype.workflow INFO:
+	 [Node] Running "skullstrip_second_pass" ("nipype.interfaces.afni.preprocess.Automask"), a CommandLine Interface with command:
+3dAutomask -apply_prefix uni_xform_masked.nii.gz -dilate 1 -prefix uni_xform_mask.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_second_pass/uni_xform.nii.gz
+190818-20:36:06,567 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.skullstrip_second_pass" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_second_pass".
+190818-20:36:06,578 nipype.workflow INFO:
+	 [Node] Running "skullstrip_second_pass" ("nipype.interfaces.afni.preprocess.Automask"), a CommandLine Interface with command:
+3dAutomask -apply_prefix uni_xform_masked.nii.gz -dilate 1 -prefix uni_xform_mask.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_second_pass/uni_xform.nii.gz
+190818-20:36:06,639 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.skullstrip_second_pass".
+190818-20:36:07,271 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.skullstrip_second_pass".
+190818-20:36:07,744 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.fixhdr_skullstrip2" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/fixhdr_skullstrip2".
+190818-20:36:07,750 nipype.workflow INFO:
 	 [Node] Setting-up "_autorecon_surfs0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs0".
-190817-09:25:50,478 nipype.interface INFO:
+190818-20:36:07,752 nipype.workflow INFO:
+	 [Node] Running "fixhdr_skullstrip2" ("niworkflows.interfaces.utils.CopyXForm")
+190818-20:36:07,754 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs1".
+190818-20:36:07,800 nipype.interface INFO:
 	 recon-all complete : Not running
-190817-09:25:50,479 nipype.workflow INFO:
+190818-20:36:07,800 nipype.interface INFO:
+	 recon-all complete : Not running
+190818-20:36:07,801 nipype.workflow INFO:
 	 [Node] Running "_autorecon_surfs0" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
 echo recon-all: nothing to do
-190817-09:25:50,485 nipype.interface INFO:
+190818-20:36:07,802 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190818-20:36:07,806 nipype.interface INFO:
 	 recon-all complete : Not running
-190817-09:25:50,492 nipype.workflow INFO:
+190818-20:36:07,807 nipype.interface INFO:
+	 recon-all complete : Not running
+190818-20:36:07,855 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.fixhdr_skullstrip2".
+190818-20:36:07,877 nipype.workflow INFO:
 	 [Node] Finished "_autorecon_surfs1".
-190817-09:25:50,557 nipype.workflow INFO:
+190818-20:36:07,968 nipype.workflow INFO:
 	 [Node] Finished "_autorecon_surfs0".
-190817-09:25:52,428 nipype.workflow INFO:
+190818-20:36:09,753 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.combine_masks" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/combine_masks".
+190818-20:36:09,755 nipype.workflow INFO:
 	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon_surfs" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs".
-190817-09:25:52,451 nipype.workflow INFO:
+190818-20:36:09,767 nipype.workflow INFO:
+	 [Node] Running "combine_masks" ("nipype.interfaces.fsl.maths.BinaryMaths"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/vol0000_corrected_brain_mask.nii.gz -mul /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/fixhdr_skullstrip2/uni_xform_mask_xform.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/combine_masks/vol0000_corrected_brain_mask_maths.nii.gz
+190818-20:36:09,785 nipype.workflow INFO:
 	 [Node] Setting-up "_autorecon_surfs0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs0".
-190817-09:25:52,462 nipype.interface INFO:
+190818-20:36:09,798 nipype.interface INFO:
 	 recon-all complete : Not running
-190817-09:25:52,462 nipype.workflow INFO:
+190818-20:36:09,799 nipype.workflow INFO:
 	 [Node] Running "_autorecon_surfs0" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
 echo recon-all: nothing to do
-190817-09:25:52,466 nipype.interface INFO:
+190818-20:36:09,804 nipype.interface INFO:
 	 recon-all complete : Not running
-190817-09:25:52,536 nipype.workflow INFO:
+190818-20:36:09,961 nipype.workflow INFO:
 	 [Node] Finished "_autorecon_surfs0".
-190817-09:25:52,543 nipype.workflow INFO:
+190818-20:36:09,967 nipype.workflow INFO:
 	 [Node] Setting-up "_autorecon_surfs1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs1".
-190817-09:25:52,556 nipype.interface INFO:
+190818-20:36:09,981 nipype.interface INFO:
 	 recon-all complete : Not running
-190817-09:25:52,557 nipype.workflow INFO:
+190818-20:36:09,982 nipype.workflow INFO:
 	 [Node] Running "_autorecon_surfs1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
 echo recon-all: nothing to do
-190817-09:25:52,562 nipype.interface INFO:
+190818-20:36:09,987 nipype.interface INFO:
 	 recon-all complete : Not running
-190817-09:25:52,615 nipype.workflow INFO:
+190818-20:36:10,3 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.combine_masks".
+190818-20:36:10,128 nipype.workflow INFO:
 	 [Node] Finished "_autorecon_surfs1".
-190817-09:25:52,627 nipype.workflow INFO:
+190818-20:36:10,144 nipype.workflow INFO:
 	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon_surfs".
-190817-09:25:56,332 nipype.workflow INFO:
+190818-20:36:11,389 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.fixhdr_skullstrip2" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/fixhdr_skullstrip2".
+190818-20:36:11,396 nipype.workflow INFO:
+	 [Node] Running "fixhdr_skullstrip2" ("niworkflows.interfaces.utils.CopyXForm")
+190818-20:36:11,472 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.fixhdr_skullstrip2".
+190818-20:36:11,772 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.combine_masks" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/combine_masks".
+190818-20:36:11,778 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.apply_mask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/apply_mask".
+190818-20:36:11,785 nipype.workflow INFO:
+	 [Node] Running "combine_masks" ("nipype.interfaces.fsl.maths.BinaryMaths"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/vol0000_corrected_brain_mask.nii.gz -mul /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/fixhdr_skullstrip2/uni_xform_mask_xform.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/combine_masks/vol0000_corrected_brain_mask_maths.nii.gz
+190818-20:36:11,789 nipype.workflow INFO:
+	 [Node] Running "apply_mask" ("nipype.interfaces.fsl.maths.ApplyMask"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/fixhdr_unifize/uni_xform.nii.gz -mas /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/combine_masks/vol0000_corrected_brain_mask_maths.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz
+190818-20:36:12,120 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.enhance_and_skullstrip_bold_wf.apply_mask".
+190818-20:36:12,151 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.combine_masks".
+190818-20:36:13,796 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.apply_mask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/apply_mask".
+190818-20:36:13,807 nipype.workflow INFO:
+	 [Node] Running "apply_mask" ("nipype.interfaces.fsl.maths.ApplyMask"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/fixhdr_unifize/uni_xform.nii.gz -mas /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/combine_masks/vol0000_corrected_brain_mask_maths.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz
+190818-20:36:13,822 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.fmap2ref_reg" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/fmap2ref_reg".
+190818-20:36:13,837 nipype.workflow INFO:
+	 [Node] Running "fmap2ref_reg" ("nipype.interfaces.ants.registration.Registration"), a CommandLine Interface with command:
+antsRegistration --collapse-output-transforms 1 --dimensionality 3 --float 1 --initialize-transforms-per-stage 0 --interpolation LanczosWindowedSinc --output [ transform, transform_Warped.nii.gz ] --transform Translation[ 0.05 ] --metric Mattes[ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, 1, 64, Random, 0.5 ] --convergence [ 500, 1e-07, 200 ] --smoothing-sigmas 8.0mm --shrink-factors 2 --use-estimate-learning-rate-once 1 --use-histogram-matching 1 --transform Rigid[ 0.01 ] --metric Mattes[ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_matching_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, 1, 64, Random, 0.5 ] --convergence [ 200, 1e-08, 100 ] --smoothing-sigmas 2.0mm --shrink-factors 1 --use-estimate-learning-rate-once 1 --use-histogram-matching 1 --winsorize-image-intensities [ 0.005, 0.998 ]  --write-composite-transform 1
+190818-20:36:13,964 nipype.workflow INFO:
 	 [Node] Setting-up "_autorecon31" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon31".
-190817-09:25:56,396 nipype.interface INFO:
-	 resume recon-all : recon-all -autorecon3 -hemi rh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
-190817-09:25:56,399 nipype.workflow INFO:
+190818-20:36:13,984 nipype.workflow INFO:
 	 [Node] Setting-up "_autorecon30" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon30".
-190817-09:25:56,400 nipype.workflow INFO:
+190818-20:36:14,12 nipype.interface INFO:
+	 resume recon-all : recon-all -autorecon3 -hemi rh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
+190818-20:36:14,13 nipype.workflow INFO:
 	 [Node] Running "_autorecon31" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
 recon-all -autorecon3 -hemi rh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
-190817-09:25:56,406 nipype.interface INFO:
+190818-20:36:14,19 nipype.interface INFO:
 	 resume recon-all : recon-all -autorecon3 -hemi rh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
-190817-09:25:56,444 nipype.interface INFO:
+190818-20:36:14,30 nipype.interface INFO:
 	 resume recon-all : recon-all -autorecon3 -hemi lh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
-190817-09:25:56,447 nipype.workflow INFO:
+190818-20:36:14,31 nipype.workflow INFO:
 	 [Node] Running "_autorecon30" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
 recon-all -autorecon3 -hemi lh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
-190817-09:25:56,452 nipype.interface INFO:
+190818-20:36:14,37 nipype.interface INFO:
 	 resume recon-all : recon-all -autorecon3 -hemi lh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
-190817-09:26:03,355 nipype.workflow WARNING:
+190818-20:36:14,132 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.enhance_and_skullstrip_bold_wf.apply_mask".
+190818-20:36:20,869 nipype.workflow WARNING:
 	 [Node] Error on "_autorecon31" (/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon31)
-190817-09:26:03,362 nipype.workflow WARNING:
+190818-20:36:20,880 nipype.workflow WARNING:
 	 [Node] Error on "_autorecon30" (/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon30)
-190817-09:26:05,324 nipype.workflow ERROR:
-	 Node _autorecon30 failed to run on host n078.
-190817-09:26:05,340 nipype.workflow ERROR:
-	 Saving crash info to /projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT168/log/20190817-092035_e9e57a6b-4469-468c-87a3-f22c96a443ac/crash-20190817-092605-nallen3-_autorecon30-f9d9c188-3438-4a75-986d-a60e63287fa3.txt
+190818-20:36:21,590 nipype.workflow ERROR:
+	 Node _autorecon30 failed to run on host n048.
+190818-20:36:21,612 nipype.workflow ERROR:
+	 Saving crash info to /projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT168/log/20190818-203051_c37d9819-f272-498f-9bf1-baeeff46deef/crash-20190818-203621-nallen3-_autorecon30-2180c0c5-3ddf-4c32-9f48-28557d9c4928.txt
 Traceback (most recent call last):
   File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 69, in run_node
     result['result'] = node.run(updatehash=updatehash)
@@ -316,8 +535,8 @@ Subject Stamp: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1-f53a55a
 Current Stamp: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1-f53a55a
 INFO: SUBJECTS_DIR is /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer
 Actual FREESURFER_HOME /opt/freesurfer
--rwxrwx--- 1 nallen3 adapt_lab 356252 Aug 16 18:22 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.log
-Linux n078 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+-rwxrwx--- 1 nallen3 adapt_lab 393418 Aug 17 09:26 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.log
+Linux n048 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
 '/opt/freesurfer/bin/recon-all' -> '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.local-copy'
 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/label
 INFO: fsaverage subject does not exist in SUBJECTS_DIR
@@ -327,7 +546,7 @@ INFO: Creating symlink to fsaverage subject...
 
 ln: failed to create symbolic link './fsaverage': File exists
 #--------------------------------------------
-#@# BA_exvivo Labels lh Sat Aug 17 09:26:03 UTC 2019
+#@# BA_exvivo Labels lh Sun Aug 18 20:36:20 UTC 2019
 
  mri_label2label --srcsubject fsaverage --srclabel /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/lh.BA1_exvivo.label --trgsubject sub-TPOT168 --trglabel ./lh.BA1_exvivo.label --hemi lh --regmethod surface 
 
@@ -355,21 +574,21 @@ FREESURFER_HOME /opt/freesurfer
 Loading source label.
 Invalid argument
 ERROR reading /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/lh.BA1_exvivo.label
-Linux n078 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+Linux n048 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
 
-recon-all -s sub-TPOT168 exited with ERRORS at Sat Aug 17 09:26:03 UTC 2019
+recon-all -s sub-TPOT168 exited with ERRORS at Sun Aug 18 20:36:20 UTC 2019
 
 For more details, see the log file /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.log
 To report a problem, see http://surfer.nmr.mgh.harvard.edu/fswiki/BugReporting
 
 Standard error:
-mv: cannot move '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.env' to '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.env.bak': No such file or directory
+
 Return code: 1
 
-190817-09:26:05,362 nipype.workflow ERROR:
-	 Node _autorecon31 failed to run on host n078.
-190817-09:26:05,376 nipype.workflow ERROR:
-	 Saving crash info to /projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT168/log/20190817-092035_e9e57a6b-4469-468c-87a3-f22c96a443ac/crash-20190817-092605-nallen3-_autorecon31-034c194c-9cfb-4ea2-b4fa-6b8782b988a2.txt
+190818-20:36:21,634 nipype.workflow ERROR:
+	 Node _autorecon31 failed to run on host n048.
+190818-20:36:21,647 nipype.workflow ERROR:
+	 Saving crash info to /projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT168/log/20190818-203051_c37d9819-f272-498f-9bf1-baeeff46deef/crash-20190818-203621-nallen3-_autorecon31-f5651889-b856-4199-9ccc-31fd30e9a7b4.txt
 Traceback (most recent call last):
   File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 69, in run_node
     result['result'] = node.run(updatehash=updatehash)
@@ -392,8 +611,8 @@ Subject Stamp: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1-f53a55a
 Current Stamp: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1-f53a55a
 INFO: SUBJECTS_DIR is /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer
 Actual FREESURFER_HOME /opt/freesurfer
--rwxrwx--- 1 nallen3 adapt_lab 356252 Aug 16 18:22 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.log
-Linux n078 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+-rwxrwx--- 1 nallen3 adapt_lab 393418 Aug 17 09:26 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.log
+Linux n048 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
 '/opt/freesurfer/bin/recon-all' -> '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.local-copy'
 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/label
 INFO: fsaverage subject does not exist in SUBJECTS_DIR
@@ -403,7 +622,7 @@ INFO: Creating symlink to fsaverage subject...
 
 ln: failed to create symbolic link './fsaverage': File exists
 #--------------------------------------------
-#@# BA_exvivo Labels rh Sat Aug 17 09:26:03 UTC 2019
+#@# BA_exvivo Labels rh Sun Aug 18 20:36:20 UTC 2019
 
  mri_label2label --srcsubject fsaverage --srclabel /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/rh.BA1_exvivo.label --trgsubject sub-TPOT168 --trglabel ./rh.BA1_exvivo.label --hemi rh --regmethod surface 
 
@@ -431,20 +650,347 @@ FREESURFER_HOME /opt/freesurfer
 Loading source label.
 Invalid argument
 ERROR reading /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/rh.BA1_exvivo.label
-Linux n078 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+Linux n048 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
 
-recon-all -s sub-TPOT168 exited with ERRORS at Sat Aug 17 09:26:03 UTC 2019
+recon-all -s sub-TPOT168 exited with ERRORS at Sun Aug 18 20:36:20 UTC 2019
 
 For more details, see the log file /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.log
 To report a problem, see http://surfer.nmr.mgh.harvard.edu/fswiki/BugReporting
 
 Standard error:
-
+mv: cannot move '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.env' to '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.env.bak': No such file or directory
 Return code: 1
 
-190817-09:26:07,319 nipype.workflow ERROR:
+190818-20:36:21,842 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.fmap2ref_reg" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/fmap2ref_reg".
+190818-20:36:21,857 nipype.workflow INFO:
+	 [Node] Running "fmap2ref_reg" ("nipype.interfaces.ants.registration.Registration"), a CommandLine Interface with command:
+antsRegistration --collapse-output-transforms 1 --dimensionality 3 --float 1 --initialize-transforms-per-stage 0 --interpolation LanczosWindowedSinc --output [ transform, transform_Warped.nii.gz ] --transform Translation[ 0.05 ] --metric Mattes[ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, 1, 64, Random, 0.5 ] --convergence [ 500, 1e-07, 200 ] --smoothing-sigmas 8.0mm --shrink-factors 2 --use-estimate-learning-rate-once 1 --use-histogram-matching 1 --transform Rigid[ 0.01 ] --metric Mattes[ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/prepare_epi_opposite_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz, 1, 64, Random, 0.5 ] --convergence [ 200, 1e-08, 100 ] --smoothing-sigmas 2.0mm --shrink-factors 1 --use-estimate-learning-rate-once 1 --use-histogram-matching 1 --winsorize-image-intensities [ 0.005, 0.998 ]  --write-composite-transform 1
+190818-20:38:10,791 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_opposite_wf.fmap2ref_reg".
+190818-20:38:58,908 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.prepare_epi_matching_wf.fmap2ref_reg".
+190818-20:39:00,8 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.qwarp" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/qwarp".
+190818-20:39:00,25 nipype.workflow INFO:
+	 [Node] Running "qwarp" ("nipype.interfaces.afni.preprocess.QwarpPlusMinus"), a CommandLine Interface with command:
+3dQwarp -prefix Qwarp.nii.gz -plusminus -noXdis  -noZdis -base /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/qwarp/transform_Warped.nii.gz -blur -1.0 -1.0 -source /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/qwarp/transform_Warped_c0000.nii.gz -minpatch 9 -nopadWARP -noweight -pblur 0.05 0.05
+190818-20:42:48,772 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.qwarp".
+190818-20:42:52,853 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.cphdr_warp" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/cphdr_warp".
+190818-20:42:52,858 nipype.workflow INFO:
+	 [Node] Running "cphdr_warp" ("niworkflows.interfaces.utils.CopyHeader")
+190818-20:42:53,181 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.cphdr_warp".
+190818-20:42:54,196 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.to_ants" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/to_ants".
+190818-20:42:54,207 nipype.workflow INFO:
+	 [Node] Running "to_ants" ("nipype.interfaces.utility.wrappers.Function")
+190818-20:42:54,717 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.to_ants".
+190818-20:42:59,689 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.unwarp_reference" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference".
+190818-20:42:59,697 nipype.workflow INFO:
+	 [Node] Running "unwarp_reference" ("niworkflows.interfaces.registration.ANTSApplyTransformsRPT"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --dimensionality 3 --float 1 --input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/n4_correct/ref_bold_corrected.nii.gz --interpolation LanczosWindowedSinc --output ref_bold_corrected_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/n4_correct/ref_bold_corrected.nii.gz --transform /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/cphdr_warp/_warpfieldQwarp_PLUS_WARP_fixhdr.nii.gz
+190818-20:43:00,317 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_transform" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_transform".
+190818-20:43:00,318 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_transform".
+190818-20:43:00,845 nipype.workflow INFO:
+	 [Node] Running "bold_transform" ("niworkflows.interfaces.itk.MultiApplyTransforms")
+190818-20:43:06,242 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.unwarp_reference".
+190818-20:43:10,282 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.init_aff" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/init_aff".
+190818-20:43:10,290 nipype.workflow INFO:
+	 [Node] Running "init_aff" ("niworkflows.interfaces.ants.AI"), a CommandLine Interface with command:
+antsAI -c [10,0.000001,10] -d 3 -x /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz -m Mattes[/home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz,/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference/ref_bold_corrected_trans.nii.gz,32,Regular,0.200000] -o initialization.mat -p 0 -s [20.000000,0.120000] -t Affine[0.100000] -v 1
+190818-20:43:26,494 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.init_aff".
+190818-20:43:30,755 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.norm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/norm".
+190818-20:43:30,764 nipype.workflow INFO:
+	 [Node] Running "norm" ("niworkflows.interfaces.fixes.FixHeaderRegistration"), a CommandLine Interface with command:
+antsRegistration --collapse-output-transforms 1 --dimensionality 3 --float 1 --initial-moving-transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/init_aff/initialization.mat, 0 ] --initialize-transforms-per-stage 0 --interpolation Linear --output transform --transform Affine[ 0.1 ] --metric Mattes[ /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz, /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference/ref_bold_corrected_trans.nii.gz, 1, 64, Random, 0.2 ] --convergence [ 200, 1e-09, 10 ] --smoothing-sigmas 2.0mm --shrink-factors 2 --use-estimate-learning-rate-once 1 --use-histogram-matching 1 --winsorize-image-intensities [ 0.05, 0.98 ]  --write-composite-transform 0
+190818-20:43:35,868 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.norm".
+190818-20:43:38,907 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.map_brainmask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/map_brainmask".
+190818-20:43:38,914 nipype.workflow INFO:
+	 [Node] Running "map_brainmask" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --float 1 --input /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz --interpolation MultiLabel --output tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference/ref_bold_corrected_trans.nii.gz --transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/norm/transform0GenericAffine.mat, 1 ]
+190818-20:43:47,232 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.map_brainmask".
+190818-20:43:48,427 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate".
+190818-20:43:48,439 nipype.workflow INFO:
+	 [Node] Running "pre_mask_dilate" ("nipype.interfaces.fsl.maths.DilateImage"), a CommandLine Interface with command:
+fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/map_brainmask/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans.nii.gz -kernel sphere 3.0000 -dilF /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil.nii.gz
+190818-20:43:50,272 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate".
+190818-20:43:54,181 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.n4_correct" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/n4_correct".
+190818-20:43:54,190 nipype.workflow INFO:
+	 [Node] Running "n4_correct" ("nipype.interfaces.ants.segmentation.N4BiasFieldCorrection"), a CommandLine Interface with command:
+N4BiasFieldCorrection --bspline-fitting [ 200 ] -d 3 --input-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/unwarp_reference/ref_bold_corrected_trans.nii.gz --mask-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/check_hdr/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil_hdr.nii.gz --output ref_bold_corrected_trans_corrected.nii.gz
+190818-20:44:03,302 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.n4_correct".
+190818-20:44:04,179 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass".
+190818-20:44:04,190 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_pass" ("nipype.interfaces.fsl.preprocess.BET"), a CommandLine Interface with command:
+bet /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/n4_correct/ref_bold_corrected_trans_corrected.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/ref_bold_corrected_trans_corrected_brain.nii.gz -f 0.20 -m
+190818-20:44:06,392 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass".
+190818-20:44:08,162 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate".
+190818-20:44:08,171 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_dilate" ("nipype.interfaces.fsl.maths.DilateImage"), a CommandLine Interface with command:
+fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/ref_bold_corrected_trans_corrected_brain_mask.nii.gz -kernel sphere 6.0000 -dilF /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate/ref_bold_corrected_trans_corrected_brain_mask_dil.nii.gz
+190818-20:44:13,596 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate".
+190818-20:44:14,299 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_mask".
+190818-20:44:14,308 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_mask" ("nipype.interfaces.fsl.maths.ApplyMask"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/ref_bold_corrected_trans_corrected_brain.nii.gz -mas /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate/ref_bold_corrected_trans_corrected_brain_mask_dil.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_mask/ref_bold_corrected_trans_corrected_brain_masked.nii.gz
+190818-20:44:14,572 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask".
+190818-20:44:16,187 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.unifize" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/unifize".
+190818-20:44:16,195 nipype.workflow INFO:
+	 [Node] Running "unifize" ("nipype.interfaces.afni.utils.Unifize"), a CommandLine Interface with command:
+3dUnifize -clfrac 0.2 -rbt 18.3 65.0 90.0 -prefix uni.nii.gz -T2 -input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/unifize/ref_bold_corrected_trans_corrected_brain_masked.nii.gz
+190818-20:44:21,323 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.unifize".
+190818-20:44:24,144 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.fixhdr_unifize" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/fixhdr_unifize".
+190818-20:44:24,151 nipype.workflow INFO:
+	 [Node] Running "fixhdr_unifize" ("niworkflows.interfaces.utils.CopyXForm")
+190818-20:44:24,415 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.fixhdr_unifize".
+190818-20:44:26,205 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.skullstrip_second_pass" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_second_pass".
+190818-20:44:26,216 nipype.workflow INFO:
+	 [Node] Running "skullstrip_second_pass" ("nipype.interfaces.afni.preprocess.Automask"), a CommandLine Interface with command:
+3dAutomask -apply_prefix uni_xform_masked.nii.gz -dilate 1 -prefix uni_xform_mask.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_second_pass/uni_xform.nii.gz
+190818-20:44:26,609 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.skullstrip_second_pass".
+190818-20:44:30,899 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.fixhdr_skullstrip2" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/fixhdr_skullstrip2".
+190818-20:44:30,905 nipype.workflow INFO:
+	 [Node] Running "fixhdr_skullstrip2" ("niworkflows.interfaces.utils.CopyXForm")
+190818-20:44:31,57 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.fixhdr_skullstrip2".
+190818-20:44:32,217 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.combine_masks" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/combine_masks".
+190818-20:44:32,226 nipype.workflow INFO:
+	 [Node] Running "combine_masks" ("nipype.interfaces.fsl.maths.BinaryMaths"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/ref_bold_corrected_trans_corrected_brain_mask.nii.gz -mul /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/fixhdr_skullstrip2/uni_xform_mask_xform.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/combine_masks/ref_bold_corrected_trans_corrected_brain_mask_maths.nii.gz
+190818-20:44:32,441 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.combine_masks".
+190818-20:44:34,209 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.apply_mask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/apply_mask".
+190818-20:44:34,216 nipype.workflow INFO:
+	 [Node] Running "apply_mask" ("nipype.interfaces.fsl.maths.ApplyMask"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/fixhdr_unifize/uni_xform.nii.gz -mas /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/combine_masks/ref_bold_corrected_trans_corrected_brain_mask_maths.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/sdc_wf/pepolar_unwarp_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz
+190818-20:44:34,367 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.sdc_wf.pepolar_unwarp_wf.enhance_and_skullstrip_bold_wf.apply_mask".
+190818-20:45:21,273 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_transform".
+190818-20:45:22,883 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.merge" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/merge".
+190818-20:45:22,884 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.merge".
+190818-20:45:22,943 nipype.workflow INFO:
+	 [Node] Running "merge" ("fmriprep.interfaces.nilearn.Merge")
+190818-20:46:11,259 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.merge".
+190818-20:46:12,363 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.validate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/validate".
+190818-20:46:12,364 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.validate".
+190818-20:46:12,413 nipype.workflow INFO:
+	 [Node] Running "validate" ("niworkflows.interfaces.images.ValidateImage")
+190818-20:46:24,978 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.validate".
+190818-20:46:26,333 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.gen_ref" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/gen_ref".
+190818-20:46:26,333 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.gen_ref".
+190818-20:46:26,376 nipype.workflow INFO:
+	 [Node] Running "gen_ref" ("niworkflows.interfaces.registration.EstimateReferenceImage")
+190818-20:46:30,668 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.668299:++ 3dvolreg: AFNI version=Debian-16.2.07~dfsg.1-5~nd16.04+1 (Jun 12 2017) [64-bit]
+190818-20:46:30,670 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.668299:++ Authored by: RW Cox
+190818-20:46:30,670 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918:** AFNI converts NIFTI_datatype=4 (INT16) in file /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/gen_ref/slice.nii.gz to FLOAT32
+190818-20:46:30,671 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918:     Warnings of this type will be muted for this session.
+190818-20:46:30,671 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918:     Set AFNI_NIFTI_TYPE_WARN to YES to see them all, NO to see none.
+190818-20:46:30,671 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918:[7m*+ WARNING:[0m   If you are performing spatial transformations on an oblique dset, 
+190818-20:46:30,671 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918:  such as /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/gen_ref/slice.nii.gz,
+190818-20:46:30,671 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918:  or viewing/combining it with volumes of differing obliquity,
+190818-20:46:30,671 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918:  you should consider running: 
+190818-20:46:30,671 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918:     3dWarp -deoblique 
+190818-20:46:30,671 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918:  on this and  other oblique datasets in the same session.
+190818-20:46:30,671 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918: See 3dWarp -help for details.
+190818-20:46:30,672 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918:++ Oblique dataset:/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/gen_ref/slice.nii.gz is 2.870445 degrees from plumb.
+190818-20:46:30,672 nipype.interface INFO:
+	 stderr 2019-08-18T20:46:30.670918:++ Coarse del was 10, replaced with 7
+190818-20:47:19,534 nipype.interface INFO:
+	 stderr 2019-08-18T20:47:19.533954:++ Max displacement in automask = 0.37 (mm) at sub-brick 12
+190818-20:47:19,534 nipype.interface INFO:
+	 stderr 2019-08-18T20:47:19.533954:++ Max delta displ  in automask = 0.24 (mm) at sub-brick 3
+190818-20:47:23,357 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.gen_ref".
+190818-20:47:24,471 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.init_aff" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/init_aff".
+190818-20:47:24,471 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.init_aff".
+190818-20:47:24,517 nipype.workflow INFO:
+	 [Node] Running "init_aff" ("niworkflows.interfaces.ants.AI"), a CommandLine Interface with command:
+antsAI -c [10,0.000001,10] -d 3 -x /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz -m Mattes[/home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz,/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/gen_ref/ref_bold.nii.gz,32,Regular,0.200000] -o initialization.mat -p 0 -s [20.000000,0.120000] -t Affine[0.100000] -v 1
+190818-20:47:31,975 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.init_aff".
+190818-20:47:32,416 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.norm" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/norm".
+190818-20:47:32,416 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.norm".
+190818-20:47:32,464 nipype.workflow INFO:
+	 [Node] Running "norm" ("niworkflows.interfaces.fixes.FixHeaderRegistration"), a CommandLine Interface with command:
+antsRegistration --collapse-output-transforms 1 --dimensionality 3 --float 1 --initial-moving-transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/init_aff/initialization.mat, 0 ] --initialize-transforms-per-stage 0 --interpolation Linear --output transform --transform Affine[ 0.1 ] --metric Mattes[ /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-fMRIPrep_boldref.nii.gz, /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/gen_ref/ref_bold.nii.gz, 1, 64, Random, 0.2 ] --convergence [ 200, 1e-09, 10 ] --smoothing-sigmas 2.0mm --shrink-factors 2 --use-estimate-learning-rate-once 1 --use-histogram-matching 1 --winsorize-image-intensities [ 0.05, 0.98 ]  --write-composite-transform 0
+190818-20:47:35,231 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.norm".
+190818-20:47:38,993 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.map_brainmask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/map_brainmask".
+190818-20:47:38,994 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.map_brainmask".
+190818-20:47:39,38 nipype.workflow INFO:
+	 [Node] Running "map_brainmask" ("niworkflows.interfaces.fixes.FixHeaderApplyTransforms"), a CommandLine Interface with command:
+antsApplyTransforms --default-value 0 --float 1 --input /home/fmriprep/.cache/templateflow/tpl-MNI152NLin2009cAsym/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask.nii.gz --interpolation MultiLabel --output tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans.nii.gz --reference-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/gen_ref/ref_bold.nii.gz --transform [ /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/norm/transform0GenericAffine.mat, 1 ]
+190818-20:47:47,645 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.map_brainmask".
+190818-20:47:48,426 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate".
+190818-20:47:48,427 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate".
+190818-20:47:48,476 nipype.workflow INFO:
+	 [Node] Running "pre_mask_dilate" ("nipype.interfaces.fsl.maths.DilateImage"), a CommandLine Interface with command:
+fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/map_brainmask/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans.nii.gz -kernel sphere 3.0000 -dilF /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/pre_mask_dilate/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil.nii.gz
+190818-20:47:50,237 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.pre_mask_dilate".
+190818-20:47:52,418 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.n4_correct" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/n4_correct".
+190818-20:47:52,419 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.n4_correct".
+190818-20:47:52,465 nipype.workflow INFO:
+	 [Node] Running "n4_correct" ("nipype.interfaces.ants.segmentation.N4BiasFieldCorrection"), a CommandLine Interface with command:
+N4BiasFieldCorrection --bspline-fitting [ 200 ] -d 3 --input-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/gen_ref/ref_bold.nii.gz --mask-image /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/check_hdr/tpl-MNI152NLin2009cAsym_res-02_desc-brain_mask_trans_dil_hdr.nii.gz --output ref_bold_corrected.nii.gz
+190818-20:48:01,863 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.n4_correct".
+190818-20:48:02,440 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass".
+190818-20:48:02,450 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass".
+190818-20:48:02,500 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_pass" ("nipype.interfaces.fsl.preprocess.BET"), a CommandLine Interface with command:
+bet /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/n4_correct/ref_bold_corrected.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/ref_bold_corrected_brain.nii.gz -f 0.20 -m
+190818-20:48:04,852 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_pass".
+190818-20:48:06,593 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate".
+190818-20:48:06,594 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate".
+190818-20:48:06,639 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_dilate" ("nipype.interfaces.fsl.maths.DilateImage"), a CommandLine Interface with command:
+fslmaths -dt char /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/ref_bold_corrected_brain_mask.nii.gz -kernel sphere 6.0000 -dilF /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate/ref_bold_corrected_brain_mask_dil.nii.gz
+190818-20:48:11,878 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_dilate".
+190818-20:48:12,445 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_mask".
+190818-20:48:12,445 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask".
+190818-20:48:12,490 nipype.workflow INFO:
+	 [Node] Running "skullstrip_first_mask" ("nipype.interfaces.fsl.maths.ApplyMask"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/ref_bold_corrected_brain.nii.gz -mas /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_dilate/ref_bold_corrected_brain_mask_dil.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_mask/ref_bold_corrected_brain_masked.nii.gz
+190818-20:48:12,747 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_first_mask".
+190818-20:48:14,622 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.unifize" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/unifize".
+190818-20:48:14,622 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.unifize".
+190818-20:48:14,669 nipype.workflow INFO:
+	 [Node] Running "unifize" ("nipype.interfaces.afni.utils.Unifize"), a CommandLine Interface with command:
+3dUnifize -clfrac 0.2 -rbt 18.3 65.0 90.0 -prefix uni.nii.gz -T2 -input /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/unifize/ref_bold_corrected_brain_masked.nii.gz
+190818-20:48:20,240 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.unifize".
+190818-20:48:20,450 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.fixhdr_unifize" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/fixhdr_unifize".
+190818-20:48:20,450 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.fixhdr_unifize".
+190818-20:48:20,493 nipype.workflow INFO:
+	 [Node] Running "fixhdr_unifize" ("niworkflows.interfaces.utils.CopyXForm")
+190818-20:48:20,711 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.fixhdr_unifize".
+190818-20:48:22,461 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_second_pass" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_second_pass".
+190818-20:48:22,462 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_second_pass".
+190818-20:48:22,509 nipype.workflow INFO:
+	 [Node] Running "skullstrip_second_pass" ("nipype.interfaces.afni.preprocess.Automask"), a CommandLine Interface with command:
+3dAutomask -apply_prefix uni_xform_masked.nii.gz -dilate 1 -prefix uni_xform_mask.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_second_pass/uni_xform.nii.gz
+190818-20:48:23,298 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.skullstrip_second_pass".
+190818-20:48:24,461 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.fixhdr_skullstrip2" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/fixhdr_skullstrip2".
+190818-20:48:24,462 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.fixhdr_skullstrip2".
+190818-20:48:24,502 nipype.workflow INFO:
+	 [Node] Running "fixhdr_skullstrip2" ("niworkflows.interfaces.utils.CopyXForm")
+190818-20:48:24,605 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.fixhdr_skullstrip2".
+190818-20:48:26,466 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.combine_masks" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/combine_masks".
+190818-20:48:26,467 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.combine_masks".
+190818-20:48:26,513 nipype.workflow INFO:
+	 [Node] Running "combine_masks" ("nipype.interfaces.fsl.maths.BinaryMaths"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/skullstrip_first_pass/ref_bold_corrected_brain_mask.nii.gz -mul /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/fixhdr_skullstrip2/uni_xform_mask_xform.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/combine_masks/ref_bold_corrected_brain_mask_maths.nii.gz
+190818-20:48:26,768 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.combine_masks".
+190818-20:48:28,470 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.apply_mask" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/apply_mask".
+190818-20:48:28,472 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.apply_mask".
+190818-20:48:28,477 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_confounds_wf.dvars" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_confounds_wf/dvars".
+190818-20:48:28,478 nipype.workflow INFO:
+	 [Node] Outdated cache found for "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_confounds_wf.dvars".
+190818-20:48:28,525 nipype.workflow INFO:
+	 [Node] Running "apply_mask" ("nipype.interfaces.fsl.maths.ApplyMask"), a CommandLine Interface with command:
+fslmaths /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/fixhdr_unifize/uni_xform.nii.gz -mas /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/combine_masks/ref_bold_corrected_brain_mask_maths.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/bold_bold_trans_wf/bold_reference_wf/enhance_and_skullstrip_bold_wf/apply_mask/uni_xform_masked.nii.gz
+190818-20:48:28,525 nipype.workflow INFO:
+	 [Node] Running "dvars" ("nipype.algorithms.confounds.ComputeDVARS")
+190818-20:48:28,869 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_bold_trans_wf.bold_reference_wf.enhance_and_skullstrip_bold_wf.apply_mask".
+190818-20:49:16,69 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.func_preproc_ses_1_task_affect_acq_1_run_01_wf.bold_confounds_wf.dvars".
+190818-20:49:18,344 nipype.workflow ERROR:
 	 could not run node: fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon3
-190817-09:26:07,334 nipype.workflow ERROR:
+190818-20:49:18,359 nipype.workflow ERROR:
 	 could not run node: fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon3
 
 
