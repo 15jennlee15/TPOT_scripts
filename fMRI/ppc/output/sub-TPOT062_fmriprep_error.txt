@@ -1,0 +1,162 @@
+exception calling callback for <Future at 0x2aaad83cdda0 state=finished raised OSError>
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 69, in run_node
+    result['result'] = node.run(updatehash=updatehash)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 487, in run
+    self, report_type='postexec', is_mapnode=isinstance(self, MapNode))
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 149, in write_report
+    result = node.result  # Locally cache result
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 197, in result
+    return _load_resultfile(self.output_dir(), self.name)[0]
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 359, in load_resultfile
+    basedir=path).items()):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 478, in modify_paths
+    val, relative=relative, basedir=basedir)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 484, in modify_paths
+    modify_paths(val, relative=relative, basedir=basedir))
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 498, in modify_paths
+    raise IOError('File %s not found' % out)
+OSError: File /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT062_wf/func_preproc_ses_1_task_affect_acq_2_run_02_wf/func_derivatives_wf/raw_sources/sub-TPOT062/ses-1/func/sub-TPOT062_ses-1_task-affect_acq-2_run-02_bold.nii.gz not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/process.py", line 232, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 72, in run_node
+    result['result'] = node.result
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 197, in result
+    return _load_resultfile(self.output_dir(), self.name)[0]
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 359, in load_resultfile
+    basedir=path).items()):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 478, in modify_paths
+    val, relative=relative, basedir=basedir)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 484, in modify_paths
+    modify_paths(val, relative=relative, basedir=basedir))
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 498, in modify_paths
+    raise IOError('File %s not found' % out)
+OSError: File /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT062_wf/func_preproc_ses_1_task_affect_acq_2_run_02_wf/func_derivatives_wf/raw_sources/sub-TPOT062/ses-1/func/sub-TPOT062_ses-1_task-affect_acq-2_run-02_bold.nii.gz not found
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/_base.py", line 324, in _invoke_callbacks
+    callback(self)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 151, in _async_callback
+    result = args.result()
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/_base.py", line 425, in result
+    return self.__get_result()
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/_base.py", line 384, in __get_result
+    raise self._exception
+OSError: File /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT062_wf/func_preproc_ses_1_task_affect_acq_2_run_02_wf/func_derivatives_wf/raw_sources/sub-TPOT062/ses-1/func/sub-TPOT062_ses-1_task-affect_acq-2_run-02_bold.nii.gz not found
+exception calling callback for <Future at 0x2aaad83b75f8 state=finished raised OSError>
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 69, in run_node
+    result['result'] = node.run(updatehash=updatehash)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 487, in run
+    self, report_type='postexec', is_mapnode=isinstance(self, MapNode))
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 149, in write_report
+    result = node.result  # Locally cache result
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 197, in result
+    return _load_resultfile(self.output_dir(), self.name)[0]
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 359, in load_resultfile
+    basedir=path).items()):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 478, in modify_paths
+    val, relative=relative, basedir=basedir)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 484, in modify_paths
+    modify_paths(val, relative=relative, basedir=basedir))
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 498, in modify_paths
+    raise IOError('File %s not found' % out)
+OSError: File /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT062_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/func_derivatives_wf/raw_sources/sub-TPOT062/ses-1/func/sub-TPOT062_ses-1_task-affect_acq-1_run-01_bold.nii.gz not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/process.py", line 232, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 72, in run_node
+    result['result'] = node.result
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 197, in result
+    return _load_resultfile(self.output_dir(), self.name)[0]
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 359, in load_resultfile
+    basedir=path).items()):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 478, in modify_paths
+    val, relative=relative, basedir=basedir)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 484, in modify_paths
+    modify_paths(val, relative=relative, basedir=basedir))
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 498, in modify_paths
+    raise IOError('File %s not found' % out)
+OSError: File /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT062_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/func_derivatives_wf/raw_sources/sub-TPOT062/ses-1/func/sub-TPOT062_ses-1_task-affect_acq-1_run-01_bold.nii.gz not found
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/_base.py", line 324, in _invoke_callbacks
+    callback(self)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 151, in _async_callback
+    result = args.result()
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/_base.py", line 425, in result
+    return self.__get_result()
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/_base.py", line 384, in __get_result
+    raise self._exception
+OSError: File /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT062_wf/func_preproc_ses_1_task_affect_acq_1_run_01_wf/func_derivatives_wf/raw_sources/sub-TPOT062/ses-1/func/sub-TPOT062_ses-1_task-affect_acq-1_run-01_bold.nii.gz not found
+exception calling callback for <Future at 0x2aaad831fa90 state=finished raised OSError>
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 69, in run_node
+    result['result'] = node.run(updatehash=updatehash)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 487, in run
+    self, report_type='postexec', is_mapnode=isinstance(self, MapNode))
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 149, in write_report
+    result = node.result  # Locally cache result
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 197, in result
+    return _load_resultfile(self.output_dir(), self.name)[0]
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 359, in load_resultfile
+    basedir=path).items()):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 478, in modify_paths
+    val, relative=relative, basedir=basedir)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 484, in modify_paths
+    modify_paths(val, relative=relative, basedir=basedir))
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 498, in modify_paths
+    raise IOError('File %s not found' % out)
+OSError: File /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT062_wf/anat_preproc_wf/anat_derivatives_wf/raw_sources/sub-TPOT062/ses-1/anat/sub-TPOT062_ses-1_T1w.nii.gz not found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/process.py", line 232, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 72, in run_node
+    result['result'] = node.result
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 197, in result
+    return _load_resultfile(self.output_dir(), self.name)[0]
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 359, in load_resultfile
+    basedir=path).items()):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 478, in modify_paths
+    val, relative=relative, basedir=basedir)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 484, in modify_paths
+    modify_paths(val, relative=relative, basedir=basedir))
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/utils.py", line 498, in modify_paths
+    raise IOError('File %s not found' % out)
+OSError: File /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT062_wf/anat_preproc_wf/anat_derivatives_wf/raw_sources/sub-TPOT062/ses-1/anat/sub-TPOT062_ses-1_T1w.nii.gz not found
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/_base.py", line 324, in _invoke_callbacks
+    callback(self)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 151, in _async_callback
+    result = args.result()
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/_base.py", line 425, in result
+    return self.__get_result()
+  File "/usr/local/miniconda/lib/python3.7/concurrent/futures/_base.py", line 384, in __get_result
+    raise self._exception
+OSError: File /projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT062_wf/anat_preproc_wf/anat_derivatives_wf/raw_sources/sub-TPOT062/ses-1/anat/sub-TPOT062_ses-1_T1w.nii.gz not found
