@@ -23,9 +23,6 @@ mkdir -p $working_dir
 # Run container using singularity
 cd $bids_dir
 
-#Source task list
-task="affect"
-
 echo -e "\nStarting on: $task"
 echo -e "\n"
 
