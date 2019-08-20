@@ -1,0 +1,34 @@
+
+Fmriprep on sub-TPOT201
+
+Container: /projects/adapt_lab/shared/containers/fmriprep-1.4.1.simg
+
+Subject directory: /projects/adapt_lab/shared/TPOT/bids_data
+
+Starting on: video
+
+
+
+<--- Last few GCs --->
+
+[166008:0x24e1150]  2505130 ms: Mark-sweep 1294.7 (1439.4) -> 1294.7 (1424.4) MB, 1075.2 / 0.0 ms  (average mu = 0.182, current mu = 0.000) last resort GC in old space requested
+[166008:0x24e1150]  2506218 ms: Mark-sweep 1294.7 (1424.4) -> 1294.7 (1424.4) MB, 1087.0 / 0.0 ms  (average mu = 0.097, current mu = 0.000) last resort GC in old space requested
+
+
+<--- JS stacktrace --->
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0xa4190d5be1d]
+Security context: 0x1da80eb1e6e1 <JSObject>
+    1: /* anonymous */ [0x3d83390033f1] [/usr/lib/node_modules/bids-validator/utils/summary/collectSummary.js:~8] [pc=0xa4190ffa603](this=0x035e7309ad11 <JSGlobal Object>,key=0x2ebdb62310f1 <String[6]: 896796>)
+    2: arguments adaptor frame: 3->1
+    3: forEach [0x1da80eb06de9](this=0x3d83390033d1 <JSArray[945244]>,0x3d83390033f1 <JSFunction (sfi = 0x1a6e1cc...
+
+Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
+
+
+
+done
+
+-------------------------------

@@ -1,0 +1,31 @@
+FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory
+ 1: 0x8dc1c0 node::Abort() [bids-validator]
+ 2: 0x8dc20c  [bids-validator]
+ 3: 0xad60ae v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [bids-validator]
+ 4: 0xad62e4 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [bids-validator]
+ 5: 0xec3972  [bids-validator]
+ 6: 0xed318f v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment) [bids-validator]
+ 7: 0xe9c1e6 v8::internal::Factory::AllocateRawArray(int, v8::internal::PretenureFlag) [bids-validator]
+ 8: 0xe9ca6a v8::internal::Factory::NewFixedArrayWithFiller(v8::internal::Heap::RootListIndex, int, v8::internal::Object*, v8::internal::PretenureFlag) [bids-validator]
+ 9: 0xe9d027 v8::internal::Factory::NewUninitializedFixedArray(int, v8::internal::PretenureFlag) [bids-validator]
+10: 0xe5e7a0  [bids-validator]
+11: 0xe5ea5f  [bids-validator]
+12: 0xfd583e v8::internal::JSObject::AddDataElement(v8::internal::Handle<v8::internal::JSObject>, unsigned int, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::ShouldThrow) [bids-validator]
+13: 0xfeefa2 v8::internal::Object::AddDataProperty(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::ShouldThrow, v8::internal::Object::StoreFromKeyed) [bids-validator]
+14: 0x1009abd v8::internal::Object::SetProperty(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::LanguageMode, v8::internal::Object::StoreFromKeyed) [bids-validator]
+15: 0x11643e5 v8::internal::Runtime::SetObjectProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, v8::internal::LanguageMode) [bids-validator]
+16: 0x1165540 v8::internal::Runtime_SetProperty(int, v8::internal::Object**, v8::internal::Isolate*) [bids-validator]
+17: 0x305fb505be1d 
+Traceback (most recent call last):
+  File "/usr/local/miniconda/bin/fmriprep", line 10, in <module>
+    sys.exit(main())
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/cli/run.py", line 315, in main
+    validate_input_dir(exec_env, opts.bids_dir, opts.participant_label)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/fmriprep/utils/bids.py", line 146, in validate_input_dir
+    subprocess.check_call(['bids-validator', bids_dir, '-c', temp.name])
+  File "/usr/local/miniconda/lib/python3.7/subprocess.py", line 341, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['bids-validator', PosixPath('/projects/adapt_lab/shared/TPOT/bids_data'), '-c', '/tmp/tmp57u9ohqj']' died with <Signals.SIGABRT: 6>.
+Sentry is attempting to send 0 pending error messages
+Waiting up to 2 seconds
+Press Ctrl-C to quit
