@@ -23,9 +23,6 @@ mkdir -p $working_dir
 # Run container using singularity
 cd $bids_dir
 
-#Source task list
-task="rest"
-
 #for task in $tasks; do
 
 echo -e "\nStarting on: $task"
@@ -34,7 +31,7 @@ echo -e "\n"
 
 export FS_LICENSE=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/license.txt
 
-FMRIPREP_OPTS="--output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative --cifti-output --use-aroma --write-graph"
+FMRIPREP_OPTS="--output-spaces T1w MNI152NLin2009cAsym fsaverage5 fsnative --cifti-output --use-aroma --write-graph --skip_bids_validation"
 
 singularity run --bind "${group_dir}":"${group_dir}" ${image} ${bids_dir} ${derivatives} participant --participant-label $subid -w ${working_dir} -t "rest" ${FMRIPREP_OPTS} 
 
