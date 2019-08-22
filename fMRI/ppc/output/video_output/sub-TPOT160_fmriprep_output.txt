@@ -1,0 +1,33 @@
+
+Fmriprep on sub-TPOT160
+
+Container: /projects/adapt_lab/shared/containers/fmriprep-1.4.1.simg
+
+Subject directory: /projects/adapt_lab/shared/TPOT/bids_data
+
+Starting on: video
+
+
+
+<--- Last few GCs --->
+
+[100972:0x24e1150]  2611347 ms: Mark-sweep 1255.5 (1447.4) -> 1255.4 (1416.4) MB, 643.0 / 0.0 ms  (average mu = 0.822, current mu = 0.000) last resort GC in old space requested
+[100972:0x24e1150]  2612078 ms: Mark-sweep 1255.4 (1416.4) -> 1255.4 (1416.4) MB, 730.9 / 0.0 ms  (average mu = 0.694, current mu = 0.000) last resort GC in old space requested
+
+
+<--- JS stacktrace --->
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x235fd18dbe1d]
+Security context: 0x26b61f69e6e1 <JSObject>
+    1: callbackWrapper [0x2fc4e94c9c29] [/usr/lib/node_modules/bids-validator/utils/files/readDir.js:~26] [pc=0x235fd1b7bc3b](this=0x339d80e1ad11 <JSGlobal Object>,ig=0x2fc4e94c97d9 <IgnoreBase map = 0x3a1cdbc14e19>)
+    2: /* anonymous */ [0x2fc4e94c9cb9] [/usr/lib/node_modules/bids-validator/utils/files/readDir.js:155] [bytecode=0x2ce67f6a28a9 offset=26](t...
+
+Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
+
+
+
+done
+
+-------------------------------
