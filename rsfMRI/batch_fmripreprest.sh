@@ -27,6 +27,6 @@ for SUBJ in $SUBJLIST; do
 #SUBID=`echo $SUBJ|awk '{print $1}' FS=","`
 #SESSID=`echo $SUBJ|awk '{print $2}' FS=","
 	
-sbatch --export ALL,subid=${SUBJ},group_dir=${group_dir},study=${study},container=${container},task=${task} --job-name fmripreprest_"${SUBJ}" -A "${group}" --partition=short --time=00:30:00 --cpus-per-task=16 --mem-per-cpu=4G -o "${group_dir}"/"${study}"/TPOT_Scripts/rsfMRI/output/"${task}"_output/"${SUBJ}"_fmripreprest_output.txt -e "${group_dir}"/"${study}"/TPOT_Scripts/rsfMRI/output/"${task}"_output/"${SUBJ}"_fmripreprest_error.txt job_fmripreprest.sh
+sbatch --export ALL,subid=${SUBJ},group_dir=${group_dir},study=${study},container=${container},task=${task} --job-name fmripreprest_"${SUBJ}" -A "${group}" --partition=short --time=24:00:00 --cpus-per-task=16 --mem-per-cpu=4G -o "${group_dir}"/"${study}"/TPOT_Scripts/rsfMRI/output/"${task}"_output/"${SUBJ}"_fmripreprest_output.txt -e "${group_dir}"/"${study}"/TPOT_Scripts/rsfMRI/output/"${task}"_output/"${SUBJ}"_fmripreprest_error.txt job_fmripreprest.sh
 
 done
