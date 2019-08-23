@@ -8,7 +8,7 @@ import subprocess
 from warnings import warn
 from argparse import ArgumentParser
 from argparse import RawTextHelpFormatter
-import pandas as pd
+
 
 
 def get_parser():
