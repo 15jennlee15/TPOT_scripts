@@ -13,7 +13,7 @@ cd /projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/xcpEngine
 
 XCPEDIR=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/xcpEngine
 SIMG=/projects/adapt_lab/shared/containers/xcpEngine.simg
-HOME=/projects/adapt_lab/shared/TPOT
+HOME=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/xcpEngine
 bids_dir=/projects/adapt_lab/shared/TPOT/bids_data/derivatives
 
 singularity run -B ${HOME}:${bids_dir} $SIMG \
