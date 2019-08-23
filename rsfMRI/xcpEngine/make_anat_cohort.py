@@ -6,9 +6,9 @@ import csv
 # Set study info (may need to change for your study)
 # These variables are used only in this file for paths. Can omit if wanted.
 group = "adapt_lab"
-study = "SHARP"
+study = "TPOT"
 PI = "Allen"
-scriptsFolder = "SHARP_Scripts"
+scriptsFolder = "TPOT_Scripts"
 
 # The following variables are used in the main script and need to be defined here. 
 # They need to exist prior to running the script
