@@ -4,3 +4,65 @@ loaded as requested: "c3d"
 
 
 
+
+
+
+Current processing step:
+@1 Localising subject metadata...
+····································································
+· @1.1 [Parsing subject identifiers]
+· @1.1a [Creating output directory]
+· @1.1b [/projects/adapt_lab/shared/TPOT/bids_data/derivatives/xcpEngine/data/sub-TPOT002/ses-1]
+· @1.2 [Initialising space mapping]
+· @1.3 [Initialising derivative maps]
+· @1.4 [Initialising atlas system]
+· @1.5 Ingress
+· @1.5.1 [Native space: sub-TPOT002_ses-1_anatomical]
+· @1.5.2a [Standard space: MNI]
+· @1.5.3a [Anatomical space: sub-TPOT002_ses-1_anatomical]
+· @1.5 [Priming analytic audit]
+· @1.6 [Priming quality assessment]
+
+
+
+Current processing step:
+@2 Localising image
+····································································
+· @2.1 [Verifying that images are present]
+· @2.2 [Conforming and localising images]
+
+
+
+Current processing step:
+@3 Localising design
+····································································
+· @3.1 [Writing localised design]
+· @3.2 [Evaluating subject variables]
+                             -   -   -
+>> rln /xcpEngine/space/MNI/MNI-2x2x2.nii.gz /projects/adapt_lab/shared/TPOT/bids_data/derivatives/xcpEngine/data/sub-TPOT002/ses-1/struc/template.nii.gz
+                             -   -   -
+>> rln /projects/adapt_lab/shared/TPOT/bids_data/derivatives/xcpEngine/data/sub-TPOT002/ses-1/sub-TPOT002_ses-1.nii.gz /tmp/sub-TPOT002_ses-1-struc-408622480~TEMP~.nii.gz
+ls: cannot access 'null': No such file or directory
+· @0.1 
+
+
+
+Current processing step:
+@0 Ensure matching orientation
+····································································
+· @0.1a Input: /tmp/sub-TPOT002_ses-1-struc-408622480~TEMP~.nii.gz
+· @0.1b Template: /xcpEngine/space/MNI/MNI-2x2x2.nii.gz
+· @0.1c Output root: /projects/adapt_lab/shared/TPOT/bids_data/derivatives/xcpEngine/data/sub-TPOT002/ses-1/struc/sub-TPOT002_ses-1_
+· @0.1d LPI -> RPI
+
+
+
+Current processing step:
+@1 ANTs cortical thickness pipeline
+····································································
+· @1.1a Input: /tmp/sub-TPOT002_ses-1-struc-408622480~TEMP~_RPI.nii.gz
+· @1.1b Template: /xcpEngine/space/MNI/MNI-2x2x2.nii.gz
+· @1.1c Output root: /projects/adapt_lab/shared/TPOT/bids_data/derivatives/xcpEngine/data/sub-TPOT002/ses-1/struc/sub-TPOT002_ses-1_
+· @1.x Delegating control to ANTsCT
+                             -   -   -
+>> antsCorticalThickness.sh -d 3 -a /tmp/sub-TPOT002_ses-1-struc-408622480~TEMP~_RPI.nii.gz -e /xcpEngine/space/MNI/MNI-2x2x2Head.nii.gz -m null -p null -o /projects/adapt_lab/shared/TPOT/bids_data/derivatives/xcpEngine/data/sub-TPOT002/ses-1/struc/sub-TPOT002_ses-1_ -s nii.gz -t /xcpEngine/space/MNI/MNI-2x2x2.nii.gz -f null -g 0 -w 0.25 -b Socrates[1] -j 0 -u 0 -v 0 -q 0
