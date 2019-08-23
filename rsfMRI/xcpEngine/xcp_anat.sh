@@ -17,9 +17,9 @@ HOME=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/xcpEngine
 bids_dir=/projects/adapt_lab/shared/TPOT/bids_data/derivatives
 
 singularity run -B ${HOME}:${bids_dir} $SIMG \
-   -d ${HOME}/TPOT_Scripts/rsfMRI/xcpEngine/anat-Complete_201908231455.dsn \
+   -d ${HOME}/anat-Complete_201908231455.dsn \
    -c "${TEMP_COHORT}",${ses} \
-   -o ${HOME}/bids_data/derivatives/xcpEngine/data \
+   -o ${bids_dir}/xcpEngine/data \
    -t 1 \
    -i \$TMPDIR
 
