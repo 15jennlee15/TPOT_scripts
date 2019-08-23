@@ -8,23 +8,408 @@ Subject directory: /projects/adapt_lab/shared/TPOT/bids_data
 Starting on: video
 
 
+190821-16:50:27,886 nipype.workflow IMPORTANT:
+	 
+    Running fMRIPREP version 1.5.0rc1:
+      * BIDS dataset path: /projects/adapt_lab/shared/TPOT/bids_data.
+      * Participant list: ['TPOT168'].
+      * Run identifier: 20190821-164130_ef788d5e-fa56-43e6-ae89-9fe5924c0fe7.
+    
+190821-16:50:44,808 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT168/ses-1/func/sub-TPOT168_ses-1_task-video_bold.nii.gz" (0.29 GB / 260 TRs). Memory resampled/largemem=1.14/1.88 GB.
+190821-16:50:45,941 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-TPOT168_ses-1_task-video_bold.nii.gz
+190821-16:50:53,306 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190821-16:50:54,241 nipype.workflow IMPORTANT:
+	 SDC: fieldmap estimation of type "epi" intended for /projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT168/ses-1/func/sub-TPOT168_ses-1_task-video_bold.nii.gz found.
+190821-16:50:56,908 nipype.workflow IMPORTANT:
+	 Creating BOLD surface-sampling workflow.
+190821-16:51:10,681 nipype.workflow IMPORTANT:
+	 Works derived from this fMRIPrep execution should include the following boilerplate:
 
-<--- Last few GCs --->
 
-[7535:0x24e1150]  1957269 ms: Mark-sweep 1256.1 (1447.9) -> 1256.0 (1416.9) MB, 550.7 / 0.0 ms  (average mu = 0.868, current mu = 0.000) last resort GC in old space requested
-[7535:0x24e1150]  1957843 ms: Mark-sweep 1256.0 (1416.9) -> 1256.0 (1416.9) MB, 574.2 / 0.0 ms  (average mu = 0.765, current mu = 0.000) last resort GC in old space requested
+Results included in this manuscript come from preprocessing
+performed using *fMRIPrep* 1.5.0rc1
+(@fmriprep1; @fmriprep2; RRID:SCR_016216),
+which is based on *Nipype* 1.2.0
+(@nipype1; @nipype2; RRID:SCR_002502).
+
+Anatomical data preprocessing
+
+: The T1-weighted (T1w) image was corrected for intensity non-uniformity (INU)
+with `N4BiasFieldCorrection` [@n4], distributed with ANTs 2.2.0 [@ants, RRID:SCR_004757], and used as T1w-reference throughout the workflow.
+The T1w-reference was then skull-stripped with a *Nipype* implementation of
+the `antsBrainExtraction.sh` workflow (from ANTs), using OASIS30ANTs
+as target template.
+Brain tissue segmentation of cerebrospinal fluid (CSF),
+white-matter (WM) and gray-matter (GM) was performed on
+the brain-extracted T1w using `fast` [FSL 5.0.9, RRID:SCR_002823,
+@fsl_fast].
+Brain surfaces were reconstructed using `recon-all` [FreeSurfer 6.0.1,
+RRID:SCR_001847, @fs_reconall], and the brain mask estimated
+previously was refined with a custom variation of the method to reconcile
+ANTs-derived and FreeSurfer-derived segmentations of the cortical
+gray-matter of Mindboggle [RRID:SCR_002438, @mindboggle].
+Volume-based spatial normalization to one standard space (MNI152NLin2009cAsym) was performed through
+nonlinear registration with `antsRegistration` (ANTs 2.2.0),
+using brain-extracted versions of both T1w reference and the T1w template.
+The following template was selected for spatial normalization:
+*ICBM 152 Nonlinear Asymmetrical template version 2009c* [@mni152nlin2009casym, RRID:SCR_008796; TemplateFlow ID: MNI152NLin2009cAsym].
+
+Functional data preprocessing
+
+: For each of the 1 BOLD runs found per subject (across all
+tasks and sessions), the following preprocessing was performed.
+First, a reference volume and its skull-stripped version were generated
+using a custom methodology of *fMRIPrep*.
+A deformation field to correct for susceptibility distortions was estimated
+based on two echo-planar imaging (EPI) references with opposing phase-encoding
+directions, using `3dQwarp` @afni (AFNI 20160207).
+Based on the estimated susceptibility distortion, an
+unwarped BOLD reference was calculated for a more accurate
+co-registration with the anatomical reference.
+The BOLD reference was then co-registered to the T1w reference using
+`bbregister` (FreeSurfer) which implements boundary-based registration [@bbr].
+Co-registration was configured with six degrees of freedom.
+Head-motion parameters with respect to the BOLD reference
+(transformation matrices, and six corresponding rotation and translation
+parameters) are estimated before any spatiotemporal filtering using
+`mcflirt` [FSL 5.0.9, @mcflirt].
+BOLD runs were slice-time corrected using `3dTshift` from
+AFNI 20160207 [@afni, RRID:SCR_005927].
+The BOLD time-series, were resampled to surfaces on the following
+spaces: *fsaverage5*, *fsnative*.
+*Grayordinates* files [@hcppipelines], which combine surface-sampled
+data and volume-sampled data, were also generated.
+The BOLD time-series (including slice-timing correction when applied)
+were resampled onto their original, native space by applying
+a single, composite transform to correct for head-motion and
+susceptibility distortions.
+These resampled BOLD time-series will be referred to as *preprocessed
+BOLD in original space*, or just *preprocessed BOLD*.
+The BOLD time-series were resampled into standard space,
+generating a *preprocessed BOLD run in ['MNI152NLin2009cAsym'] space*.
+First, a reference volume and its skull-stripped version were generated
+using a custom methodology of *fMRIPrep*.
+Several confounding time-series were calculated based on the
+*preprocessed BOLD*: framewise displacement (FD), DVARS and
+three region-wise global signals.
+FD and DVARS are calculated for each functional run, both using their
+implementations in *Nipype* [following the definitions by @power_fd_dvars].
+The three global signals are extracted within the CSF, the WM, and
+the whole-brain masks.
+Additionally, a set of physiological regressors were extracted to
+allow for component-based noise correction [*CompCor*, @compcor].
+Principal components are estimated after high-pass filtering the
+*preprocessed BOLD* time-series (using a discrete cosine filter with
+128s cut-off) for the two *CompCor* variants: temporal (tCompCor)
+and anatomical (aCompCor).
+tCompCor components are then calculated from the top 5% variable
+voxels within a mask covering the subcortical regions.
+This subcortical mask is obtained by heavily eroding the brain mask,
+which ensures it does not include cortical GM regions.
+For aCompCor, components are calculated within the intersection of
+the aforementioned mask and the union of CSF and WM masks calculated
+in T1w space, after their projection to the native space of each
+functional run (using the inverse BOLD-to-T1w transformation). Components
+are also calculated separately within the WM and CSF masks.
+For each CompCor decomposition, the *k* components with the largest singular
+values are retained, such that the retained components' time series are
+sufficient to explain 50 percent of variance across the nuisance mask (CSF,
+WM, combined, or temporal). The remaining components are dropped from
+consideration.
+The head-motion estimates calculated in the correction step were also
+placed within the corresponding confounds file.
+The confound time series derived from head motion estimates and global
+signals were expanded with the inclusion of temporal derivatives and
+quadratic terms for each [@confounds_satterthwaite_2013].
+Frames that exceeded a threshold of 0.5 mm FD or 1.5 standardised DVARS
+were annotated as motion outliers.
+All resamplings can be performed with *a single interpolation
+step* by composing all the pertinent transformations (i.e. head-motion
+transform matrices, susceptibility distortion correction when available,
+and co-registrations to anatomical and output spaces).
+Gridded (volumetric) resamplings were performed using `antsApplyTransforms` (ANTs),
+configured with Lanczos interpolation to minimize the smoothing
+effects of other kernels [@lanczos].
+Non-gridded (surface) resamplings were performed using `mri_vol2surf`
+(FreeSurfer).
 
 
-<--- JS stacktrace --->
+Many internal operations of *fMRIPrep* use
+*Nilearn* 0.5.2 [@nilearn, RRID:SCR_001362],
+mostly within the functional processing workflow.
+For more details of the pipeline, see [the section corresponding
+to workflows in *fMRIPrep*'s documentation](https://fmriprep.readthedocs.io/en/latest/workflows.html "FMRIPrep's documentation").
 
-==== JS stack trace =========================================
 
-    0: ExitFrame [pc: 0x8fa1355be1d]
-Security context: 0x19e52359e6e1 <JSObject>
-    1: callbackWrapper [0x213587482719] [/usr/lib/node_modules/bids-validator/utils/files/readDir.js:~26] [pc=0x8fa13923ffb](this=0x1ab21e21ad11 <JSGlobal Object>,ig=0x213587482201 <IgnoreBase map = 0x3adafe414fd1>)
-    2: /* anonymous */ [0x2135874827a9] [/usr/lib/node_modules/bids-validator/utils/files/readDir.js:155] [bytecode=0x3cadf72d7f21 offset=26](thi...
+### Copyright Waiver
 
-Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
+The above boilerplate text was automatically generated by fMRIPrep
+with the express intention that users should copy and paste this
+text into their manuscripts *unchanged*.
+It is released under the [CC0](https://creativecommons.org/publicdomain/zero/1.0/) license.
+
+### References
+
+
+190821-16:51:35,70 nipype.interface WARNING:
+	 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage exists; if multiple jobs are running in parallel, this can be safely ignored
+190821-16:51:50,277 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon1".
+190821-16:51:50,353 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:51:50,355 nipype.workflow INFO:
+	 [Node] Running "autorecon1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:51:50,360 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:51:50,569 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon1".
+190821-16:53:18,309 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.skull_strip_extern" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/skull_strip_extern".
+190821-16:53:18,357 nipype.workflow INFO:
+	 [Node] Running "skull_strip_extern" ("niworkflows.interfaces.freesurfer.FSInjectBrainExtracted")
+190821-16:53:18,372 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.skull_strip_extern".
+190821-16:53:19,532 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon2_vol" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon2_vol".
+190821-16:53:19,614 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:53:19,615 nipype.workflow INFO:
+	 [Node] Running "autorecon2_vol" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:53:19,621 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:53:19,702 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon2_vol".
+190821-16:53:23,533 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs0".
+190821-16:53:23,533 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs1".
+190821-16:53:23,608 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:53:23,609 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs0" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:53:23,610 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:53:23,612 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:53:23,615 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:53:23,617 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:53:23,687 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs0".
+190821-16:53:23,687 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs1".
+190821-16:53:25,540 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon_surfs" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs".
+190821-16:53:25,570 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs0".
+190821-16:53:25,583 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:53:25,584 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs0" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:53:25,590 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:53:25,660 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs0".
+190821-16:53:25,667 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs1".
+190821-16:53:25,680 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:53:25,681 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:53:25,685 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:53:25,752 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs1".
+190821-16:53:25,770 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon_surfs".
+190821-16:53:29,535 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon31" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon31".
+190821-16:53:29,540 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon30" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon30".
+190821-16:53:29,609 nipype.interface INFO:
+	 resume recon-all : recon-all -autorecon3 -hemi rh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
+190821-16:53:29,609 nipype.interface INFO:
+	 resume recon-all : recon-all -autorecon3 -hemi lh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
+190821-16:53:29,612 nipype.workflow INFO:
+	 [Node] Running "_autorecon31" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+recon-all -autorecon3 -hemi rh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
+190821-16:53:29,612 nipype.workflow INFO:
+	 [Node] Running "_autorecon30" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+recon-all -autorecon3 -hemi lh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
+190821-16:53:29,619 nipype.interface INFO:
+	 resume recon-all : recon-all -autorecon3 -hemi rh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
+190821-16:53:29,619 nipype.interface INFO:
+	 resume recon-all : recon-all -autorecon3 -hemi lh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
+190821-16:53:39,343 nipype.workflow WARNING:
+	 [Node] Error on "_autorecon31" (/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon31)
+190821-16:53:39,351 nipype.workflow WARNING:
+	 [Node] Error on "_autorecon30" (/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT168_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon30)
+190821-16:53:40,414 nipype.workflow ERROR:
+	 Node _autorecon30 failed to run on host n067.
+190821-16:53:40,434 nipype.workflow ERROR:
+	 Saving crash info to /projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT168/log/20190821-164130_ef788d5e-fa56-43e6-ae89-9fe5924c0fe7/crash-20190821-165340-nallen3-_autorecon30-83d05038-e94f-456a-a589-89a30e27741c.txt
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 69, in run_node
+    result['result'] = node.run(updatehash=updatehash)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 472, in run
+    result = self._run_interface(execute=True)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 563, in _run_interface
+    return self._run_command(execute)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 643, in _run_command
+    result = self._interface.run(cwd=outdir)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/base/core.py", line 375, in run
+    runtime = self._run_interface(runtime)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/base/core.py", line 758, in _run_interface
+    self.raise_exception(runtime)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/base/core.py", line 695, in raise_exception
+    ).format(**runtime.dictcopy()))
+RuntimeError: Command:
+recon-all -autorecon3 -hemi lh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
+Standard output:
+Subject Stamp: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1-f53a55a
+Current Stamp: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1-f53a55a
+INFO: SUBJECTS_DIR is /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer
+Actual FREESURFER_HOME /opt/freesurfer
+-rwxrwx--- 1 nallen3 adapt_lab 467750 Aug 21 15:01 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.log
+Linux n067 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+'/opt/freesurfer/bin/recon-all' -> '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.local-copy'
+/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/label
+INFO: fsaverage subject does not exist in SUBJECTS_DIR
+INFO: Creating symlink to fsaverage subject...
+
+ cd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer; ln -s /opt/freesurfer/subjects/fsaverage; cd - 
+
+ln: failed to create symbolic link './fsaverage': File exists
+#--------------------------------------------
+#@# BA_exvivo Labels lh Wed Aug 21 16:53:39 PDT 2019
+
+ mri_label2label --srcsubject fsaverage --srclabel /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/lh.BA1_exvivo.label --trgsubject sub-TPOT168 --trglabel ./lh.BA1_exvivo.label --hemi lh --regmethod surface 
+
+No such file or directory
+mri_label2label.bin: could not open label file /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/lh.BA1_exvivo.label
+
+srclabel = /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/lh.BA1_exvivo.label
+srcsubject = fsaverage
+trgsubject = sub-TPOT168
+trglabel = ./lh.BA1_exvivo.label
+regmethod = surface
+
+srchemi = lh
+trghemi = lh
+trgsurface = white
+srcsurfreg = sphere.reg
+trgsurfreg = sphere.reg
+usehash = 1
+Use ProjAbs  = 0, 0
+Use ProjFrac = 0, 0
+DoPaint 0
+
+SUBJECTS_DIR    /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer
+FREESURFER_HOME /opt/freesurfer
+Loading source label.
+Invalid argument
+ERROR reading /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/lh.BA1_exvivo.label
+Linux n067 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+
+recon-all -s sub-TPOT168 exited with ERRORS at Wed Aug 21 16:53:39 PDT 2019
+
+For more details, see the log file /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.log
+To report a problem, see http://surfer.nmr.mgh.harvard.edu/fswiki/BugReporting
+
+Standard error:
+
+Return code: 1
+
+190821-16:53:40,455 nipype.workflow ERROR:
+	 Node _autorecon31 failed to run on host n067.
+190821-16:53:40,469 nipype.workflow ERROR:
+	 Saving crash info to /projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT168/log/20190821-164130_ef788d5e-fa56-43e6-ae89-9fe5924c0fe7/crash-20190821-165340-nallen3-_autorecon31-e689b531-cb27-4c8c-a4f2-049b6285048d.txt
+Traceback (most recent call last):
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/plugins/multiproc.py", line 69, in run_node
+    result['result'] = node.run(updatehash=updatehash)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 472, in run
+    result = self._run_interface(execute=True)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 563, in _run_interface
+    return self._run_command(execute)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/pipeline/engine/nodes.py", line 643, in _run_command
+    result = self._interface.run(cwd=outdir)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/base/core.py", line 375, in run
+    runtime = self._run_interface(runtime)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/base/core.py", line 758, in _run_interface
+    self.raise_exception(runtime)
+  File "/usr/local/miniconda/lib/python3.7/site-packages/nipype/interfaces/base/core.py", line 695, in raise_exception
+    ).format(**runtime.dictcopy()))
+RuntimeError: Command:
+recon-all -autorecon3 -hemi rh -openmp 8 -subjid sub-TPOT168 -sd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer -nosphere -nosurfreg -nojacobian_white -noavgcurv -nocortparc -nopial -noparcstats -nocortparc2 -noparcstats2 -nocortparc3 -noparcstats3 -nopctsurfcon -nocortribbon -nohyporelabel -noaparc2aseg -noapas2aseg -nosegstats -nowmparc
+Standard output:
+Subject Stamp: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1-f53a55a
+Current Stamp: freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.1-f53a55a
+INFO: SUBJECTS_DIR is /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer
+Actual FREESURFER_HOME /opt/freesurfer
+-rwxrwx--- 1 nallen3 adapt_lab 467750 Aug 21 15:01 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.log
+Linux n067 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+'/opt/freesurfer/bin/recon-all' -> '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.local-copy'
+/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/label
+INFO: fsaverage subject does not exist in SUBJECTS_DIR
+INFO: Creating symlink to fsaverage subject...
+
+ cd /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer; ln -s /opt/freesurfer/subjects/fsaverage; cd - 
+
+ln: failed to create symbolic link './fsaverage': File exists
+#--------------------------------------------
+#@# BA_exvivo Labels rh Wed Aug 21 16:53:39 PDT 2019
+
+ mri_label2label --srcsubject fsaverage --srclabel /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/rh.BA1_exvivo.label --trgsubject sub-TPOT168 --trglabel ./rh.BA1_exvivo.label --hemi rh --regmethod surface 
+
+No such file or directory
+mri_label2label.bin: could not open label file /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/rh.BA1_exvivo.label
+
+srclabel = /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/rh.BA1_exvivo.label
+srcsubject = fsaverage
+trgsubject = sub-TPOT168
+trglabel = ./rh.BA1_exvivo.label
+regmethod = surface
+
+srchemi = rh
+trghemi = rh
+trgsurface = white
+srcsurfreg = sphere.reg
+trgsurfreg = sphere.reg
+usehash = 1
+Use ProjAbs  = 0, 0
+Use ProjFrac = 0, 0
+DoPaint 0
+
+SUBJECTS_DIR    /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer
+FREESURFER_HOME /opt/freesurfer
+Loading source label.
+Invalid argument
+ERROR reading /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage/label/rh.BA1_exvivo.label
+Linux n067 3.10.0-957.21.2.el7.x86_64 #1 SMP Tue May 28 09:26:43 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+
+recon-all -s sub-TPOT168 exited with ERRORS at Wed Aug 21 16:53:39 PDT 2019
+
+For more details, see the log file /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.log
+To report a problem, see http://surfer.nmr.mgh.harvard.edu/fswiki/BugReporting
+
+Standard error:
+mv: cannot move '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.env' to '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/sub-TPOT168/scripts/recon-all.env.bak': No such file or directory
+Return code: 1
+
+190821-16:53:42,409 nipype.workflow ERROR:
+	 could not run node: fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon3
+190821-16:53:42,423 nipype.workflow ERROR:
+	 could not run node: fmriprep_wf.single_subject_TPOT168_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon3
 
 
 

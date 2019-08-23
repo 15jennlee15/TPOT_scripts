@@ -8,23 +8,313 @@ Subject directory: /projects/adapt_lab/shared/TPOT/bids_data
 Starting on: video
 
 
+190821-16:39:03,870 nipype.workflow IMPORTANT:
+	 
+    Running fMRIPREP version 1.5.0rc1:
+      * BIDS dataset path: /projects/adapt_lab/shared/TPOT/bids_data.
+      * Participant list: ['TPOT126'].
+      * Run identifier: 20190821-163550_0747abbe-26f6-48aa-a94e-c321762e0a8c.
+    
+190821-16:39:10,731 nipype.workflow IMPORTANT:
+	 Creating bold processing workflow for "/projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT126/ses-1/func/sub-TPOT126_ses-1_task-video_bold.nii.gz" (0.29 GB / 260 TRs). Memory resampled/largemem=1.18/1.94 GB.
+190821-16:39:11,229 nipype.workflow IMPORTANT:
+	 No single-band-reference found for sub-TPOT126_ses-1_task-video_bold.nii.gz
+190821-16:39:15,55 nipype.workflow IMPORTANT:
+	 Slice-timing correction will be included.
+190821-16:39:15,484 nipype.workflow IMPORTANT:
+	 SDC: fieldmap estimation of type "epi" intended for /projects/adapt_lab/shared/TPOT/bids_data/sub-TPOT126/ses-1/func/sub-TPOT126_ses-1_task-video_bold.nii.gz found.
+190821-16:39:16,600 nipype.workflow IMPORTANT:
+	 Creating BOLD surface-sampling workflow.
+190821-16:39:23,256 nipype.workflow IMPORTANT:
+	 Works derived from this fMRIPrep execution should include the following boilerplate:
 
-<--- Last few GCs --->
 
-[143920:0x24e1150]  2569325 ms: Mark-sweep 1255.6 (1446.9) -> 1255.6 (1415.9) MB, 713.9 / 0.0 ms  (average mu = 0.872, current mu = 0.000) last resort GC in old space requested
-[143920:0x24e1150]  2570097 ms: Mark-sweep 1255.6 (1415.9) -> 1255.6 (1415.9) MB, 771.8 / 0.0 ms  (average mu = 0.777, current mu = 0.000) last resort GC in old space requested
+Results included in this manuscript come from preprocessing
+performed using *fMRIPrep* 1.5.0rc1
+(@fmriprep1; @fmriprep2; RRID:SCR_016216),
+which is based on *Nipype* 1.2.0
+(@nipype1; @nipype2; RRID:SCR_002502).
+
+Anatomical data preprocessing
+
+: The T1-weighted (T1w) image was corrected for intensity non-uniformity (INU)
+with `N4BiasFieldCorrection` [@n4], distributed with ANTs 2.2.0 [@ants, RRID:SCR_004757], and used as T1w-reference throughout the workflow.
+The T1w-reference was then skull-stripped with a *Nipype* implementation of
+the `antsBrainExtraction.sh` workflow (from ANTs), using OASIS30ANTs
+as target template.
+Brain tissue segmentation of cerebrospinal fluid (CSF),
+white-matter (WM) and gray-matter (GM) was performed on
+the brain-extracted T1w using `fast` [FSL 5.0.9, RRID:SCR_002823,
+@fsl_fast].
+Brain surfaces were reconstructed using `recon-all` [FreeSurfer 6.0.1,
+RRID:SCR_001847, @fs_reconall], and the brain mask estimated
+previously was refined with a custom variation of the method to reconcile
+ANTs-derived and FreeSurfer-derived segmentations of the cortical
+gray-matter of Mindboggle [RRID:SCR_002438, @mindboggle].
+Volume-based spatial normalization to one standard space (MNI152NLin2009cAsym) was performed through
+nonlinear registration with `antsRegistration` (ANTs 2.2.0),
+using brain-extracted versions of both T1w reference and the T1w template.
+The following template was selected for spatial normalization:
+*ICBM 152 Nonlinear Asymmetrical template version 2009c* [@mni152nlin2009casym, RRID:SCR_008796; TemplateFlow ID: MNI152NLin2009cAsym].
+
+Functional data preprocessing
+
+: For each of the 1 BOLD runs found per subject (across all
+tasks and sessions), the following preprocessing was performed.
+First, a reference volume and its skull-stripped version were generated
+using a custom methodology of *fMRIPrep*.
+A deformation field to correct for susceptibility distortions was estimated
+based on two echo-planar imaging (EPI) references with opposing phase-encoding
+directions, using `3dQwarp` @afni (AFNI 20160207).
+Based on the estimated susceptibility distortion, an
+unwarped BOLD reference was calculated for a more accurate
+co-registration with the anatomical reference.
+The BOLD reference was then co-registered to the T1w reference using
+`bbregister` (FreeSurfer) which implements boundary-based registration [@bbr].
+Co-registration was configured with six degrees of freedom.
+Head-motion parameters with respect to the BOLD reference
+(transformation matrices, and six corresponding rotation and translation
+parameters) are estimated before any spatiotemporal filtering using
+`mcflirt` [FSL 5.0.9, @mcflirt].
+BOLD runs were slice-time corrected using `3dTshift` from
+AFNI 20160207 [@afni, RRID:SCR_005927].
+The BOLD time-series, were resampled to surfaces on the following
+spaces: *fsaverage5*, *fsnative*.
+*Grayordinates* files [@hcppipelines], which combine surface-sampled
+data and volume-sampled data, were also generated.
+The BOLD time-series (including slice-timing correction when applied)
+were resampled onto their original, native space by applying
+a single, composite transform to correct for head-motion and
+susceptibility distortions.
+These resampled BOLD time-series will be referred to as *preprocessed
+BOLD in original space*, or just *preprocessed BOLD*.
+The BOLD time-series were resampled into standard space,
+generating a *preprocessed BOLD run in ['MNI152NLin2009cAsym'] space*.
+First, a reference volume and its skull-stripped version were generated
+using a custom methodology of *fMRIPrep*.
+Several confounding time-series were calculated based on the
+*preprocessed BOLD*: framewise displacement (FD), DVARS and
+three region-wise global signals.
+FD and DVARS are calculated for each functional run, both using their
+implementations in *Nipype* [following the definitions by @power_fd_dvars].
+The three global signals are extracted within the CSF, the WM, and
+the whole-brain masks.
+Additionally, a set of physiological regressors were extracted to
+allow for component-based noise correction [*CompCor*, @compcor].
+Principal components are estimated after high-pass filtering the
+*preprocessed BOLD* time-series (using a discrete cosine filter with
+128s cut-off) for the two *CompCor* variants: temporal (tCompCor)
+and anatomical (aCompCor).
+tCompCor components are then calculated from the top 5% variable
+voxels within a mask covering the subcortical regions.
+This subcortical mask is obtained by heavily eroding the brain mask,
+which ensures it does not include cortical GM regions.
+For aCompCor, components are calculated within the intersection of
+the aforementioned mask and the union of CSF and WM masks calculated
+in T1w space, after their projection to the native space of each
+functional run (using the inverse BOLD-to-T1w transformation). Components
+are also calculated separately within the WM and CSF masks.
+For each CompCor decomposition, the *k* components with the largest singular
+values are retained, such that the retained components' time series are
+sufficient to explain 50 percent of variance across the nuisance mask (CSF,
+WM, combined, or temporal). The remaining components are dropped from
+consideration.
+The head-motion estimates calculated in the correction step were also
+placed within the corresponding confounds file.
+The confound time series derived from head motion estimates and global
+signals were expanded with the inclusion of temporal derivatives and
+quadratic terms for each [@confounds_satterthwaite_2013].
+Frames that exceeded a threshold of 0.5 mm FD or 1.5 standardised DVARS
+were annotated as motion outliers.
+All resamplings can be performed with *a single interpolation
+step* by composing all the pertinent transformations (i.e. head-motion
+transform matrices, susceptibility distortion correction when available,
+and co-registrations to anatomical and output spaces).
+Gridded (volumetric) resamplings were performed using `antsApplyTransforms` (ANTs),
+configured with Lanczos interpolation to minimize the smoothing
+effects of other kernels [@lanczos].
+Non-gridded (surface) resamplings were performed using `mri_vol2surf`
+(FreeSurfer).
 
 
-<--- JS stacktrace --->
+Many internal operations of *fMRIPrep* use
+*Nilearn* 0.5.2 [@nilearn, RRID:SCR_001362],
+mostly within the functional processing workflow.
+For more details of the pipeline, see [the section corresponding
+to workflows in *fMRIPrep*'s documentation](https://fmriprep.readthedocs.io/en/latest/workflows.html "FMRIPrep's documentation").
 
-==== JS stack trace =========================================
 
-    0: ExitFrame [pc: 0x12efa365be1d]
-Security context: 0x2a5e99f9e6e1 <JSObject>
-    1: callbackWrapper [0x19a7e4882719] [/usr/lib/node_modules/bids-validator/utils/files/readDir.js:~26] [pc=0x12efa38fbb1b](this=0x203114c9ad11 <JSGlobal Object>,ig=0x19a7e4882201 <IgnoreBase map = 0x26581f0ba6a1>)
-    2: /* anonymous */ [0x19a7e48827a9] [/usr/lib/node_modules/bids-validator/utils/files/readDir.js:155] [bytecode=0x37e592702411 offset=26](t...
+### Copyright Waiver
 
-Making sure the input data is BIDS compliant (warnings can be ignored in most cases).
+The above boilerplate text was automatically generated by fMRIPrep
+with the express intention that users should copy and paste this
+text into their manuscripts *unchanged*.
+It is released under the [CC0](https://creativecommons.org/publicdomain/zero/1.0/) license.
+
+### References
+
+
+190821-16:39:35,303 nipype.interface WARNING:
+	 /projects/adapt_lab/shared/TPOT/bids_data/derivatives/freesurfer/fsaverage exists; if multiple jobs are running in parallel, this can be safely ignored
+190821-16:39:50,477 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.autorecon1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon1".
+190821-16:39:50,558 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:39:50,559 nipype.workflow INFO:
+	 [Node] Running "autorecon1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:39:50,563 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:39:50,765 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.autorecon1".
+190821-16:41:07,415 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.skull_strip_extern" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/skull_strip_extern".
+190821-16:41:07,461 nipype.workflow INFO:
+	 [Node] Running "skull_strip_extern" ("niworkflows.interfaces.freesurfer.FSInjectBrainExtracted")
+190821-16:41:07,476 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.skull_strip_extern".
+190821-16:41:09,10 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon2_vol" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon2_vol".
+190821-16:41:09,82 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:09,84 nipype.workflow INFO:
+	 [Node] Running "autorecon2_vol" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:41:09,89 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:09,181 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon2_vol".
+190821-16:41:13,18 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs1".
+190821-16:41:13,18 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs0".
+190821-16:41:13,86 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:13,87 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:13,88 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs0" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:41:13,90 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:41:13,92 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:13,95 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:13,164 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs1".
+190821-16:41:13,168 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs0".
+190821-16:41:15,18 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon_surfs" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs".
+190821-16:41:15,43 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs0" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs0".
+190821-16:41:15,53 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:15,54 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs0" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:41:15,57 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:15,128 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs0".
+190821-16:41:15,134 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon_surfs1" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon_surfs/mapflow/_autorecon_surfs1".
+190821-16:41:15,147 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:15,148 nipype.workflow INFO:
+	 [Node] Running "_autorecon_surfs1" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:41:15,152 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:15,220 nipype.workflow INFO:
+	 [Node] Finished "_autorecon_surfs1".
+190821-16:41:15,239 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon_surfs".
+190821-16:41:19,29 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon31" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon31".
+190821-16:41:19,101 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:19,103 nipype.workflow INFO:
+	 [Node] Running "_autorecon31" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:41:19,110 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:19,137 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon30" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon30".
+190821-16:41:19,189 nipype.workflow INFO:
+	 [Node] Finished "_autorecon31".
+190821-16:41:19,197 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:19,199 nipype.workflow INFO:
+	 [Node] Running "_autorecon30" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:41:19,205 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:19,276 nipype.workflow INFO:
+	 [Node] Finished "_autorecon30".
+190821-16:41:21,16 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon3" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3".
+190821-16:41:21,41 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon30" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon30".
+190821-16:41:21,51 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:21,52 nipype.workflow INFO:
+	 [Node] Running "_autorecon30" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:41:21,56 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:21,125 nipype.workflow INFO:
+	 [Node] Finished "_autorecon30".
+190821-16:41:21,131 nipype.workflow INFO:
+	 [Node] Setting-up "_autorecon31" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/autorecon3/mapflow/_autorecon31".
+190821-16:41:21,144 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:21,145 nipype.workflow INFO:
+	 [Node] Running "_autorecon31" ("nipype.interfaces.freesurfer.preprocess.ReconAll"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:41:21,150 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:21,212 nipype.workflow INFO:
+	 [Node] Finished "_autorecon31".
+190821-16:41:21,232 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.autorecon3".
+190821-16:41:22,945 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.segs_to_native_aseg.fs_datasource" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/segs_to_native_aseg/fs_datasource".
+190821-16:41:22,945 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.get_surfaces" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/get_surfaces".
+190821-16:41:22,984 nipype.workflow INFO:
+	 [Node] Running "get_surfaces" ("nipype.interfaces.io.FreeSurferSource")
+190821-16:41:22,985 nipype.workflow INFO:
+	 [Node] Running "fs_datasource" ("nipype.interfaces.io.FreeSurferSource")
+190821-16:41:22,998 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.segs_to_native_aparc_aseg.fs_datasource" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/segs_to_native_aparc_aseg/fs_datasource".
+190821-16:41:23,17 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.get_surfaces".
+190821-16:41:23,34 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.segs_to_native_aseg.fs_datasource".
+190821-16:41:23,41 nipype.workflow INFO:
+	 [Node] Running "fs_datasource" ("nipype.interfaces.io.FreeSurferSource")
+190821-16:41:23,93 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.segs_to_native_aparc_aseg.fs_datasource".
+190821-16:41:25,184 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.recon_report" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/autorecon_resume_wf/recon_report".
+190821-16:41:25,241 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:25,243 nipype.workflow INFO:
+	 [Node] Running "recon_report" ("niworkflows.interfaces.segmentation.ReconAllRPT"), a CommandLine Interface with command:
+echo recon-all: nothing to do
+190821-16:41:25,246 nipype.interface INFO:
+	 recon-all complete : Not running
+190821-16:41:35,841 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.autorecon_resume_wf.recon_report".
+190821-16:41:36,936 nipype.workflow INFO:
+	 [Node] Setting-up "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.save_midthickness" in "/projects/adapt_lab/shared/TPOT/bids_data/derivatives/working_bids/fmriprep_wf/single_subject_TPOT126_wf/anat_preproc_wf/surface_recon_wf/gifti_surface_wf/save_midthickness".
+190821-16:41:36,981 nipype.workflow INFO:
+	 [Node] Running "save_midthickness" ("nipype.interfaces.io.DataSink")
+190821-16:41:37,256 nipype.workflow INFO:
+	 [Node] Finished "fmriprep_wf.single_subject_TPOT126_wf.anat_preproc_wf.surface_recon_wf.gifti_surface_wf.save_midthickness".
 
 
 
