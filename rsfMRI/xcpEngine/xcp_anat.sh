@@ -15,6 +15,8 @@ XCPEDIR=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/xcpEngine
 SIMG=/projects/adapt_lab/shared/containers/xcpEngine.simg
 HOME=/projects/adapt_lab/shared/TPOT
 
+echo ${DATA_ROOT} "hello"
+
 singularity run -B ${DATA_ROOT}:${HOME} $SIMG \
    -d ${HOME}/TPOT_Scripts/rsfMRI/xcpEngine/anat-Complete_201908231455.dsn \
    -c "${TEMP_COHORT}",${ses} \
