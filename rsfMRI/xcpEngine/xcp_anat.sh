@@ -14,8 +14,9 @@ cd /projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/xcpEngine
 XCPEDIR=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/rsfMRI/xcpEngine
 SIMG=/projects/adapt_lab/shared/containers/xcpEngine.simg
 HOME=/projects/adapt_lab/shared/TPOT
+bids_dir=/projects/adapt_lab/shared/TPOT/bids_data/derivatives
 
-singularity run -B ${XCPEDIR}:${HOME} $SIMG \
+singularity run -B ${HOME}:${bids_dir} $SIMG \
    -d ${HOME}/TPOT_Scripts/rsfMRI/xcpEngine/anat-Complete_201908231455.dsn \
    -c "${TEMP_COHORT}",${ses} \
    -o ${HOME}/bids_data/derivatives/xcpEngine/data \
