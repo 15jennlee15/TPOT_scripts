@@ -12,9 +12,9 @@
 module load fsl
 
 # Set directory names
-datadir="/projects/adapt_lab/shared/SHARP/bids_data"
-scriptsdir="/projects/adapt_lab/shared/SHARP/SHARP_Scripts/dMRI/preproc"
-outputdir="/projects/adapt_lab/shared/SHARP/bids_data/derivatives/dMRI_preproc"
+datadir="/projects/adapt_lab/shared/TPOT/bids_data"
+scriptsdir="/projects/adapt_lab/shared/TPOT/TPOT_Scripts/dMRI/preproc"
+outputdir="/projects/adapt_lab/shared/TPOT/bids_data/derivatives/dMRI_preproc"
 
 # Select options
 masks="TRUE"
