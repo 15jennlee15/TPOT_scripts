@@ -5,9 +5,9 @@ import os
 # Set study info (may need to change for your study)
 # These variables are used only in this file for paths. Can omit if wanted.
 group = "adapt_lab"
-study = "SHARP"
+study = "TPOT"
 PI = "Allen"
-scriptsFolder = "SHARP_Scripts"
+scriptsFolder = "TPOT_Scripts"
 
 # The following variables are used in the main script and need to be defined here. 
 # They need to exist prior to running the script
@@ -22,15 +22,7 @@ subjectdir_contents = os.listdir(bidsdir)
 subjectdir_contents.sort()
 
 # Remove any directory names that don't contain SH in them (like 'derivatives')
-subjectdir_contents = list(filter(lambda k: 'SH' in k, subjectdir_contents))
-
-# list of subjects to be ommitted from 'subject_list.txt'
-thing = ['sub-SH219',"sub-SH227","sub-SH231"]
-
-# Remove list of subjects from the list
-for i in thing:
-	if i in str(subjectdir_contents):
-	 subjectdir_contents.remove(i)
+subjectdir_contents = list(filter(lambda k: 'TPOT' in k, subjectdir_contents))
 
 # Remove 'sub-' from the directory names, leaving only participant IDs
 for subject in range(len(subjectdir_contents)):
