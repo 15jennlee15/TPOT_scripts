@@ -73,7 +73,7 @@ cp b0_unwarped_reoriented_brain_mask.nii.gz nodif_brain_mask.nii.gz
 cd "$outputdir"/"${subid}"/ses-1/
 cp -R "$datadir"/sub-"${subid}"/ses-1/anat .
 cd "$outputdir"/"${subid}"/ses-1/anat
-fslreorient2std sub-"${subid}"_ses-1_run-01_T1w.nii.gz sub-"${subid}"_ses-1_T1w_reoriented.nii.gz
+fslreorient2std sub-"${subid}"_ses-1_T1w.nii.gz sub-"${subid}"_ses-1_T1w_reoriented.nii.gz
 
 # Skull stripping & brain extraction
 echo "${subid}" skull stripping and brain extraction
