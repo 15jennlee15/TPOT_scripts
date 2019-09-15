@@ -6,13 +6,13 @@
 # for each subject in that list.
 
 # Set your study
-STUDY=/projects/adapt_lab/shared/SHARP
+STUDY=/projects/adapt_lab/shared/TPOT
 
 # Set subject list
 SUBJLIST=`cat subject_list_test.txt`
 #SUBJLIST=`cat alignment.txt`
 
 for SUBID in $SUBJLIST
- do sbatch --export all,subid=${SUBID} --job-name bedpostx_"${SUBID}" --partition=long --time=03-00:00:00 --nodes=1 -o "${STUDY}"/Scripts/dMRI/preproc/output/"${SUBID}"_bedpostx_output.txt -e "${STUDY}"/Scripts/dMRI/preproc/output/"${SUBID}"_bedpostx_error.txt bedpostx_diff_w2.sh
+ do sbatch --export all,subid=${SUBID} --job-name bedpostx_"${SUBID}" --partition=long --time=03-00:00:00 --nodes=1 -o "${STUDY}"/"${STUDY}"_Scripts/dMRI/preproc/output/"${SUBID}"_bedpostx_output.txt -e "${STUDY}"/"${STUDY}"_Scripts/dMRI/preproc/output/"${SUBID}"_bedpostx_error.txt bedpostx_diff_w2.sh
 done
 
