@@ -9,7 +9,7 @@
 STUDY=/projects/adapt_lab/shared/TPOT
 
 # Set subject list
-SUBJLIST=`cat subject_list_test.txt`
+SUBJLIST=`cat subject_list.txt`
 #SUBJLIST=`cat alignment.txt`
 
 for SUBID in $SUBJLIST
