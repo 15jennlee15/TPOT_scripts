@@ -22,10 +22,10 @@
 # * figDPI = plot resolution in dots per inch
 
 # paths
-confoundDir = '/projects/dsnlab/shared/tag/bids_data/derivatives/fmriprep'
-summaryDir = '/projects/dsnlab/shared/tag/TAG_scripts/fMRI/fx/motion/auto-motion-fmriprep/summary'
-plotDir = '/projects/dsnlab/shared/tag/TAG_scripts/fMRI/fx/motion/auto-motion-fmriprep/plots'
-rpDir = '/projects/dsnlab/shared/tag/TAG_scripts/fMRI/fx/motion/auto-motion-fmriprep/rp_txt'
+confoundDir = '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep'
+summaryDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/fx/motion/auto-motion-fmriprep/summary'
+plotDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/fx/motion/auto-motion-fmriprep/plots'
+rpDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/fx/motion/auto-motion-fmriprep/rp_txt'
 
 # variables
 # please note the expected BIDS file pattern is e.g. sub-[TAG001]_ses-[wave1]_task-[DSD]_run-[01]_bold_confounds.tsv
