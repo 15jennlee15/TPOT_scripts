@@ -54,9 +54,11 @@ fslmerge -a diffusion_data sub-"${subid}"_ses-1_acq-rl_dwi.nii.gz sub-"${subid}"
 
 # Combining bvecs & bvals from both diffusion sequences
 echo merging "${subid}" bvecs
+rm bvecs # if this script has already been run this will create problems unless you remove previous bvecs
 paste sub-"${subid}"_ses-1_acq-rl_dwi.bvec sub-"${subid}"_ses-1_acq-lr_dwi.bvec >> bvecs
 
 echo merging "${subid}" bvals
+rm bvals # if this script has already been run this will create problems unless you remove previous bvals
 paste sub-"${subid}"_ses-1_acq-rl_dwi.bval sub-"${subid}"_ses-1_acq-lr_dwi.bval >> bvals
 
 
