@@ -23,14 +23,14 @@
 
 # paths
 confoundDir = '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep'
-summaryDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/fx/motion/auto-motion-fmriprep/summary'
-plotDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/fx/motion/auto-motion-fmriprep/plots'
-rpDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/fx/motion/auto-motion-fmriprep/rp_txt'
+summaryDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/summary'
+plotDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/plots'
+rpDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/rp_txt'
 
 # variables
 # please note the expected BIDS file pattern is e.g. sub-[TAG001]_ses-[wave1]_task-[DSD]_run-[01]_bold_confounds.tsv
 # if you do not include the 'run' argument, you may need to modify the filePattern definition in lines 38 and 56 of auto_motion_fmriprep.R
-study = 'TAG'
+study = 'TPOT'
 subPattern = 'sub-(.*[0-9]{3})'
 wavePattern = 'ses-wave([0-9]{1})' # just extract the number
 taskPattern = 'task-(SVC|DSD)'
