@@ -41,10 +41,9 @@ cpuspertask=1
 mempercpu=8G
 
 # Set MATLAB script path
-for TASK in $TASKS;
+for TASK in $TASKS; do
 # Create and execute batch job
 for SUB in $SUBJLIST; do
-
 # Set MATLAB script path
 	for TASK in $TASKS;
 		SCRIPT=${STUDY}/fMRI/ppc/smooth/smooth_${TASK}.m # update script name if applicable
