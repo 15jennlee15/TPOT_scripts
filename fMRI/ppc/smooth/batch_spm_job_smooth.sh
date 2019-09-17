@@ -45,7 +45,7 @@ for TASK in $TASKS; do
 # Create and execute batch job
 for SUB in $SUBJLIST; do
 # Set MATLAB script path
-	for TASK in $TASKS;
+	for TASK in $TASKS; do
 		SCRIPT=${STUDY}/fMRI/ppc/smooth/smooth_${TASK}.m # update script name if applicable
 
 		# Run task job
@@ -58,4 +58,5 @@ for SUB in $SUBJLIST; do
 		 	${SHELL_SCRIPT}
 	 	sleep .25
 	 done
+done
 done
