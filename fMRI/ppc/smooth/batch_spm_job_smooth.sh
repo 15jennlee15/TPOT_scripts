@@ -18,7 +18,8 @@ REPLACESID=TPOT002
 SPM_PATH=/projects/adapt_lab/shared/spm12
 
 # Set tasks to smooth
-TASKS=('affect video')
+tasks='affect video'
+TASKS=( $tasks )
 
 SCRIPT=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/smooth/smooth.m
 
