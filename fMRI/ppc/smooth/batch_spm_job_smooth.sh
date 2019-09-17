@@ -46,7 +46,7 @@ for TASK in $TASKS;
 for SUB in $SUBJLIST; do
 	
 	# Set MATLAB script path
-	for TASK in ${TASKS[@]};
+	for TASK in $TASKS;
 		SCRIPT=${STUDY}/fMRI/ppc/smooth/smooth_${TASK}.m # update script name if applicable
 
 		# Run task job
