@@ -6,19 +6,19 @@
 #--------------------------------------------------------------
 
 # Set your study scripts folder
-STUDY=/projects/dsnlab/shared/FP/FP_scripts
+STUDY=/projects/adapt_lab/shared/TPOT/TPOT_Scripts
 
 # Set subject list
 SUBJLIST=`cat test_subject_list.txt`
 
 # Which SID should be replaced?
-REPLACESID=FP001
+REPLACESID=TPOT002
 
 # SPM Path
 SPM_PATH=/projects/dsnlab/shared/SPM12
 
 # Set tasks to smooth
-TASKS=(ROC WTP SST)
+TASKS=(affect video)
 
 # Set MATLAB script path
 for TASK in ${TASKS[@]};
