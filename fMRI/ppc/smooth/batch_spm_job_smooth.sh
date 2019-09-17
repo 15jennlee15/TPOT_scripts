@@ -18,8 +18,8 @@ REPLACESID=TPOT002
 SPM_PATH=/projects/adapt_lab/shared/spm12
 
 # Set tasks to smooth
-tasks='affect video'
-TASKS=( $tasks )
+
+TASKS=`cat tasks.txt`
 
 SCRIPT=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/smooth/smooth.m
 
@@ -41,7 +41,7 @@ cpuspertask=1
 mempercpu=8G
 
 # Set MATLAB script path
-for TAST in echo ${TASKS[@]};
+for TASK in $TASKS;
 # Create and execute batch job
 for SUB in $SUBJLIST; do
 	
