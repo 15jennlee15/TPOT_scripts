@@ -22,7 +22,7 @@ TASKS=(affect video)
 
 # Set MATLAB script path
 for TASK in ${TASKS[@]};
-SCRIPT='${STUDY}'/fMRI/ppc/smooth/smooth.m
+SCRIPT="${STUDY}"/fMRI/ppc/smooth/smooth.m
 
 # Set shell script to execute
 SHELL_SCRIPT=spm_job.sh
