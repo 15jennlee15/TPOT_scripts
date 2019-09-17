@@ -15,7 +15,7 @@ SUBJLIST=`cat test_subject_list.txt`
 REPLACESID=TPOT002
 
 # SPM Path
-SPM_PATH=/projects/dsnlab/shared/SPM12
+SPM_PATH=/projects/adapt_lab/shared/spm12
 
 # Set tasks to smooth
 TASKS=(affect video)
@@ -54,7 +54,7 @@ for SUB in $SUBJLIST; do
 		 	-o ${OUTPUTDIR}/${SUB}_${RESULTS_INFIX}.log \
 		 	--cpus-per-task=${cpuspertask} \
 		 	--mem-per-cpu=${mempercpu} \
-		 	--account=dsnlab \
+		 	--account=adapt_lab \
 		 	${SHELL_SCRIPT}
 	 	sleep .25
 	 done
