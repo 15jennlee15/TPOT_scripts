@@ -21,6 +21,7 @@ SPM_PATH=/projects/adapt_lab/shared/spm12
 
 TASKS=`cat tasks.txt`
 
+# Set MATLAB script path
 SCRIPT=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/smooth/smooth.m
 
 # Set shell script to execute
@@ -40,8 +41,6 @@ fi
 cpuspertask=1
 mempercpu=8G
 
-# Set MATLAB script path
-for TASK in $TASKS; do
 # Create and execute batch job
 for SUB in $SUBJLIST; do
 # Set MATLAB script path
@@ -58,5 +57,4 @@ for SUB in $SUBJLIST; do
 		 	${SHELL_SCRIPT}
 	 	sleep .25
 	 done
-done
 done
