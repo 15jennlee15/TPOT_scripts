@@ -41,7 +41,7 @@ cpuspertask=1
 mempercpu=8G
 
 # Set MATLAB script path
-for TAST in ${TASKS[@]};
+for TAST in echo ${TASKS[@]};
 # Create and execute batch job
 for SUB in $SUBJLIST; do
 	
