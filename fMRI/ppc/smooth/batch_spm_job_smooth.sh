@@ -20,8 +20,6 @@ SPM_PATH=/projects/adapt_lab/shared/spm12
 # Set tasks to smooth
 TASKS=(affect video)
 
-# Set MATLAB script path
-for TASK in ${TASKS[@]};
 SCRIPT=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/smooth/smooth.m
 
 # Set shell script to execute
@@ -40,6 +38,9 @@ fi
 # Set job parameters
 cpuspertask=1
 mempercpu=8G
+
+# Set MATLAB script path
+for TASK in ${TASKS[@]};
 
 # Create and execute batch job
 for SUB in $SUBJLIST; do
