@@ -32,7 +32,7 @@ subjectdir_contents = list(filter(lambda k: 'sub-' in k, subjectdir_contents))
 subjectdir_contents = [x for x in subjectdir_contents if not '.html' in x]
 subjectdir_contents.sort()
 
-with open(os.path.join(codedir, preproc + '_cohort.csv'),'w') as f1:
+with open(os.path.join(codedir, preproc + '_cohort.csv'),'w',newline='') as f1:
 	writer=csv.writer(f1, delimiter='\t',lineterminator='\n',)
 	head = ["id0,img"]
 	writer.writerow(head)
