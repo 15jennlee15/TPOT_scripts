@@ -4,7 +4,7 @@
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
 matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.dir = {'/projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT002'};
-matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.filter = 'sub-TPOT002_ses-1_task-affect_acq-*_run-0*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz';
+matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.filter = 'sub-TPOT002_ses-1_task-.*space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz';
 matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.rec = 'FPListRec';
 matlabbatch{2}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (*MNI152NLin2009cAsym_preproc.nii.gz)', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
 matlabbatch{2}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.outdir = {''};
