@@ -6,9 +6,9 @@ import csv
 # Set study info (may need to change for your study)
 # These variables are used only in this file for paths. Can omit if wanted.
 group = "adapt_lab"
-study = "SHARP"
+study = "TPOT"
 PI = "Allen"
-scriptsFolder = "SHARP_Scripts"
+scriptsFolder = "TPOT_Scripts"
 
 # The following variables are used in the main script and need to be defined here. 
 # They need to exist prior to running the script
@@ -21,7 +21,6 @@ fmriprepdir = os.path.join(parentdir,"bids_data","derivatives","fmriprep")
 
 # Each wave that should be represented. It should be noted that this script assumes the same number and type of 
 # scans are the same throughout each run. If this is not the case...good luck coding!
-waves = {"ses-1"}
 
 
 # Change this to either be anatomical (anat) or functional (func)
@@ -37,11 +36,10 @@ with open(os.path.join(codedir, preproc + '_cohort.csv'),'w') as f1:
 	writer=csv.writer(f1, delimiter='\t',lineterminator='\n',)
 	head = ["id0,id1,img"]
 	writer.writerow(head)
-	for subject, wave in [(subject,wave) for subject in subjectdir_contents for wave in waves]:
+	for subject in subjectdir_contents:
 		subjectpath = os.path.join(fmriprepdir,subject)
 		if os.path.isdir(subjectpath):
 			filepath = os.path.join(subjectpath,preproc,subject + "_desc-preproc_T1w.nii.gz")
 			if os.path.isfile(filepath):
-				row = [subject + "," + wave + "," + filepath]
+				row = [subject + "," + filepath]
 				writer.writerow(row)
-				

@@ -12,9 +12,9 @@
 module load fsl
 
 # Set directory names
-datadir="/projects/adapt_lab/shared/SHARP/bids_data"
-scriptsdir="/projects/adapt_lab/shared/SHARP/SHARP_Scripts/dMRI/preproc"
-outputdir="/projects/adapt_lab/shared/SHARP/bids_data/derivatives/dMRI_preproc"
+datadir="/projects/adapt_lab/shared/TPOT/bids_data"
+scriptsdir="/projects/adapt_lab/shared/TPOT/TPOT_Scripts/dMRI/preproc"
+outputdir="/projects/adapt_lab/shared/TPOT/bids_data/derivatives/dMRI_preproc"
 
 # Select options
 masks="TRUE"
@@ -54,9 +54,11 @@ fslmerge -a diffusion_data sub-"${subid}"_ses-1_acq-rl_dwi.nii.gz sub-"${subid}"
 
 # Combining bvecs & bvals from both diffusion sequences
 echo merging "${subid}" bvecs
+rm bvecs # if this script has already been run this will create problems unless you remove previous bvecs
 paste sub-"${subid}"_ses-1_acq-rl_dwi.bvec sub-"${subid}"_ses-1_acq-lr_dwi.bvec >> bvecs
 
 echo merging "${subid}" bvals
+rm bvals # if this script has already been run this will create problems unless you remove previous bvals
 paste sub-"${subid}"_ses-1_acq-rl_dwi.bval sub-"${subid}"_ses-1_acq-lr_dwi.bval >> bvals
 
 
@@ -73,7 +75,7 @@ cp b0_unwarped_reoriented_brain_mask.nii.gz nodif_brain_mask.nii.gz
 cd "$outputdir"/"${subid}"/ses-1/
 cp -R "$datadir"/sub-"${subid}"/ses-1/anat .
 cd "$outputdir"/"${subid}"/ses-1/anat
-fslreorient2std sub-"${subid}"_ses-1_run-01_T1w.nii.gz sub-"${subid}"_ses-1_T1w_reoriented.nii.gz
+fslreorient2std sub-"${subid}"_ses-1_T1w.nii.gz sub-"${subid}"_ses-1_T1w_reoriented.nii.gz
 
 # Skull stripping & brain extraction
 echo "${subid}" skull stripping and brain extraction
