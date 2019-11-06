@@ -11,10 +11,9 @@
 
 group=adapt_lab
 group_dir=/projects/adapt_lab/shared
-#container=BIDS/SingularityContainers/poldracklab_fmriprep_latest-2017-07-20-dd77d76c5e14.img
-container=containers/fmriprep-1.4.1.simg
+container=containers/fmriprep-latest-2018-09-05.simg
 study="TPOT"
-task="video"
+task=“affect”
 
 # Set subject list
 SUBJLIST=`cat subject_list.txt`
