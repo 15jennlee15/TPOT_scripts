@@ -17,9 +17,9 @@
 #------------------------------------------------------
 osuRepo = 'http://ftp.osuosl.org/pub/cran/'
 
-if (!require(tidyverse)) {
-  install.packages('tidyverse', repos = osuRepo)
-}
+#if (!require(tidyverse)) {
+  #install.packages('tidyverse', repos = osuRepo)
+#}
 
 #------------------------------------------------------
 # source the config file
