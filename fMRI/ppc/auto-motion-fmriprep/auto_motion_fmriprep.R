@@ -20,7 +20,6 @@ osuRepo = 'http://ftp.osuosl.org/pub/cran/'
 #if (!require(tidyverse)) {
   #install.packages('tidyverse', repos = osuRepo)
 #}
-install.packages('tidyverse')
 library(tidyverse)
 
 #------------------------------------------------------
