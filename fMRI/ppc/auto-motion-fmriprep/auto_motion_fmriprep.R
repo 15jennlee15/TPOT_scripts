@@ -51,9 +51,9 @@ fileList = list.files(confoundDir, pattern = '.*confounds.*.tsv', recursive = TR
                      mutate(file = file) %>%
                      extract(file, c('subjectID', 'wave', 'task', 'run'),
                              file.path('sub-.*','ses-.*', 'func', 'sub-(.*)_ses-(.*)_task-(.*)_(.*)_desc-confounds_regressors.tsv')) %>%
-                     rename("CSF" = Csf,
-                            "stdDVARS" = StdDvars,
-                            "non.stdDVARS" = Dvars) %>%
+                     rename("CSF" = csf,
+                            "stdDVARS" = stdDvars,
+                            "non.stdDVARS" = dvars) %>%
                      mutate(wave = str_extract(wave, "[[:digit:]]+"),
                             run = str_extract(run, "[[:digit:]]+"),
                             wave = as.integer(wave),
