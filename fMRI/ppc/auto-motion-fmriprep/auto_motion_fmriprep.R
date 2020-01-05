@@ -106,7 +106,7 @@ if (oldfmriprep == TRUE) {
     missingColumns = setdiff(columnNames, names(tmp))
     tmp[missingColumns] = 0 
     
-    tmp = tmp  %>%
+    tmp = tmp %>%
       select(subjectID, wave, task, run, volume, CSF, WhiteMatter, 
              GlobalSignal, stdDVARS, non.stdDVARS, vx.wisestdDVARS, 
              FramewiseDisplacement, tCompCor00, tCompCor01, tCompCor02, 
