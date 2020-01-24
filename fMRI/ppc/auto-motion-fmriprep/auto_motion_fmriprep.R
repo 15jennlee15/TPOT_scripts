@@ -17,10 +17,12 @@
 #------------------------------------------------------
 osuRepo = 'http://ftp.osuosl.org/pub/cran/'
 
-#if (!require(tidyverse)) {
-  #install.packages('tidyverse', repos = osuRepo)
-#}
+if (!require(tidyverse)) {
+  install.packages('tidyverse', repos = osuRepo)
+}
 library(tidyverse)
+library(caret)
+library(randomForest)
 
 #------------------------------------------------------
 # source the config file
@@ -42,8 +44,10 @@ columnNames = c("subjectID", "wave", "task", "run", "volume", "CSF", "WhiteMatte
 
 fileList = list.files(confoundDir, pattern = '.*confounds.*.tsv', recursive = TRUE)
 
+#file = '/Users/jennlewis/Desktop/confounds3/sub-TPOT002/ses-1/func/sub-TPOT002_ses-1_task-affect_acq-1_run-01_desc-confounds_regressors.tsv'
+
   for (file in fileList) {
-    tmp = tryCatch(read_tsv(file.path(confoundDir, file)) %>% 
+    tmp = tryCatch(read_tsv(file.path(confoundDir, file))) %>% 
                      setNames(snakecase::to_upper_camel_case(names(.))) %>%
                      setNames(gsub("AComp", "aComp", names(.))) %>%
                      setNames(gsub("TComp", "tComp", names(.))) %>%
@@ -51,9 +55,9 @@ fileList = list.files(confoundDir, pattern = '.*confounds.*.tsv', recursive = TR
                      mutate(file = file) %>%
                      extract(file, c('subjectID', 'wave', 'task', 'run'),
                              file.path('sub-.*','ses-.*', 'func', 'sub-(.*)_ses-(.*)_task-(.*)_(.*)_desc-confounds_regressors.tsv')) %>%
-                     rename("CSF" = csf,
-                            "stdDVARS" = stdDvars,
-                            "non.stdDVARS" = dvars) %>%
+                     rename("CSF" = Csf,
+                            "stdDVARS" = StdDvars,
+                            "non.stdDVARS" = Dvars) %>%
                      mutate(wave = str_extract(wave, "[[:digit:]]+"),
                             run = str_extract(run, "[[:digit:]]+"),
                             wave = as.integer(wave),
@@ -61,7 +65,7 @@ fileList = list.files(confoundDir, pattern = '.*confounds.*.tsv', recursive = TR
                             #vx.wisestdDVARS = 0,
                             volume = row_number()) %>%
                      mutate_if(is.character, list(~ ifelse(. == "n/a", 0, .))) %>%
-                     mutate_at(vars(contains("DVARS"), contains("Framewise")), as.numeric), error = function(e) message(file))
+                     mutate_at(vars(contains("DVARS"), contains("Framewise")), as.numeric, error = function(e) message(file))
     
     # add missing columns and select subset classifier columns
     missingColumns = setdiff(columnNames, names(tmp))
@@ -80,7 +84,7 @@ fileList = list.files(confoundDir, pattern = '.*confounds.*.tsv', recursive = TR
       rm(tmp)
     }
   }  
-}
+
 
 #------------------------------------------------------
 # apply classifier

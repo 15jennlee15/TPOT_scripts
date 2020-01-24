@@ -19,10 +19,10 @@
 # * figDPI = plot resolution in dots per inch
 
 # paths
-confoundDir = '/projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep'
-summaryDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/summary'
-plotDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/plots'
-rpDir = '/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/rp_txt'
+confoundDir = '/Users/jennlewis/Desktop/confounds3/'
+summaryDir = '/Users/jennlewis/Documents/GitHub/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/summary'
+plotDir = '/Users/jennlewis/Documents/GitHub/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/plots'
+rpDir = '/Users/jennlewis/Documents/GitHub/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/rp_txt'
 
 # variables
 study = 'TPOT'
