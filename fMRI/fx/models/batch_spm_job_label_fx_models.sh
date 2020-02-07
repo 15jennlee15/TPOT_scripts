@@ -56,7 +56,7 @@ fi
 PROCESS=slurm
 
 # Only matters for parlocal
-MAXJOBS=8
+#MAXJOBS=8
 
 # Only matters for slurm
 cpuspertask=1
