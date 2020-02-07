@@ -44,8 +44,7 @@ if [ ! -d "${STUDY}/TPOT_Scripts/fMRI/fx/models/affect/sid_batches" ]; then
     mkdir -v "${STUDY}/TPOT_Scripts/fMRI/fx/models/affect/sid_batches"
 fi
 
-if [ ! -d "${STUDY}/TPOT_Scripts/fMRI/fx/models/affect/sid_batches/matlabbatch_job_label” ]
-    then
+if [ ! -d "${STUDY}/TPOT_Scripts/fMRI/fx/models/affect/sid_batches/matlabbatch_job_label” ]; then
     mkdir -v "${STUDY}/TPOT_Scripts/fMRI/fx/models/affect/sid_batches/matlabbatch_job_label”
 fi
 
