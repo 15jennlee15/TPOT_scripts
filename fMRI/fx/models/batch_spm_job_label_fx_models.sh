@@ -21,7 +21,7 @@ STUDY=/projects/adapt_lab/shared/TPOT
 SUBJLIST=`cat subject_list.txt`
 
 # Which SID should be replaced?
-REPLACESID=‘TPOT002’
+REPLACESID=`TPOT002`
 
 # Set MATLAB script path
 #COMPNAME=ralph #use this for help specifying paths to run locally
@@ -44,8 +44,8 @@ if [ ! -d "${STUDY}/TPOT_Scripts/fMRI/fx/models/affect/sid_batches" ]; then
     mkdir -v "${STUDY}/TPOT_Scripts/fMRI/fx/models/affect/sid_batches"
 fi
 
-if [ ! -d "${STUDY}/TPOT_Scripts/fMRI/fx/models/affect/sid_batches/matlabbatch_job_label” ]; then
-    mkdir -v "${STUDY}/TPOT_Scripts/fMRI/fx/models/affect/sid_batches/matlabbatch_job_label”
+if [ ! -d "${STUDY}/TPOT_Scripts/fMRI/fx/models/affect/sid_batches/matlabbatch_job_label" ]; then
+    mkdir -v "${STUDY}/TPOT_Scripts/fMRI/fx/models/affect/sid_batches/matlabbatch_job_label"
 fi
 
 # Set processor
@@ -69,8 +69,8 @@ if [ "${PROCESS}" == "slurm" ]; then
 		if [ ! -d "${STUDY}/out/fx/sub-${SUB}" ]; then
     		mkdir -v "${STUDY}/out/fx/sub-${SUB}"
 		fi
-		if [ ! -d "${STUDY}/out/fx/sub-${SUB}/affect” ]; then
-    		mkdir -v "${STUDY}/out/fx/sub-${SUB}/affect”
+		if [ ! -d "${STUDY}/out/fx/sub-${SUB}/affect" ]; then
+    		mkdir -v "${STUDY}/out/fx/sub-${SUB}/affect"
 		fi
 	 echo "submitting via slurm"
 	 sbatch -A adapt_lab \
