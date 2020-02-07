@@ -14,7 +14,7 @@
 #--------------------------------------------------------------
 
 
-# Set your study
+# Set your study here
 STUDY=/projects/adapt_lab/shared/TPOT
 
 # Set subject list
