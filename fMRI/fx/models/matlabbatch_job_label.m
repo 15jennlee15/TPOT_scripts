@@ -17,7 +17,7 @@ matlabbatch{2}.cfg_basicio.file_dir.file_ops.file_fplist.rec = 'FPList';
 %% expand the frames of run 1 and 2 files
 matlabbatch{3}.spm.util.exp_frames.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (s6_sub-TPOT002_ses-1_task-affect_acq-1_run-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii)', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
 matlabbatch{3}.spm.util.exp_frames.frames = Inf;
-matlabbatch{4}.spm.util.exp_frames.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (s6_sub-TPOT002_ses-1_task-affect_acq-2_run-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii)', substruct('.','val', '{}',{2}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
+matlabbatch{4}.spm.util.exp_frames.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (s6_sub-TPOT002_ses-1_task-affect_acq-2_run-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii)', substruct('.','val', '{}',{2}, '.','val', '{}',{2}, '.','val', '{}',{2}, '.','val', '{}',{2}), substruct('.','files'));
 matlabbatch{4}.spm.util.exp_frames.frames = Inf;
 
 %% specify the model
