@@ -1,9 +1,10 @@
+
 fileID=fopen(script_file);
 textstuffcell=textscan(fileID, '%[^\n]');
 fclose(fileID);
 
-regexp=num2str(replacesid);
-replaceexpr=num2str(sub);
+regexp=['(''.*)',num2str(replacesid),'(.*'')'];
+replaceexpr=['$1',num2str(sub),'$2'];
 newtextcell=cellfun(@(x) regexprep(x, regexp, replaceexpr), textstuffcell{1}, 'UniformOutput', false);
 
 newtext=strjoin(newtextcell, '\n');
