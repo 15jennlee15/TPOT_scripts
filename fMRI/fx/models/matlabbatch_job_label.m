@@ -29,6 +29,7 @@ matlabbatch{5}.spm.stats.fmri_spec.timing.fmri_t0 = 36;
 matlabbatch{5}.spm.stats.fmri_spec.sess(1).scans(1) = cfg_dep('Expand image frames: Expanded filename list.', substruct('.','val', '{}',{3}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
 matlabbatch{5}.spm.stats.fmri_spec.sess(1).cond = struct('name', {}, 'onset', {}, 'duration', {}, 'tmod', {}, 'pmod', {}, 'orth', {});
 matlabbatch{5}.spm.stats.fmri_spec.sess(1).multi = {'/projects/adapt_lab/shared/TPOT/multiconds/8conds/sub-TPOT002_run1_8conds.mat'};
+matlabbatch{5}.spm.stats.fmri_spec.sess(1).regress = struct('name', {}, 'val', {});
 matlabbatch{5}.spm.stats.fmri_spec.sess(1).multi_reg = {'/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/rp_txt/rp_TPOT002_1_affect_acq-1_1.txt'};
 matlabbatch{5}.spm.stats.fmri_spec.sess(1).hpf = 128;
 matlabbatch{5}.spm.stats.fmri_spec.sess(2).scans(1) = cfg_dep('Expand image frames: Expanded filename list.', substruct('.','val', '{}',{4}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
