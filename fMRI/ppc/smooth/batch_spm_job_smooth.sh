@@ -15,20 +15,20 @@ SUBJLIST=`cat test_subject_list.txt`
 REPLACESID='TPOT002'
 
 # SPM Path
-SPM_PATH=/projects/adapt_lab/shared/spm12
+SPM_PATH=/projects/adapt_lab/jlewis5/ERdissertation/spm12
 
 # Set tasks to smooth
 
-TASKS=`cat tasks.txt`
+# TASKS=`cat tasks.txt`
 
 # Set MATLAB script path
-SCRIPT=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/smooth/smooth.m
+SCRIPT=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/smooth/smooth6.m
 
 # Set shell script to execute
 SHELL_SCRIPT=spm_job.sh
 
 # Tag the results files
-RESULTS_INFIX=smooth
+RESULTS_INFIX=smooth6
 
 # Set output dir and make it if it doesn't exist
 OUTPUTDIR=${STUDY}/fMRI/ppc/smooth/output
