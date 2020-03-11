@@ -43,7 +43,7 @@ matlabbatch{5}.spm.stats.fmri_spec.bases.hrf.derivs = [1 0];
 matlabbatch{5}.spm.stats.fmri_spec.volt = 1;
 matlabbatch{5}.spm.stats.fmri_spec.global = 'None';
 matlabbatch{5}.spm.stats.fmri_spec.mthresh = -Inf;
-matlabbatch{5}.spm.stats.fmri_spec.mask(1) = {'/projects/adapt_lab/jlewis5/ERdissertation/spm12/canonical/MNI152_T1_1mm_brain_mask.nii,1'}; 
+matlabbatch{5}.spm.stats.fmri_spec.mask(1) = {'/projects/adapt_lab/jlewis5/ERdissertation/spm12/canonical/MNI152_T1_1mm_brain_mask.nii'}; 
 matlabbatch{5}.spm.stats.fmri_spec.cvi = 'FAST';
 
 %% estimate the model (i.e. solve for the betas)
