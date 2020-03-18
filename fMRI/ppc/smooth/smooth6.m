@@ -23,6 +23,3 @@ matlabbatch{6}.spm.spatial.smooth.fwhm = [6 6 6];
 matlabbatch{6}.spm.spatial.smooth.dtype = 0;
 matlabbatch{6}.spm.spatial.smooth.im = 0;
 matlabbatch{6}.spm.spatial.smooth.prefix = 'sm6_';
-matlabbatch{7}.cfg_basicio.file_dir.file_ops.file_move.files(1) = cfg_dep('Gunzip Files: Gunzipped Files', substruct('.','val', '{}',{3}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('()',{':'}));
-matlabbatch{7}.cfg_basicio.file_dir.file_ops.file_move.files(2) = cfg_dep('Gunzip Files: Gunzipped Files', substruct('.','val', '{}',{4}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('()',{':'}));
-matlabbatch{7}.cfg_basicio.file_dir.file_ops.file_move.action.delete = false;
