@@ -41,7 +41,7 @@ mempercpu=8G
 for SUB in $SUBJLIST; do
 # Set MATLAB script path
 	# Run task job
- 	sbatch --export ALL,REPLACESID=$REPLACESID,SCRIPT=$SCRIPT,SUB=$SUB,SPM_PATH=$SPM_PATH,  \
+ 	sbatch --export ALL,REPLACESID=$REPLACESID,SCRIPT=$SCRIPT,SUB=$SUB,SPM_PATH=$SPM_PATH, \
 	 	--job-name=${RESULTS_INFIX} \
 	 	-o ${OUTPUTDIR}/${SUB}_${RESULTS_INFIX}.log \
 	 	--cpus-per-task=${cpuspertask} \
