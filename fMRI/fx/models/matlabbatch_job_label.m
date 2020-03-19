@@ -52,7 +52,7 @@ matlabbatch{6}.spm.stats.fmri_est.write_residuals = 1;
 matlabbatch{6}.spm.stats.fmri_est.method.Classical = 1;
 
 %% specify the contrasts of interest
-matlabbatch{7}.spm.stats.con.spmmat(1) = cfg_dep('Model estimation: SPM.mat File', substruct('.','val', '{}',{15}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','spmmat'));
+matlabbatch{7}.spm.stats.con.spmmat(1) = cfg_dep('Model estimation: SPM.mat File', substruct('.','val', '{}',{6}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','spmmat'));
 matlabbatch{7}.spm.stats.con.consess{1}.tcon.name = '1_View>Blur';
 matlabbatch{7}.spm.stats.con.consess{1}.tcon.weights = [0 0 0 0 0 0 1 0 1 0 1 0 -3 0 0 0];
 matlabbatch{7}.spm.stats.con.consess{1}.tcon.sessrep = 'replsc';
