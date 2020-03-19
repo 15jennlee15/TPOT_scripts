@@ -12,14 +12,10 @@ STUDY=/projects/adapt_lab/shared/TPOT/TPOT_Scripts
 SUBJLIST=`cat subject_list.txt`
 
 # Which SID should be replaced?
-REPLACESID='002'
+REPLACESID=‘TPOT002'
 
 # SPM Path
 SPM_PATH=/projects/adapt_lab/jlewis5/ERdissertation/spm12
-
-# Set tasks to smooth
-
-# TASKS=`cat tasks.txt`
 
 # Set MATLAB script path
 SCRIPT=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/smooth/smooth6.m
@@ -31,7 +27,7 @@ SHELL_SCRIPT=spm_job.sh
 RESULTS_INFIX=smooth6
 
 # Set output dir and make it if it doesn't exist
-OUTPUTDIR=${STUDY}/fMRI/ppc/smooth/output
+OUTPUTDIR=${STUDY}/fMRI/ppc/smooth6/output
 
 if [ ! -d ${OUTPUTDIR} ]; then
 	mkdir -p ${OUTPUTDIR}
