@@ -1,4 +1,3 @@
-
 fileID=fopen(script_file);
 textstuffcell=textscan(fileID, '%[^\n]');
 fclose(fileID);
