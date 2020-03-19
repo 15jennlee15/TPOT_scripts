@@ -12,7 +12,7 @@ STUDY=/projects/adapt_lab/shared/TPOT/TPOT_Scripts
 SUBJLIST=`cat subject_list.txt`
 
 # Which SID should be replaced?
-REPLACESID=‘TPOT002'
+REPLACESID=TPOT002
 
 # SPM Path
 SPM_PATH=/projects/adapt_lab/jlewis5/ERdissertation/spm12
@@ -41,7 +41,7 @@ mempercpu=8G
 for SUB in $SUBJLIST; do
 # Set MATLAB script path
 	# Run task job
- 	sbatch --export ALL,REPLACESID=$REPLACESID,SCRIPT=$SCRIPT,SUB=$SUB,SPM_PATH=$SPM_PATH, \
+ 	sbatch --export ALL,REPLACESID=$REPLACESID,SCRIPT=$SCRIPT,SUB=$SUB,SPM_PATH=$SPM_PATH,  \
 	 	--job-name=${RESULTS_INFIX} \
 	 	-o ${OUTPUTDIR}/${SUB}_${RESULTS_INFIX}.log \
 	 	--cpus-per-task=${cpuspertask} \
