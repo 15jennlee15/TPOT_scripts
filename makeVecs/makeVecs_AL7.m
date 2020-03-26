@@ -1,5 +1,7 @@
-DIR.out = '~/Dropbox/AL_output2/output/OneRunOnly/';
+% Place you are getting your output files from
+DIR.out = '~/Dropbox/AL_output2/output/OneRunOnly/TPOT58/';
 DIR.in =  '~/Documents/GitHub/TPOT_scripts/fMRI/fx/multiconds/affect/';
+% where you are putting the results
 DIR.vec = '~/Documents/GitHub/TPOT_scripts/AL/vecs';
 DIR.thisFunk = '~/Documents/GitHub/TPOT_scripts/makeVecs/';
 
@@ -10,7 +12,7 @@ for i=1:length(outputList)
 end
 subList = unique(subList);
 
-nRuns = 1;
+nRuns = 2;
 studyCode = 'tp';
 taskCode = 'al';
 modelCode = '7conds';
@@ -37,7 +39,7 @@ for s = subList
     end
     subjectCode = [studyCode placeholder num2str(s)];
     
-    for r=2
+    for r=1:nRuns
         filenames.out = [DIR.out filesep subjectCode '_' taskCode '_run' num2str(r) '.mat'];
         filenames.vec = [DIR.vecModel filesep subjectCode '_run' num2str(r) '_' modelCode];
         onsets = cell(1,nConds);
