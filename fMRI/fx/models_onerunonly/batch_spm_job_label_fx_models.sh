@@ -21,11 +21,11 @@ STUDY=/projects/adapt_lab/shared/TPOT
 SUBJLIST=`cat subject_list.txt`
 
 # Which SID should be replaced?
-REPLACESID=TPOT002
+REPLACESID=TPOT015
 
 # Set MATLAB script path
 #COMPNAME=ralph #use this for help specifying paths to run locally
-SCRIPT=${STUDY}/TPOT_Scripts/fMRI/fx/models/matlabbatch_job_label.m
+SCRIPT=${STUDY}/TPOT_Scripts/fMRI/fx/models_onerunonly/matlabbatch_job_label.m
 
 #SPM Path
 SPM_PATH=/projects/adapt_lab/jlewis5/ERdissertation/spm12

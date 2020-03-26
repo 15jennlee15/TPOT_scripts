@@ -1,5 +1,5 @@
 % Place you are getting your output files from
-DIR.out = '~/Dropbox/AL_output2/output/OneRunOnly/TPOT58/';
+DIR.out = '~/Dropbox/AL_output2/output/';
 DIR.in =  '~/Documents/GitHub/TPOT_scripts/fMRI/fx/multiconds/affect/';
 % where you are putting the results
 DIR.vec = '~/Documents/GitHub/TPOT_scripts/AL/vecs';
