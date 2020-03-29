@@ -18,7 +18,7 @@ REPLACESID=TPOT120
 SPM_PATH=/projects/adapt_lab/jlewis5/ERdissertation/spm12
 
 # Set MATLAB script path
-SCRIPT=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/smooth/smooth6.m
+SCRIPT=/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/smooth/smooth6_onerun.m
 
 # Set shell script to execute
 SHELL_SCRIPT=spm_job.sh
