@@ -6,11 +6,11 @@
 
 %% select files
 matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.dir = {'/projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT015/ses-1/func'};
-matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.filter = 'sm6_sub-TPOT015_ses-1_task-affect_acq-*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii';
+matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.filter = 'sm6_sub-TPOT015_ses-1_task-affect_acq-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii';
 matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.rec = 'FPList';
 
 %% expand the frames of run 1 and 2 files
-matlabbatch{2}.spm.util.exp_frames.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (sm6_sub-TPOT015_ses-1_task-affect_acq*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii)', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
+matlabbatch{2}.spm.util.exp_frames.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (sm6_sub-TPOT015_ses-1_task-affect_acq-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii)', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
 matlabbatch{2}.spm.util.exp_frames.frames = Inf;
 
 %% specify the model
@@ -21,9 +21,9 @@ matlabbatch{3}.spm.stats.fmri_spec.timing.fmri_t = 72;
 matlabbatch{3}.spm.stats.fmri_spec.timing.fmri_t0 = 36;
 matlabbatch{3}.spm.stats.fmri_spec.sess.scans(1) = cfg_dep('Expand image frames: Expanded filename list.', substruct('.','val', '{}',{2}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
 matlabbatch{3}.spm.stats.fmri_spec.sess.cond = struct('name', {}, 'onset', {}, 'duration', {}, 'tmod', {}, 'pmod', {}, 'orth', {});
-matlabbatch{3}.spm.stats.fmri_spec.sess.multi = {'/projects/adapt_lab/shared/TPOT/TPOT_Scripts/AL/vecs/7conds/sub-TPOT015_run*_7conds.mat'};
+matlabbatch{3}.spm.stats.fmri_spec.sess.multi = {'/projects/adapt_lab/shared/TPOT/TPOT_Scripts/AL/vecs/7conds/sub-TPOT015_run.*_7conds.mat'};
 matlabbatch{3}.spm.stats.fmri_spec.sess.regress = struct('name', {}, 'val', {});
-matlabbatch{3}.spm.stats.fmri_spec.sess.multi_reg(1) = {'/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/rp_txt/rp_TPOT015_*.txt'};
+matlabbatch{3}.spm.stats.fmri_spec.sess.multi_reg(1) = {'/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/ppc/auto-motion-fmriprep/rp_txt/rp_TPOT015_.*.txt'};
 matlabbatch{3}.spm.stats.fmri_spec.sess.hpf = 128;
 matlabbatch{3}.spm.stats.fmri_spec.fact = struct('name', {}, 'levels', {});
 matlabbatch{3}.spm.stats.fmri_spec.bases.hrf.derivs = [1 0];
