@@ -9,10 +9,10 @@
 STUDY=/projects/adapt_lab/shared/TPOT/TPOT_Scripts
 
 # Set subject list
-SUBJLIST=`cat subject_list.txt`
+SUBJLIST=`cat subject_list2.txt`
 
 # Which SID should be replaced?
-REPLACESID=TPOT002
+REPLACESID=TPOT120
 
 # SPM Path
 SPM_PATH=/projects/adapt_lab/jlewis5/ERdissertation/spm12

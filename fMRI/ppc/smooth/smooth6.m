@@ -3,16 +3,16 @@
 % spm SPM - SPM12 (6906)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
-matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.dir = {'/projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT002/ses-1/func'};
-matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.filter = 'sub-TPOT002_ses-1_task-affect_acq-1_run-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz';
+matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.dir = {'/projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT120/ses-1/func'};
+matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.filter = 'sub-TPOT120_ses-1_task-affect_acq-1_run-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz';
 matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.rec = 'FPList';
-matlabbatch{2}.cfg_basicio.file_dir.file_ops.file_fplist.dir = {'/projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT002/ses-1/func'};
-matlabbatch{2}.cfg_basicio.file_dir.file_ops.file_fplist.filter = 'sub-TPOT002_ses-1_task-affect_acq-2_run-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz';
+matlabbatch{2}.cfg_basicio.file_dir.file_ops.file_fplist.dir = {'/projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT120/ses-1/func'};
+matlabbatch{2}.cfg_basicio.file_dir.file_ops.file_fplist.filter = 'sub-TPOT120_ses-1_task-affect_acq-2_run-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz';
 matlabbatch{2}.cfg_basicio.file_dir.file_ops.file_fplist.rec = 'FPList';
-matlabbatch{3}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (sub-TPOT002_ses-1_task-affect_acq-1_run-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz)', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
+matlabbatch{3}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (sub-TPOT120_ses-1_task-affect_acq-1_run-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz)', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
 matlabbatch{3}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.outdir = {''};
 matlabbatch{3}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.keep = true;
-matlabbatch{4}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (sub-TPOT002_ses-1_task-affect_acq-2_run-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz)', substruct('.','val', '{}',{2}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
+matlabbatch{4}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (sub-TPOT120_ses-1_task-affect_acq-2_run-.*_space-MNI152NLin2009cAsym_desc-preproc_bold.nii.gz)', substruct('.','val', '{}',{2}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
 matlabbatch{4}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.outdir = {''};
 matlabbatch{4}.cfg_basicio.file_dir.file_ops.cfg_gunzip_files.keep = true;
 matlabbatch{5}.spm.util.exp_frames.files(1) = cfg_dep('Gunzip Files: Gunzipped Files', substruct('.','val', '{}',{3}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('()',{':'}));
