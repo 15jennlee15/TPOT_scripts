@@ -6,11 +6,11 @@
 
 %% select run 1 files
 matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.dir = {'/projects/adapt_lab/shared/TPOT/bids_data/derivatives/fmriprep/sub-TPOT202/ses-1/func'};
-matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.filter = 'sm6_sub-TPOT202_ses-1_task-affect_acq-2_run-02_space-MNI202NLin2009cAsym_desc-preproc_bold.nii';
+matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.filter = 'sm6_sub-TPOT202_ses-1_task-affect_acq-2_run-02_space-MNI152NLin2009cAsym_desc-preproc_bold.nii';
 matlabbatch{1}.cfg_basicio.file_dir.file_ops.file_fplist.rec = 'FPList';
 
 %% expand the frames of run 1 files
-matlabbatch{2}.spm.util.exp_frames.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (sm6_sub-TPOT202_ses-1_task-affect_acq-2_run-02_space-MNI202NLin2009cAsym_desc-preproc_bold.nii)', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
+matlabbatch{2}.spm.util.exp_frames.files(1) = cfg_dep('File Selector (Batch Mode): Selected Files (sm6_sub-TPOT202_ses-1_task-affect_acq-2_run-02_space-MNI152NLin2009cAsym_desc-preproc_bold.nii)', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files'));
 matlabbatch{2}.spm.util.exp_frames.frames = Inf;
 
 %% specify the model
@@ -29,7 +29,7 @@ matlabbatch{3}.spm.stats.fmri_spec.bases.hrf.derivs = [1 0];
 matlabbatch{3}.spm.stats.fmri_spec.volt = 1;
 matlabbatch{3}.spm.stats.fmri_spec.global = 'None';
 matlabbatch{3}.spm.stats.fmri_spec.mthresh = -Inf;
-matlabbatch{3}.spm.stats.fmri_spec.mask(1) = {'/projects/adapt_lab/jlewis5/ERdissertation/spm12/canonical/MNI202_T1_1mm_brain_mask.nii'}; 
+matlabbatch{3}.spm.stats.fmri_spec.mask(1) = {'/projects/adapt_lab/jlewis5/ERdissertation/spm12/canonical/MNI152_T1_1mm_brain_mask.nii'}; 
 matlabbatch{3}.spm.stats.fmri_spec.cvi = 'FAST';
 
 %% estimate the model (i.e. solve for the betas)
