@@ -19,7 +19,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.t1.scans = {
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT014/con_0001.nii'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT015/con_0001.nii'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT017/con_0001.nii'
-'/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT018/con_0001.nii'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT019/con_0001.nii'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT020/con_0001.nii'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT021/con_0001.nii'
