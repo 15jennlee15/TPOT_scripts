@@ -1,0 +1,27 @@
+#!/bin/bash
+#SBATCH --time=0-00:04:00
+#SBATCH --partition=short
+ 
+# Set your study
+STUDY=/projects/adapt_lab/shared/TPOT
+ 
+# SPM Path
+SPM_PATH=/projects/adapt_lab/jlewis5/ERdissertation/spm12
+ 
+# Set MATLAB script path
+SCRIPT=${STUDY}/TPOT_Scripts/fMRI/rx/models/affect/TwoSample/group_labelangry_IB.m
+ 
+# PROP the results files
+RESULTS_INFIX=rx_groupcon23
+ 
+# Set output dir and make it if it doesn't exist
+OUTPUTDIR=${STUDY}/out/rx
+ 
+if [ ! -d ${OUTPUTDIR} ]; then
+    mkdir -p ${OUTPUTDIR}
+fi
+ 
+# run script
+module load matlab
+srun --job-name="${RESULTS_INFIX}" -o "${OUTPUTDIR}"/"${RESULTS_INFIX}".log \
+     matlab -nosplash -nodisplay -nodesktop -r "clear; addpath('$SPM_PATH'); spm_jobman('initcfg'); spm_jobman('run','$SCRIPT'); exit"
