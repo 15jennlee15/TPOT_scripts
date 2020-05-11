@@ -3,7 +3,7 @@
 % spm SPM - SPM12 (7219)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
-matlabbatch{1}.spm.stats.factorial_design.dir = {'projects/adapt_lab/shared/TPOT/out/rx/models/affect/TwoSample/View_Blur_groups'};
+matlabbatch{1}.spm.stats.factorial_design.dir = {'projects/adapt_lab/shared/TPOT/out/rx/models/affect/TwoSample/group_view_blur'};
 %%
 matlabbatch{1}.spm.stats.factorial_design.des.t2.scans1 = {
                                                          'projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT002/con_0001.nii'
@@ -83,7 +83,8 @@ matlabbatch{1}.spm.stats.factorial_design.des.t2.scans1 = {
 'projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT166/con_0001.nii'
                                                           };
 %%
-matlabbatch{1}.spm.stats.factorial_design.des.t2.scans2 = {'/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT005/con_0001.nii'
+matlabbatch{1}.spm.stats.factorial_design.des.t2.scans2 = {
+    '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT005/con_0001.nii'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT008/con_0001.nii'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT020/con_0001.nii'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT035/con_0001.nii'
