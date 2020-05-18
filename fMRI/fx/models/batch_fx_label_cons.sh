@@ -46,7 +46,7 @@ if [ ! -d ${OUTPUTDIR} ]; then
 fi
 
 # model output directory
-MODEL_DIR=/projects/adapt_lab/shared/TPOT/out/fx
+MODEL_DIR=/projects/adapt_lab/shared/TPOT/out/fx/models/affect
 
 # Make text file with residual files for each run
 # echo $(printf "Res_%04d.nii\n" {1..245}) > residuals_run1.txt
