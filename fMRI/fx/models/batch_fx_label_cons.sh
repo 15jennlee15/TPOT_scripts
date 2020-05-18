@@ -59,14 +59,11 @@ mempercpu=8G
 # Create and execute batch job
 for SUB in $SUBJLIST; do
 
-	RES_DIR=${MODEL_DIR}/sub-${SUB}/affect
+	RES_DIR=${MODEL_DIR}/sub-${SUB}
 
 	# make output dir if it doesn't exist
-	if [ ! -d "${STUDY}/out/fx/sub-${SUB}" ]; then
-    		mkdir -v "${STUDY}/out/fx/sub-${SUB}"
-	fi
-	if [ ! -d "${STUDY}/out/fx/sub-${SUB}/affect” ]; then
-    		mkdir -v "${STUDY}/out/fx/sub-${SUB}/affect”
+	if [ ! -d "${STUDY}/out/fx/modela/affectsub-${SUB}" ]; then
+    		mkdir -v "${STUDY}/out/fx/models/affectsub-${SUB}"
 	fi
 
 	sbatch -A adapt_lab \
