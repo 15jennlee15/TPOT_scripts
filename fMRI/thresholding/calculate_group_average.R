@@ -3,7 +3,7 @@
 
 # user input
 model_dir = "/projects/adapt_lab/shared/TPOT/out/fx/models/affect"
-output_dir = "/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/thresholding/"
+output_dir = "/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/fx/thresholding/"
 
 # load packages
 library(tidyverse)
