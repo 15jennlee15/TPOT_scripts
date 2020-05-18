@@ -11,7 +11,7 @@
 LAB=adapt_lab/shared
 
 # Set your study
-STUDY=TPOT
+STUDY=/projects/adapt_lab/shared/TPOT
 
 # Set task name and session pattern
 TASK=affect
@@ -62,7 +62,7 @@ for SUB in $SUBJLIST; do
 	RES_DIR=${MODEL_DIR}/sub-${SUB}
 
 	# make output dir if it doesn't exist
-	if [ ! -d "${STUDY}/out/fx/modela/affect/sub-${SUB}" ]; then
+	if [ ! -d "${STUDY}/out/fx/models/affect/sub-${SUB}" ]; then
     		mkdir -v "${STUDY}/out/fx/models/affect/sub-${SUB}"
 	fi
 
