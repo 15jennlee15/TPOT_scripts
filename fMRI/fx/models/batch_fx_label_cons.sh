@@ -62,8 +62,8 @@ for SUB in $SUBJLIST; do
 	RES_DIR=${MODEL_DIR}/sub-${SUB}
 
 	# make output dir if it doesn't exist
-	if [ ! -d "${STUDY}/out/fx/modela/affectsub-${SUB}" ]; then
-    		mkdir -v "${STUDY}/out/fx/models/affectsub-${SUB}"
+	if [ ! -d "${STUDY}/out/fx/modela/affect/sub-${SUB}" ]; then
+    		mkdir -v "${STUDY}/out/fx/models/affect/sub-${SUB}"
 	fi
 
 	sbatch -A adapt_lab \
