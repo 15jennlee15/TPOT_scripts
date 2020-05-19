@@ -32,6 +32,7 @@ matlab -nosplash -nodisplay -nodesktop ${ADDITIONALOPTIONS} -r "clear; addpath('
 echo -------------------------------------------------------------------------------
 echo "Specifying residuals"
 echo -------------------------------------------------------------------------------
+
 module load afni
 sub_bids_dir=/projects/adapt_lab/shared/TPOT/bids_data/sub-${SUB}/ses-1/func
 RUNS=$(ls ${sub_bids_dir}/*${TASK}*.nii.gz | wc -l)
