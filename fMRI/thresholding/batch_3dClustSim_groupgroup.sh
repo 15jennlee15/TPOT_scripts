@@ -16,7 +16,7 @@ SHELL_SCRIPT=3dClustSim.sh
 RESULTS_INFIX=3dclustsim
 
 # Set output dir and make it if it doesn't exist
-OUTPUTDIR=${STUDY}/fMRI/thresholding/output/groupgroup
+OUTPUTDIR=${STUDY}/fMRI/fx/thresholding/output/groupgroup
 
 if [ ! -d ${OUTPUTDIR} ]; then
 	mkdir -p ${OUTPUTDIR}
