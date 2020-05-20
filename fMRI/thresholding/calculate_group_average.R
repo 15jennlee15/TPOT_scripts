@@ -2,7 +2,7 @@
 # D.Cos 12/2018
 
 # user input
-model_dir = "/projects/adapt_lab/shared/TPOT/out/fx/models/affect"
+model_dir = "/projects/adapt_lab/shared/TPOT/out/fx/models/affect/"
 output_dir = "/projects/adapt_lab/shared/TPOT/TPOT_Scripts/fMRI/fx/thresholding/"
 
 # load packages
