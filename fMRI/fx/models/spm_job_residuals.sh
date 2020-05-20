@@ -40,7 +40,7 @@ start=1
 stop=0
 
 for i in $(seq 1 $RUNS); do 
-	file=${sub_bids_dir}/sub-${SUB}_task-${TASK}_acq-${i}_run-*_bold.nii.gz
+	file=${sub_bids_dir}/sub-${SUB}_ses-1_task-${TASK}_acq-${i}_run-*_bold.nii.gz
 	nvols=`3dinfo -nv ${file}`
 	stop=$(($stop + $nvols))
 	for j in $(seq $start $stop); do 
