@@ -86,7 +86,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(1).scans = {
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT115/con_0002.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT116/con_0002.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT118/con_0002.nii,1'
-'/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT120/con_0002.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT166/con_0002.nii,1'
                                                                    };
 matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(2).levels = [1
@@ -158,7 +157,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(2).scans = {
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT115/con_0003.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT116/con_0003.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT118/con_0003.nii,1'
-'/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT120/con_0003.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT166/con_0003.nii,1'
                                                                    };
 matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(3).levels = [1
@@ -230,7 +228,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(3).scans = {
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT115/con_0004.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT116/con_0004.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT118/con_0004.nii,1'
-'/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT120/con_0004.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT166/con_0004.nii,1'
                                                                    };
 matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(4).levels = [2
@@ -503,7 +500,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(7).scans = {
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT115/con_0009.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT116/con_0009.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT118/con_0009.nii,1'
-'/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT120/con_0009.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT166/con_0009.nii,1'
                                                                    };
 matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(8).levels = [1
@@ -575,7 +571,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(8).scans = {
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT115/con_0010.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT116/con_0010.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT118/con_0010.nii,1'
-'/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT120/con_0010.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT166/con_0010.nii,1'
                                                                    };
 matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(9).levels = [1
@@ -647,7 +642,6 @@ matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(9).scans = {
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT115/con_0011.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT116/con_0011.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT118/con_0011.nii,1'
-'/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT120/con_0011.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT166/con_0011.nii,1'
                                                                    };
 matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(10).levels = [2
