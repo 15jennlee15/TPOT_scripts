@@ -30,7 +30,7 @@ matlabbatch{1}.spm.stats.factorial_design.des.fd.icell(1).scans = {
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT011/con_0002.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT013/con_0002.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT014/con_0002.nii,1'
-'/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT015/con_0002.nii,1'
+
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT017/con_0002.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT019/con_0002.nii,1'
 '/projects/adapt_lab/shared/TPOT/out/fx/models/affect/sub-TPOT021/con_0002.nii,1'
