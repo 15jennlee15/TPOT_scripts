@@ -35,7 +35,7 @@ source('config.R')
 message('--------Loading confound files--------')
 
 dataset = data.frame()
-columnNames = c("subjectID", "wave", "task", "run", "volume", "CSF", "WhiteMatter", 
+columnNames = c("subjectID", "wave", "task", "volume", "CSF", "WhiteMatter", 
                 "GlobalSignal", "stdDVARS", "non.stdDVARS", "vx.wisestdDVARS", 
                 "FramewiseDisplacement", "tCompCor00", "tCompCor01", "tCompCor02", 
                 "tCompCor03", "tCompCor04", "tCompCor05", "aCompCor00", "aCompCor01", 
@@ -53,15 +53,13 @@ fileList = list.files(confoundDir, pattern = '.*confounds.*.tsv', recursive = TR
                      setNames(gsub("TComp", "tComp", names(.))) %>%
                      setNames(gsub("Trans", "", names(.))) %>%
                      mutate(file = file) %>%
-                     extract(file, c('subjectID', 'wave', 'task', 'run'),
-                             file.path('sub-.*','ses-.*', 'func', 'sub-(.*)_ses-(.*)_task-(.*)_(.*)_desc-confounds_regressors.tsv')) %>%
+                     extract(file, c('subjectID', 'wave', 'task'),
+                             file.path('sub-.*','ses-.*', 'func', 'sub-(.*)_ses-(.*)_task-(.*)_desc-confounds_regressors.tsv')) %>%
                      rename("CSF" = Csf,
                             "stdDVARS" = StdDvars,
                             "non.stdDVARS" = Dvars) %>%
                      mutate(wave = str_extract(wave, "[[:digit:]]+"),
-                            run = str_extract(run, "[[:digit:]]+"),
                             wave = as.integer(wave),
-                            run = as.integer(run),
                             #vx.wisestdDVARS = 0,
                             volume = row_number()) %>%
                      mutate_if(is.character, list(~ ifelse(. == "n/a", 0, .))) %>%
@@ -72,7 +70,7 @@ fileList = list.files(confoundDir, pattern = '.*confounds.*.tsv', recursive = TR
     tmp[missingColumns] = 0 
     
     tmp = tmp %>%
-      select(subjectID, wave, task, run, volume, CSF, WhiteMatter, 
+      select(subjectID, wave, task, volume, CSF, WhiteMatter, 
              GlobalSignal, stdDVARS, non.stdDVARS, vx.wisestdDVARS, 
              FramewiseDisplacement, tCompCor00, tCompCor01, tCompCor02, 
              tCompCor03, tCompCor04, tCompCor05, aCompCor00, aCompCor01, 
@@ -109,7 +107,7 @@ message(sprintf('--------Writing summaries to %s--------', summaryDir))
 
 # summarize by task and run
 summaryRun = dataset %>% 
-  group_by(subjectID, wave, task, run) %>% 
+  group_by(subjectID, wave, task) %>% 
   summarise(nVols = sum(trash, na.rm = T),
             percent = round((sum(trash, na.rm = T) / n()) * 100, 1))
 
@@ -122,7 +120,7 @@ summaryTask = dataset %>%
 # print all trash volumes
 summaryTrash = dataset %>%
   filter(trash == 1) %>%
-  select(subjectID, wave, task, run, volume, trash)
+  select(subjectID, wave, task, volume, trash)
 
 # create the summary directory if it does not exist
 if (!file.exists(summaryDir)) {
@@ -131,16 +129,16 @@ if (!file.exists(summaryDir)) {
 }
 
 # write files
-write.csv(summaryRun, file.path(summaryDir, paste0(study, '_summaryRun.csv')), row.names = FALSE)
-write.csv(summaryTask, file.path(summaryDir, paste0(study, '_summaryTask.csv')), row.names = FALSE)
-write.csv(summaryTrash, file.path(summaryDir, paste0(study, '_trashVols.csv')), row.names = FALSE)
+write.csv(summaryRun, file.path(summaryDir, paste0(study, '_summaryRunvid.csv')), row.names = FALSE)
+write.csv(summaryTask, file.path(summaryDir, paste0(study, '_summaryTaskvid.csv')), row.names = FALSE)
+write.csv(summaryTrash, file.path(summaryDir, paste0(study, '_trashVolsvid.csv')), row.names = FALSE)
 
 #------------------------------------------------------
 # write rps
 #------------------------------------------------------
 # select relevant data
 rps = dataset %>%
-  select(subjectID, wave, task, run, volume, X, Y, Z, RotX, RotY, RotZ, trash)
+  select(subjectID, wave, task, volume, X, Y, Z, RotX, RotY, RotZ, trash)
 
 # write files
 if (noRP == FALSE) {
@@ -162,7 +160,7 @@ if (noRP == FALSE) {
     # head radius of 50mm, we get a rotational displacement from the origin at the 
     # outside of an average skull.
     rps = rps %>%
-      group_by(subjectID, wave, task, run) %>%
+      group_by(subjectID, wave, task) %>%
       mutate(RotX = 50*RotX,
              RotY = 50*RotY,
              RotZ = 50*RotZ,
@@ -170,7 +168,7 @@ if (noRP == FALSE) {
              rot = l2norm3ddf(RotX, RotY, RotZ),
              deriv.trans = c(0, diff(trans)),
              deriv.rot = c(0, diff(rot))) %>%
-      select(subjectID, wave, task, run, volume, trans, rot, deriv.trans, deriv.rot, trash)
+      select(subjectID, wave, task, volume, trans, rot, deriv.trans, deriv.rot, trash)
     
   }
   
@@ -182,10 +180,10 @@ if (noRP == FALSE) {
   
   # write the files
   rp_files_written = rps %>%
-    arrange(subjectID, wave, task, run, volume) %>%
-    group_by(subjectID, wave, task, run) %>%
+    arrange(subjectID, wave, task, volume) %>%
+    group_by(subjectID, wave, task) %>%
     do({
-      fname = file.path(rpDir, paste('rp_', .$subjectID[[1]], '_', .$wave[[1]], '_', .$task[[1]], '_', .$run[[1]], '.txt', sep = ''))
+      fname = file.path(rpDir, paste('rp_', .$subjectID[[1]], '_', .$wave[[1]], '_', .$task[[1]], '_', '.txt', sep = ''))
       write.table(
         .[,-c(1:5)],
         fname,
@@ -214,20 +212,20 @@ if (noPlot == FALSE) {
     mutate(label = ifelse(grepl(1, trash), as.character(volume), ''),
            code = ifelse(trash == 1, 'trash', NA)) %>%
     gather(indicator, value, figIndicators) %>%
-    group_by(subjectID, wave, task, run) %>%
+    group_by(subjectID, wave, task) %>%
     do({
       plot = ggplot(., aes(x = volume, y = value)) +
-        geom_line(data = filter(., subjectID == .$subjectID[[1]] & wave == .$wave[[1]] & task == .$task[[1]] & run == .$run[[1]]), size = .25) +
-        geom_point(data = subset(filter(., subjectID == .$subjectID[[1]] & wave == .$wave[[1]] & task == .$task[[1]] & run == .$run[[1]]), !is.na(code)), aes(color = code), size = 4) +
-        geom_text(data = filter(., subjectID == .$subjectID[[1]] & wave == .$wave[[1]] & task == .$task[[1]] & run == .$run[[1]]), aes(label = label), size = 2) +
+        geom_line(data = filter(., subjectID == .$subjectID[[1]] & wave == .$wave[[1]] & task == .$task[[1]]), size = .25) +
+        geom_point(data = subset(filter(., subjectID == .$subjectID[[1]] & wave == .$wave[[1]] & task == .$task[[1]]), !is.na(code)), aes(color = code), size = 4) +
+        geom_text(data = filter(., subjectID == .$subjectID[[1]] & wave == .$wave[[1]] & task == .$task[[1]]), aes(label = label), size = 2) +
         facet_grid(indicator ~ ., scales = 'free') +
         scale_color_manual(values = "#E4B80E") +
-        labs(title = paste0(.$subjectID[[1]], "  ", .$wave[[1]], "  ", .$task[[1]], "  ", .$run[[1]]),
+        labs(title = paste0(.$subjectID[[1]], "  ", .$wave[[1]], "  ", .$task[[1]], "  "),
              y = "value\n",
              x = "\nvolume") +
         theme_minimal(base_size = 10) +
         theme(legend.position = "none")
-      ggsave(plot, file = file.path(plotDir, paste0(.$subjectID[[1]], '_', .$wave[[1]], '_', .$task[[1]], '_', .$run[[1]], figFormat)), height = figHeight, width = figWidth, dpi = figDPI)
+      ggsave(plot, file = file.path(plotDir, paste0(.$subjectID[[1]], '_', .$wave[[1]], '_', .$task[[1]], '_', figFormat)), height = figHeight, width = figWidth, dpi = figDPI)
       data.frame()
     })
 }
